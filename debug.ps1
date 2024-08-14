@@ -2,4 +2,4 @@ Get-ChildItem -Path "./source/js/" -Recurse -Filter *.js | ForEach-Object { Get-
 
 Add-Content -Path "./intermediary/merged.js" -Value (Get-Content "./internal/spark.js")
 
-Get-Content ./internal/suffix.html, ./intermediary/merged.js, ./internal/postfix.html | Out-File ./debug/build.html
+Get-Content ./internal/suffix.html, ./intermediary/merged.js, ./internal/postfix.html | Out-File ./debug/index.html

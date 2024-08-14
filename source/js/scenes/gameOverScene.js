@@ -1,7 +1,7 @@
 initialiseGameOverScene = () => {
     messages = [];
-    showMessage("YOU HAVE DIED!", halfWidth, halfHeight, 100);
-    showMessage("Press enter to try again!", halfWidth, halfHeight + 100, 50);
+    showMessage("Triskaideka murdered you in cold blood", halfWidth, halfHeight, 100);
+    showMessage("Press enter to suffer again!", halfWidth, halfHeight + 100, 50);
 }
 
 updateGameOverScene = () => {
