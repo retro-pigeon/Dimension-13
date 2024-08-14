@@ -335,10 +335,7 @@ const initialiseMenuScene = () => {
     messages = [];
 
     showMessage("13th Second of Terror", halfWidth, halfHeight - 100, 100, 100000, 30);
-    showMessage('Escape the lair of Triskaideka', halfWidth, halfHeight, 30, 300, 60);
-
-    showMessage('Use wasd to move and space to attack!', halfWidth, halfHeight * 1.5, 30, 100000, 960);
-}
+    showMessage('Escape the lair of Triskaideka', halfWidth, halfHeight, 30, 300, 60);}
 
 const updateMenuScene = (deltaTime) => {
     context.clearRect(0, 0, 1e6, 1e6);
