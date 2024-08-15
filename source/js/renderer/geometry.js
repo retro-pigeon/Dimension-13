@@ -1,4 +1,4 @@
-const Geometry = (vertices, indices, colors) => {
+const Geometry = (vertices, indices, colors, mir = 0) => {
     // Necessary for webgl calls, update if IBO is modified
     var indicesLength = indices.length;
 
@@ -8,7 +8,19 @@ const Geometry = (vertices, indices, colors) => {
 
     for (let i = 0; i < colors.length; i += 3)  finalColors.push(colors[i], colors[i + 1], colors[i + 2], colors[i], colors[i + 1], colors[i + 2], colors[i], colors[i + 1], colors[i + 2]);
 
-    //Set up VBO
+    if (mir) {
+        finalVertices = [...finalVertices, ...(finalVertices.map((x, i) => (i % 3 ? x : -x)))];
+        finalVertices = [...finalVertices, ...(finalVertices.map((y, i) => (i % 3 == 2 ? -y : y)))];
+        finalVertices = [...finalVertices, ...(finalVertices.map((k, i, m) => {
+            if (i % 3 == 1)return k;
+            if (i % 3 == 2)return m[i-2];
+            else return m[i+2]
+        }))];
+        finalColors = [...finalColors, ...finalColors, ...finalColors, ...finalColors, ...finalColors, ...finalColors, ...finalColors, ...finalColors, ];
+        indicesLength*=8;
+    }
+
+    //Set up VBO 
     const vertexBuffer = CreateAndBindBufferData(finalVertices);
     //Color buffer
     const colorBuffer = CreateAndBindBufferData(finalColors);

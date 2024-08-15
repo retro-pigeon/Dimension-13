@@ -3,6 +3,7 @@ const initialiseWebGl = () => {
     gl.enable(gl.DEPTH_TEST);
     gl.clearDepth(1.0);
     gl.depthFunc(gl.LEQUAL);
+    gl.disable(gl.CULL_FACE);
 
     // Create a shader program
     program = gl.createProgram();
@@ -31,7 +32,7 @@ const initialiseWebGl = () => {
         in vec3 vNormal, vColor;
         out vec4 fragColor;
         void main(void) {
-            float fog = max(min(1.0 - vPosition.z / 50.0, 1.0), 0.05);
+            float fog = max(min(1.0 - vPosition.z / 10.0, 1.0), 0.05);
             float light = max(dot(normalize(vNormal), normalize(vec3(6.0, 6.0, 6.0))), .3);
             fragColor = vec4(vColor * light * fog, 1.0);
         }

@@ -1,0 +1,326 @@
+<!--- Takes a obj and converts it to a more readable format. Make sure model is triangulated --->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function objtodad(obj) {
+            let lines = obj.split('\n');
+            let output = '';
+
+            for (let line of lines) {
+                const split = line.split(' ')
+                let instruction = split[0];
+                split.shift()
+                let data = split.join(' ');
+
+                if (instruction == 'v') {
+                    output += data.split(' ').join(',');
+                }
+
+                if (instruction == 'f') {
+                    if (output.indexOf(':') == -1)
+                        output += ':';
+                    output += data.split(' ').map(input => input.split('/')[0]).join(',') + ';';
+                }
+            }
+            return output;
+        }
+
+        function bintogeometry(obj) {
+            const verts = stringToCharCodeArray(obj.split('ÿ')[0]); //charcode 255
+            const indices = stringToCharCodeArray(obj.split('ÿ')[1]).map(str => str * 254); //multiply by 254 for indices
+
+            return { verts, indices };
+        }
+
+        const convert = value => (value + 127.5) / 255;
+
+        function objtobin(obj) {
+            let lines = obj.split('\n');
+            let output = '';
+            let colors = [];
+
+            for (let line of lines) {
+                const split = line.split(' ')
+                let instruction = split[0];
+                let currentColor = '#ff0000';
+                split.shift()
+                let data = split.join(' ');
+
+                if (instruction == 'v') {
+                    output += data.split(' ').map(s => String.fromCharCode(+s * 256 + 128).replace('\\', '\\\\').replace('\0', '\\0')).join``;
+                }
+
+                if (instruction == 'f') {
+                    if (output.indexOf('ÿ') == -1)
+                        output += 'ÿ';
+                    output += data.split(' ').map(input => String.fromCharCode(+(input.split('/')[0])).replace('\\', '\\\\').replace('\0', '\\0')).join(``);
+                    output += String.fromCharCode(colors.length - 1);
+                }
+
+                if (instruction == 'usemtl') {
+                    color = data;
+                    colors.push(color);
+                }
+            }
+            console.log(colors);
+            return output + 'ÿ' + colors.join``;
+        }
+
+        function hexToRgbArray(hex) {
+            // Remove the "#" symbol if it exists
+            hex = hex.replace(/^#/, '');
+
+            // Parse the hex values for red, green, and blue
+            const r = parseInt(hex.slice(0, 2), 16) / 255;
+            const g = parseInt(hex.slice(2, 4), 16) / 255;
+            const b = parseInt(hex.slice(4, 6), 16) / 255;
+
+            // Return the RGB color as an array with values in the [0, 1] range
+            return [r, g, b];
+        }
+
+        function parseOBJ(objString) {
+            const parsedObjects = {};
+            let currentObject = null;
+            let currentColor = '#deadbeef';
+            let currentColorCount = 0;
+            let indexOffset = 0;
+
+            const lines = objString.split('\n');
+
+            for (let line of lines) {
+                const parts = line.trim().split(/\s+/);
+
+                if (parts[0] === 'o' && parts[1]) {
+                    // Start of a new object
+                    if (currentObject !== null) {
+                        // If there's data in the current object, push it to the array
+                        indexOffset += currentObject.data.vertices.length / 3;
+                        parsedObjects[currentObject.name] = currentObject.data;
+                    }
+                    // Create a new object with an empty data object
+                    currentObject = { name: parts[1], data: { vertices: [], normals: [], indices: [], colors: [] } };
+                } else if (parts[0] === 'v') {
+                    // Vertex
+                    currentObject.data.vertices.push(Math.trunc(parseFloat(parts[1]) * 100), Math.trunc(parseFloat(parts[2]) * 100), Math.trunc(parseFloat(parts[3]) * 100));
+                }
+                else if (parts[0] === 'f') {
+                    // Face
+                    for (let i = 1; i < 4; i++) {
+                        const faceData = parts[i].split('/');
+                        currentObject.data.indices.push(parseInt(faceData[0]) - 1 - indexOffset); // OBJ indices start from 1!
+
+                    }
+                    currentColorCount++;
+                } else if (parts[0] === 'usemtl') {
+                    if (currentColorCount != 0)
+                        currentObject.data.colors.push([currentColor, currentColorCount]);
+                    currentColor = parts[1];
+                    currentColorCount = 0;
+                } 
+            }
+
+            if (currentColorCount != 0)
+                    currentObject.data.colors.push([currentColor, currentColorCount]);
+
+            if (currentObject !== null) {
+                indexOffset += currentObject.data.vertices.length / 3;
+                parsedObjects[currentObject.name] = currentObject.data;
+            }
+
+            return parsedObjects;
+        }
+
+
+        // Example usage:
+        // const objString = '...'; // Your OBJ file content as a string
+        // const { vertices, normals, indices } = parseOBJ(objString);
+
+
+        const stringToCharCodeArray = s => [...s].map(c => c.charCodeAt() / 254);//note that it returns values between 0 and 1
+        const charCodeArrayToString = a => a.map(i => String.fromCharCode(i * 254 | 0)).join``;
+
+        console.log(stringToCharCodeArray(charCodeArrayToString([.3, .5, .8, .9])))
+
+        function downloadFile(content, fileName, contentType) {
+            const blob = new Blob([content], { type: contentType });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = fileName;
+            a.click();
+
+            URL.revokeObjectURL(url);
+        }
+
+
+        // Example usage:
+        // const plyString = '...'; // Your PLY file content as a string
+        // const { vertices, normals, colors, indices, vertexFormat } = parsePLY(plyString);
+
+
+        console.log(JSON.stringify(parseOBJ(`# Blender 4.2.0
+# www.blender.org
+mtllib dungeon.mtl
+o Cube
+v -7.555554 0.000000 -7.554546
+v -7.555554 3.298894 -7.555554
+v -5.288888 2.266666 -7.555554
+v -3.777777 2.266666 -7.555554
+v 0.000000 0.000000 -7.554546
+v 0.000000 3.298894 -7.555554
+v 0.000000 3.298894 0.034343
+v 0.000000 0.000000 0.035351
+v -3.022222 0.000000 -7.554546
+v -6.044444 0.000000 -7.554546
+v -6.044444 3.298894 -7.555554
+v -3.022222 3.298894 -7.555554
+v -6.044443 3.298894 -13.599997
+v -3.022222 3.298894 -13.599997
+v -6.044442 0.000000 -13.598989
+v -3.022223 0.000000 -13.598989
+v -5.288888 2.266666 -13.599997
+v -3.777777 2.266666 -13.599997
+v -8.662241 3.298894 -17.377775
+v -0.404423 3.298894 -17.377775
+v -8.662241 0.000000 -17.376766
+v -0.404423 0.000000 -17.376766
+v -5.440000 2.417778 -21.155552
+v -3.626667 2.417778 -21.155552
+v -6.044444 3.298894 -21.155552
+v -3.022221 3.298894 -21.155552
+v -6.044444 0.000000 -21.154545
+v -3.022221 0.000000 -21.154543
+v -6.044444 3.298894 -28.711105
+v -3.022221 3.298894 -28.711107
+v -6.044445 0.000000 -28.710098
+v -3.022221 0.000000 -28.710098
+v -5.440001 2.417778 -28.711107
+v -3.626666 2.417778 -28.711105
+v -3.022221 3.298894 -37.777771
+v 0.000000 3.298894 -37.777771
+v -3.022221 0.000000 -37.776764
+v 0.000000 0.000000 -37.776764
+v 0.000000 3.298894 -28.711107
+v 0.000000 0.000000 -28.710098
+vn -0.0000 0.0003 1.0000
+vn 0.9487 -0.3162 -0.0000
+vn -0.0000 -0.0000 -1.0000
+vn -0.0004 -0.0003 -1.0000
+vn 0.0004 -0.0003 -1.0000
+vn -0.9487 -0.3162 -0.0000
+vn -0.0000 -1.0000 -0.0000
+vn -0.0000 -0.0000 1.0000
+vn 0.0004 0.0003 1.0000
+vn -0.0004 0.0003 1.0000
+vn -0.0000 1.0000 -0.0000
+vn -0.8219 -0.0002 -0.5696
+vn 0.8219 -0.0002 -0.5696
+vn 0.8219 0.0002 0.5696
+vn -0.8219 0.0002 0.5696
+vn 0.9701 -0.2425 -0.0000
+vn -0.0005 -0.0003 -1.0000
+vn -0.9701 -0.2425 -0.0000
+vn 0.9487 0.0001 0.3162
+vn -0.0000 -0.0003 -1.0000
+vt 0.375000 0.550000
+vt 0.625000 0.500000
+vt 0.375000 0.500000
+vt 0.375000 0.625000
+vt 0.625000 0.600000
+vt 0.375000 0.600000
+vt 0.000000 0.000000
+vt 0.562500 0.587500
+vt 0.625000 0.550000
+vt 0.562500 0.562500
+vt 0.519603 0.501365
+vt 0.555397 0.528635
+vt 0.625000 0.625000
+s 0
+usemtl #484848
+f 10/1/1 2/2/1 1/3/1
+f 5/4/1 12/5/1 9/6/1
+f 3/7/2 15/7/2 17/7/2
+f 18/8/3 13/9/3 14/5/3
+f 13/9/4 17/10/4 15/1/4
+f 16/6/5 18/8/5 14/5/5
+f 4/7/6 16/7/6 9/7/6
+f 3/7/7 18/7/7 4/7/7
+f 12/5/8 3/7/8 4/7/8
+f 10/7/9 3/7/9 11/9/9
+f 9/7/10 12/5/10 4/7/10
+f 9/7/11 15/7/11 10/7/11
+f 16/7/11 21/7/11 15/7/11
+f 14/5/12 22/6/12 16/6/12
+f 13/9/7 20/5/7 14/5/7
+f 13/9/13 21/1/13 19/9/13
+f 28/7/11 21/7/11 22/7/11
+f 19/9/14 27/1/14 25/9/14
+f 20/5/15 28/6/15 22/6/15
+f 19/9/7 26/5/7 20/5/7
+f 10/7/11 8/7/11 9/7/11
+f 11/9/7 12/5/7 7/7/7
+f 33/7/7 24/7/7 23/7/7
+f 25/9/8 23/7/8 26/5/8
+f 31/7/16 23/7/16 27/7/16
+f 29/9/3 34/11/3 33/12/3
+f 30/5/5 32/6/5 34/11/5
+f 31/1/17 29/9/17 33/12/17
+f 24/7/18 32/7/18 28/7/18
+f 26/5/10 24/7/10 28/7/10
+f 32/7/11 27/7/11 28/7/11
+f 37/1/19 29/9/19 31/1/19
+f 35/9/7 30/5/7 29/9/7
+f 32/7/11 37/7/11 31/7/11
+f 30/5/20 40/6/20 32/6/20
+f 30/5/7 36/5/7 39/5/7
+f 32/6/11 40/6/11 38/7/11
+f 35/9/1 38/7/1 36/5/1
+f 10/1/1 11/9/1 2/2/1
+f 5/4/1 6/13/1 12/5/1
+f 3/7/2 10/7/2 15/7/2
+f 18/8/3 17/10/3 13/9/3
+f 4/7/6 18/7/6 16/7/6
+f 3/7/7 17/7/7 18/7/7
+f 12/5/8 11/9/8 3/7/8
+f 9/7/11 16/7/11 15/7/11
+f 16/7/11 22/7/11 21/7/11
+f 14/5/12 20/5/12 22/6/12
+f 13/9/7 19/9/7 20/5/7
+f 13/9/13 15/1/13 21/1/13
+f 28/7/11 27/7/11 21/7/11
+f 19/9/14 21/1/14 27/1/14
+f 20/5/15 26/5/15 28/6/15
+f 19/9/7 25/9/7 26/5/7
+f 10/7/11 1/3/11 8/7/11
+f 8/7/11 5/4/11 9/7/11
+f 7/7/7 2/2/7 11/9/7
+f 12/5/7 6/13/7 7/7/7
+f 33/7/7 34/7/7 24/7/7
+f 25/9/9 27/7/9 23/7/9
+f 31/7/16 33/7/16 23/7/16
+f 29/9/3 30/5/3 34/11/3
+f 24/7/18 34/7/18 32/7/18
+f 26/5/8 23/7/8 24/7/8
+f 32/7/11 31/7/11 27/7/11
+f 37/1/19 35/9/19 29/9/19
+f 35/9/7 36/5/7 30/5/7
+f 32/7/11 38/7/11 37/7/11
+f 30/5/20 39/5/20 40/6/20
+f 35/9/1 37/7/1 38/7/1
+`)));
+
+    </script>
+</body>
+
+</html>

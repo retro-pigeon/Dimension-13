@@ -15,6 +15,9 @@ zzfxR = 44100
 
 // zzfxX - the common audio context
 zzfxX = new (window.AudioContext || webkitAudioContext);
+// Here we can include all of our raw data
+
+let level = {"vertices":[-755,0,-755,-755,329,-755,-528,226,-755,-377,226,-755,0,0,-755,0,329,-755,0,329,3,0,0,3,-302,0,-755,-604,0,-755,-604,329,-755,-302,329,-755,-604,329,-1359,-302,329,-1359,-604,0,-1359,-302,0,-1359,-528,226,-1359,-377,226,-1359,-866,329,-1737,-40,329,-1737,-866,0,-1737,-40,0,-1737,-544,241,-2115,-362,241,-2115,-604,329,-2115,-302,329,-2115,-604,0,-2115,-302,0,-2115,-604,329,-2871,-302,329,-2871,-604,0,-2871,-302,0,-2871,-544,241,-2871,-362,241,-2871,-302,329,-3777,0,329,-3777,-302,0,-3777,0,0,-3777,0,329,-2871,0,0,-2871],"normals":[],"indices":[9,1,0,4,11,8,2,14,16,17,12,13,12,16,14,15,17,13,3,15,8,2,17,3,11,2,3,9,2,10,8,11,3,8,14,9,15,20,14,13,21,15,12,19,13,12,20,18,27,20,21,18,26,24,19,27,21,18,25,19,9,7,8,10,11,6,32,23,22,24,22,25,30,22,26,28,33,32,29,31,33,30,28,32,23,31,27,25,23,27,31,26,27,36,28,30,34,29,28,31,36,30,29,39,31,29,35,38,31,39,37,34,37,35,9,10,1,4,5,11,2,9,14,17,16,12,3,17,15,2,16,17,11,10,2,8,15,14,15,21,20,13,19,21,12,18,19,12,14,20,27,26,20,18,20,26,19,25,27,18,24,25,9,0,7,7,4,8,6,1,10,11,5,6,32,33,23,24,26,22,30,32,22,28,29,33,23,33,31,25,22,23,31,30,26,36,34,28,34,35,29,31,37,36,29,38,39,34,36,37],"colors":[["#484848",70]]};
 const map = {};
 var pointIsOnMap = (x, y) => {
     //for each polygon on the walking map verify if the count of intersecting edges is odd or not. 
@@ -87,7 +90,7 @@ updateMessages = () => {
 
 const font = 'Luminari, Baskerville, serif';
 
-const Geometry = (vertices, indices, colors) => {
+const Geometry = (vertices, indices, colors, mir = 0) => {
     // Necessary for webgl calls, update if IBO is modified
     var indicesLength = indices.length;
 
@@ -97,7 +100,19 @@ const Geometry = (vertices, indices, colors) => {
 
     for (let i = 0; i < colors.length; i += 3)  finalColors.push(colors[i], colors[i + 1], colors[i + 2], colors[i], colors[i + 1], colors[i + 2], colors[i], colors[i + 1], colors[i + 2]);
 
-    //Set up VBO
+    if (mir) {
+        finalVertices = [...finalVertices, ...(finalVertices.map((x, i) => (i % 3 ? x : -x)))];
+        finalVertices = [...finalVertices, ...(finalVertices.map((y, i) => (i % 3 == 2 ? -y : y)))];
+        finalVertices = [...finalVertices, ...(finalVertices.map((k, i, m) => {
+            if (i % 3 == 1)return k;
+            if (i % 3 == 2)return m[i-2];
+            else return m[i+2]
+        }))];
+        finalColors = [...finalColors, ...finalColors, ...finalColors, ...finalColors, ...finalColors, ...finalColors, ...finalColors, ...finalColors, ];
+        indicesLength*=8;
+    }
+
+    //Set up VBO 
     const vertexBuffer = CreateAndBindBufferData(finalVertices);
     //Color buffer
     const colorBuffer = CreateAndBindBufferData(finalColors);
@@ -161,10 +176,10 @@ const
     lerpColors = (a, b, t) => Color(a.r + (b.r - a.r) * t, a.g + (b.g - a.g) * t, a.b + (b.b - a.b) * t),
     easeInOutCubic = (x) => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2,
     angleBetween = (a, b) => Math.atan2(a.x - b.x, a.z - b.z);
-const Mesh = (vertices, indices, colors, position = vector3(), rotation = vector3(), scale = vector3(1, 1, 1)) => {
+const Mesh = (vertices, indices, colors, position = vector3(), rotation = vector3(), scale = vector3(1, 1, 1), mir = 0) => {
     let finalColors = [];
     for (let color of colors) for (let i = 0; i < color[1]; i++) finalColors.push(...hexToRgbArray(color[0]));
-    return ({ geometry: Geometry(vertices.map(v => v / 100), indices, finalColors), position, rotation, scale });
+    return ({ geometry: Geometry(vertices.map(v => v / 100), indices, finalColors, mir), position, rotation, scale });
 },
 
     hexToRgbArray = hex => [parseInt(hex.slice(1, 3), 16) / 255, parseInt(hex.slice(3, 5), 16) / 255, parseInt(hex.slice(5, 7), 16) / 255];
@@ -203,6 +218,7 @@ const initialiseWebGl = () => {
     gl.enable(gl.DEPTH_TEST);
     gl.clearDepth(1.0);
     gl.depthFunc(gl.LEQUAL);
+    gl.disable(gl.CULL_FACE);
 
     // Create a shader program
     program = gl.createProgram();
@@ -231,7 +247,7 @@ const initialiseWebGl = () => {
         in vec3 vNormal, vColor;
         out vec4 fragColor;
         void main(void) {
-            float fog = max(min(1.0 - vPosition.z / 50.0, 1.0), 0.05);
+            float fog = max(min(1.0 - vPosition.z / 10.0, 1.0), 0.05);
             float light = max(dot(normalize(vNormal), normalize(vec3(6.0, 6.0, 6.0))), .3);
             fragColor = vec4(vColor * light * fog, 1.0);
         }
@@ -289,10 +305,11 @@ updateGameOverScene = () => {
 
 const initialiseMenuScene = () => {
     messages = [];
-    setInterval(f=>zzfx(...[1.6,0,40,,,1,,.6,,,,,.5,,,,,.8,.03], 1e3));
+    setInterval(f=>zzfx(...[1.6,0,65.40639,,,1,,.6,,,,,.5,,,,,.8,.03]), 800);
 
     showMessage("13th Second of Terror", halfWidth, halfHeight - 100, 100, 100000, 30);
-    showMessage('Escape the lair of Triskaideka', halfWidth, halfHeight, 30, 300, 60);}
+    showMessage('Escape the lair of Triskaideka', halfWidth, halfHeight, 30, 300, 60);
+}
 
 const updateMenuScene = (deltaTime) => {
     context.clearRect(0, 0, 1e6, 1e6);
@@ -303,14 +320,16 @@ const updateMenuScene = (deltaTime) => {
 
 };
 
-var meshes, swordAngle, playerHealth, playerTargetHealth, canHit, potions, katanaIsShown, katanaIsFound, katanaSword, grassBunches, playSceneCounter;
+var meshes, camera, playSceneCounter;
+var u;//undefined
 
 const initialisePlayScene = () => {
     messages = [];
-    meshes = [];
+    meshes = [Mesh(level.vertices, level.indices, level.colors, u, u, u, 1)];
 
-    camera = { position: vector3(-12, 15, -66), direction: vector3(0, 0, 1), forwardSpeed: 1, yaw: 0, target: vector3(0, 0, 0), yaw: 0, fov: Math.PI / 2, aspect: width / height, near: .1, far: 200, up: vector3(0, 1, 0) };
-
+    camera = { position: vector3(0, 0, -64), direction: vector3(0, 0, 1), forwardSpeed: 1, yaw: 0, target: vector3(0, 0, 0), yaw: 0, fov: Math.PI / 2, aspect: width / height, near: .1, far: 200, up: vector3(0, 1, 0) };
+    
+    initialiseWebGl();
 }
 
 updatePlayScene = (deltaTime) => {
@@ -328,7 +347,13 @@ updatePlayScene = (deltaTime) => {
 }
 
 const processInputPlayScene = (deltaTime) => {
-    // Process input here
+    if (left) camera.yaw -= deltaTime * 0.5;
+    if (right) camera.yaw += deltaTime * 0.5;
+
+    if (up) camera.position = add(camera.position, multiplyBy(camera.direction, camera.forwardSpeed * deltaTime))
+
+    camera.direction = rotY(vector3(0, 0, 1), camera.yaw)
+    camera.target = add(camera.position, camera.direction);
 }
 
 
