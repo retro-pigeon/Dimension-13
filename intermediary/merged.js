@@ -17,8 +17,12 @@ zzfxR = 44100
 zzfxX = new (window.AudioContext || webkitAudioContext);
 // Here we can include all of our raw data
 
-let level = {"vertices":[-755,0,-755,-755,329,-755,-528,226,-755,-377,226,-755,0,0,-755,0,329,-755,0,329,3,0,0,3,-302,0,-755,-604,0,-755,-604,329,-755,-302,329,-755,-604,329,-1359,-302,329,-1359,-604,0,-1359,-302,0,-1359,-528,226,-1359,-377,226,-1359,-866,329,-1737,-40,329,-1737,-866,0,-1737,-40,0,-1737,-544,241,-2115,-362,241,-2115,-604,329,-2115,-302,329,-2115,-604,0,-2115,-302,0,-2115,-604,329,-2871,-302,329,-2871,-604,0,-2871,-302,0,-2871,-544,241,-2871,-362,241,-2871,-302,329,-3777,0,329,-3777,-302,0,-3777,0,0,-3777,0,329,-2871,0,0,-2871],"normals":[],"indices":[9,1,0,4,11,8,2,14,16,17,12,13,12,16,14,15,17,13,3,15,8,2,17,3,11,2,3,9,2,10,8,11,3,8,14,9,15,20,14,13,21,15,12,19,13,12,20,18,27,20,21,18,26,24,19,27,21,18,25,19,9,7,8,10,11,6,32,23,22,24,22,25,30,22,26,28,33,32,29,31,33,30,28,32,23,31,27,25,23,27,31,26,27,36,28,30,34,29,28,31,36,30,29,39,31,29,35,38,31,39,37,34,37,35,9,10,1,4,5,11,2,9,14,17,16,12,3,17,15,2,16,17,11,10,2,8,15,14,15,21,20,13,19,21,12,18,19,12,14,20,27,26,20,18,20,26,19,25,27,18,24,25,9,0,7,7,4,8,6,1,10,11,5,6,32,33,23,24,26,22,30,32,22,28,29,33,23,33,31,25,22,23,31,30,26,36,34,28,34,35,29,31,37,36,29,38,39,34,36,37],"colors":[["#484848",70]]};
-const map = {};
+let level = {"vertices":[-403,200,-400,-403,0,-400,-110,200,-400,-110,0,-400,-110,102,-400,0,199,-400,-75,153,-400,-39,168,-400,0,170,-400,-110,200,-699,-110,0,-699,-110,102,-700,0,199,-699,-75,154,-700,-39,169,-700,0,170,-700,-270,200,-699,-270,0,-699,-270,200,-1200,-270,0,-1200,0,0,0,-1200,0,-1199,0,0,-1200,0,200,0,-1200,199,-1199,0,199,-1200],"normals":[],"indices":[0,3,1,9,15,14,6,11,13,7,13,14,8,14,15,4,10,11,2,7,5,16,19,17,9,17,10,20,22,21,23,25,24,0,2,3,13,11,9,9,12,15,14,13,9,6,4,11,7,6,13,8,7,14,4,3,10,2,4,6,7,8,5,2,6,7,16,18,19,9,16,17,19,25,22,19,18,25],"colors":[["#6C6367",26]]};
+let map = [[0,0,-6,-6,-6,-6,-6,0,-6,0,0,0],[0,-6,-4,-18,-4,-18,-1.67,-10.5,-1.67,-10.5,0,-6],[-18,0,-6,-1.67,-6,-1.67,-10.5,-1.67,-10.5,-1.67,-18,0],[0,0,0,-6,0,-6,-6,-6,-6,-6,0,0],[-1.67,-10.5,-1.67,-6,-1.67,-6,0,-6,0,-6,-1.67,-10.5],[0,-6,0,-18,0,-18,-4,-18,-4,-18,0,-6],[-4,-18,-4,-10.5,-4,-10.5,-1.67,-10.5,-1.67,-10.5,-4,-18],[-10.5,-4,-18,-4,-18,-4,-18,0,-18,0,-10.5,-4],[-18,0,-6,0,-6,0,-6,-1.67,-6,-1.67,-18,0],[-10.5,-1.67,-10.5,-4,-10.5,-4,-18,0,-18,0,-10.5,-1.67]];
+
+map = [...map, ...(map.map(a=>a.map((x,i)=>i%2?x:-x)))];
+map = [...map, ...(map.map(a=>a.map((y,i)=>i%2?-y:y)))];
+
 var pointIsOnMap = (x, y) => {
     //for each polygon on the walking map verify if the count of intersecting edges is odd or not. 
     //If it's not odd the point is inside one of the polygons of the walking map.
@@ -90,6 +94,20 @@ updateMessages = () => {
 
 const font = 'Luminari, Baskerville, serif';
 
+const raycast = (camera, points) => { 
+    let cameraDirection = substract(camera.position, camera.target)
+    for (point of points) {
+        let direction = normalize(substract(camera.position, point));
+        let difference = summate(substract(cameraDirection, direction));
+        let distance = distanceTo(camera.position, point);
+
+        
+
+        if (distance < .70 && difference < .2) {
+            return point;
+        }
+    }
+}
 const Geometry = (vertices, indices, colors, mir = 0) => {
     // Necessary for webgl calls, update if IBO is modified
     var indicesLength = indices.length;
@@ -146,6 +164,7 @@ const
     clone = (v) => vector3(v.x, v.y, v.z),
     copy = (v) => vector3(v.x, v.y, v.z),
     add = (a, b) => vector3(a.x + b.x, a.y + b.y, a.z + b.z),
+    summate = (a) => abs(a.x) + abs(a.y) + abs(a.z)
     substract = (a, b) => vector3(a.x - b.x, a.y - b.y, a.z - b.z),
     multiplyBy = (v, f) => vector3(v.x * f, v.y * f, v.z * f),
     divide = (v, f) => vector3(v.x / f, v.y / f, v.z / f),
@@ -175,7 +194,8 @@ const
     randomBetween = v => v - Math.random() * v * 2,
     lerpColors = (a, b, t) => Color(a.r + (b.r - a.r) * t, a.g + (b.g - a.g) * t, a.b + (b.b - a.b) * t),
     easeInOutCubic = (x) => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2,
-    angleBetween = (a, b) => Math.atan2(a.x - b.x, a.z - b.z);
+    angleBetween = (a, b) => Math.atan2(a.x - b.x, a.z - b.z),
+    abs = Math.abs;
 const Mesh = (vertices, indices, colors, position = vector3(), rotation = vector3(), scale = vector3(1, 1, 1), mir = 0) => {
     let finalColors = [];
     for (let color of colors) for (let i = 0; i < color[1]; i++) finalColors.push(...hexToRgbArray(color[0]));
@@ -249,7 +269,7 @@ const initialiseWebGl = () => {
         void main(void) {
             float fog = max(min(1.0 - vPosition.z / 10.0, 1.0), 0.05);
             float light = max(dot(normalize(vNormal), normalize(vec3(6.0, 6.0, 6.0))), .3);
-            fragColor = vec4(vColor * light * fog, 1.0);
+            fragColor = vec4(vColor * fog, 1.0);
         }
         `
 
@@ -305,10 +325,9 @@ updateGameOverScene = () => {
 
 const initialiseMenuScene = () => {
     messages = [];
-    setInterval(f=>zzfx(...[1.6,0,65.40639,,,1,,.6,,,,,.5,,,,,.8,.03]), 800);
 
-    showMessage("13th Second of Terror", halfWidth, halfHeight - 100, 100, 100000, 30);
-    showMessage('Escape the lair of Triskaideka', halfWidth, halfHeight, 30, 300, 60);
+    showMessage("13th Second of Terror", halfWidth, halfHeight * 0.8, halfHeight * 0.4, 1e7, 30);
+    showMessage('Escape the lair of Triskaideka', halfWidth, halfHeight * 1.2, halfHeight * 0.2, 1e7, 60);
 }
 
 const updateMenuScene = (deltaTime) => {
@@ -320,16 +339,50 @@ const updateMenuScene = (deltaTime) => {
 
 };
 
-var meshes, camera, playSceneCounter;
+var meshes, camera, playSceneCounter, cameraPos;
+var timerBreathe = 0, timer = 0;
 var u;//undefined
+var points = [
+    vector3(0,0,0)
+];
 
 const initialisePlayScene = () => {
     messages = [];
-    meshes = [Mesh(level.vertices, level.indices, level.colors, u, u, u, 1)];
+    meshes = [Mesh(level.vertices, level.indices, level.colors, u, u, vector3(1.5, 1.5, 1.5), 1)];
 
-    camera = { position: vector3(0, 0, -64), direction: vector3(0, 0, 1), forwardSpeed: 1, yaw: 0, target: vector3(0, 0, 0), yaw: 0, fov: Math.PI / 2, aspect: width / height, near: .1, far: 200, up: vector3(0, 1, 0) };
+    camera = { position: vector3(0, 1.73, 0), direction: vector3(0, 0, 1), forwardSpeed: 1.4, yaw: 0, pitch: 0, target: vector3(0, 0, 0), yaw: 0, fov: Math.PI / 2, aspect: width / height, near: .1, far: 200, up: vector3(0, 1, 0) };
     
+    setInterval(f=>{
+     //   zzfx(...[2,.8,100,,,,,1.5,,.3,-99,.1,1.63,,,.11,.22]);
+        timerBreathe = 1;
+        timer++;
+    }, 950);    
+
     initialiseWebGl();
+
+    function onMouseMove(event) {
+       camera.yaw += event.movementX / 500;
+       camera.pitch += event.movementY / 500;
+      }
+  
+      function enterPointerLock() {
+        document.documentElement.requestPointerLock();
+      }
+  
+      document.addEventListener('click', enterPointerLock);
+      document.addEventListener('mousemove', onMouseMove);
+  
+      document.addEventListener('pointerlockchange', () => {
+        if (document.pointerLockElement === document.documentElement) {
+          console.log('Pointer lock engaged');
+        } else {
+          console.log('Pointer lock released');
+        }
+      });
+  
+      document.addEventListener('pointerlockerror', () => {
+        console.log('Pointer lock failed');
+      });
 }
 
 updatePlayScene = (deltaTime) => {
@@ -342,17 +395,40 @@ updatePlayScene = (deltaTime) => {
     context.globalAlpha = .4;
     context.drawImage(glCanvas, 0, 0);
     context.globalAlpha = 1;
+    
+    context.fillStyle = "white";
+    context.font = `${15 * (1+timerBreathe)}px monospace`;
+    timerBreathe -= deltaTime;
+    timerBreathe *= timerBreathe;
+    context.fillText(timer, 10, 20);
+
+    raycast(camera, points);
 
     updateMessages();
 }
 
 const processInputPlayScene = (deltaTime) => {
-    if (left) camera.yaw -= deltaTime * 0.5;
-    if (right) camera.yaw += deltaTime * 0.5;
+    let direction = vector3(0, 0, 0);
+    if (up) {
+        direction = vector3(0, 0, 1);
+    }
 
-    if (up) camera.position = add(camera.position, multiplyBy(camera.direction, camera.forwardSpeed * deltaTime))
+    if (down) {
+        direction = vector3(0, 0, -2/3);
+    }
 
-    camera.direction = rotY(vector3(0, 0, 1), camera.yaw)
+    if (left) {
+        direction = vector3(2/3, 0, 0);
+    }
+
+    if (right) {
+        direction = vector3(-2/3, 0, 0);
+    }
+
+    cameraPos = add(camera.position, multiplyBy(rotY(direction, camera.yaw), camera.forwardSpeed * deltaTime));
+    if (pointIsOnMap(cameraPos.x, cameraPos.z)) camera.position = cameraPos;
+
+    camera.direction = add(rotY(vector3(0, 0, 1), camera.yaw), vector3(0, camera.pitch, 0));
     camera.target = add(camera.position, camera.direction);
 }
 
@@ -397,9 +473,9 @@ var glCanvas = document.getElementById("glCanvas");
         var width, height, halfWidth, halfHeight;
 
         function resize() {
-            width = window.innerWidth;
-            height = window.innerHeight;
-            halfWidth = width * .5;
+            width = window.innerWidth / 4;
+            height = window.innerHeight / 4;
+            halfWidth = width * .5 ;
             halfHeight = height * .5;
             hudCanvas.width = width;
             hudCanvas.height = height;
@@ -439,3 +515,5 @@ var glCanvas = document.getElementById("glCanvas");
         const updateKeys = (code, val) => { switch (code) { case 65: left = val; break; case 87: up = val; break; case 68: right = val; break; case 32: space = val; break; case 27: esc = val; break; case 13: enter = val; break; case 83: down = val; break; default: break; } }
         onkeydown = e => updateKeys(e.keyCode, true);
         onkeyup = e => updateKeys(e.keyCode, false);
+
+        

@@ -7,9 +7,9 @@ var glCanvas = document.getElementById("glCanvas");
         var width, height, halfWidth, halfHeight;
 
         function resize() {
-            width = window.innerWidth;
-            height = window.innerHeight;
-            halfWidth = width * .5;
+            width = window.innerWidth / 4;
+            height = window.innerHeight / 4;
+            halfWidth = width * .5 ;
             halfHeight = height * .5;
             hudCanvas.width = width;
             hudCanvas.height = height;
@@ -49,3 +49,5 @@ var glCanvas = document.getElementById("glCanvas");
         const updateKeys = (code, val) => { switch (code) { case 65: left = val; break; case 87: up = val; break; case 68: right = val; break; case 32: space = val; break; case 27: esc = val; break; case 13: enter = val; break; case 83: down = val; break; default: break; } }
         onkeydown = e => updateKeys(e.keyCode, true);
         onkeyup = e => updateKeys(e.keyCode, false);
+
+        

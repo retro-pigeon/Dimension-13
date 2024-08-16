@@ -5,6 +5,7 @@ const
     clone = (v) => vector3(v.x, v.y, v.z),
     copy = (v) => vector3(v.x, v.y, v.z),
     add = (a, b) => vector3(a.x + b.x, a.y + b.y, a.z + b.z),
+    summate = (a) => abs(a.x) + abs(a.y) + abs(a.z)
     substract = (a, b) => vector3(a.x - b.x, a.y - b.y, a.z - b.z),
     multiplyBy = (v, f) => vector3(v.x * f, v.y * f, v.z * f),
     divide = (v, f) => vector3(v.x / f, v.y / f, v.z / f),
@@ -34,4 +35,5 @@ const
     randomBetween = v => v - Math.random() * v * 2,
     lerpColors = (a, b, t) => Color(a.r + (b.r - a.r) * t, a.g + (b.g - a.g) * t, a.b + (b.b - a.b) * t),
     easeInOutCubic = (x) => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2,
-    angleBetween = (a, b) => Math.atan2(a.x - b.x, a.z - b.z);
+    angleBetween = (a, b) => Math.atan2(a.x - b.x, a.z - b.z),
+    abs = Math.abs;

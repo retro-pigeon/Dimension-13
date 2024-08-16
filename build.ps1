@@ -6,6 +6,6 @@ terser "./intermediary/merged.js" -o "./intermediary/tersed.js"
 
 roadroller "./intermediary/tersed.js" -o "./intermediary/roadrolled.js"
 
-Get-Content ./internal/suffix.html, ./intermediary/roadrolled.js, ./internal/postfix.html | Out-File ./build/build.html
+Get-Content ./internal/suffix.html, ./intermediary/roadrolled.js, ./internal/postfix.html | Out-File ./build/index.html
 
 advzip -4 -a ./build/build.zip ./build/index.html -i 2000

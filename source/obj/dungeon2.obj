@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Convert obj to walking path</title>
-</head>
-
-<body>
-    <script>
-        let objString = `# Blender 4.2.0
+# Blender 4.2.0
 # www.blender.org
 mtllib dungeon2.mtl
 o Cube
@@ -91,48 +79,3 @@ f 17/4/8 19/4/8 20/4/8
 f 10/4/9 17/4/9 18/4/9
 f 20/4/1 26/4/1 23/4/1
 f 20/4/1 19/4/1 26/4/1
-`;
-
-
-        let points = [];
-        let faces = [];
-
-        const lines = objString.split('\n');
-        for (let line of lines) {
-            const values = line.split(" ");
-            if (values[0] === 'v')
-                points.push([parseFloat(parseFloat(values[1]).toFixed(2)), parseFloat(parseFloat(values[3]).toFixed(2))])
-            if (values[0] === 'f') {
-                // Face
-                let face = [];
-                for (let i = 1; i < values.length; i++) {
-                    const faceData = values[i].split('/');
-                    face.push(parseInt(faceData[0]) - 1);
-                }
-                faces.push(face);
-            }
-        }
-        
-        // console.log(JSON.stringify(points));
-        //  console.log(JSON.stringify(faces));
-
-        let polys = [];
-        faces.forEach(face => {
-            let edges = [];
-            for (let i = 0; i < face.length; i++) {
-                if (i !== face.length - 1)
-                    edges.push(
-                        points[face[i]][0],
-                        points[face[i]][1],
-                        points[face[i + 1]][0],
-                        points[face[i + 1]][1]);
-                else
-                    edges.push(points[face[i]][0], points[face[i]][1], points[face[0]][0], points[face[0]][1]);
-            }
-            polys.push(edges);
-        });
-        console.log(JSON.stringify(polys));
-    </script>
-</body>
-
-</html>

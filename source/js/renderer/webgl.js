@@ -34,7 +34,7 @@ const initialiseWebGl = () => {
         void main(void) {
             float fog = max(min(1.0 - vPosition.z / 10.0, 1.0), 0.05);
             float light = max(dot(normalize(vNormal), normalize(vec3(6.0, 6.0, 6.0))), .3);
-            fragColor = vec4(vColor * light * fog, 1.0);
+            fragColor = vec4(vColor * fog, 1.0);
         }
         `
 
