@@ -17,11 +17,12 @@ zzfxR = 44100
 zzfxX = new (window.AudioContext || webkitAudioContext);
 // Here we can include all of our raw data
 
-let level = {"vertices":[-403,200,-400,-403,0,-400,-110,200,-400,-110,0,-400,-110,102,-400,0,199,-400,-75,153,-400,-39,168,-400,0,170,-400,-110,200,-699,-110,0,-699,-110,102,-700,0,199,-699,-75,154,-700,-39,169,-700,0,170,-700,-270,200,-699,-270,0,-699,-270,200,-1200,-270,0,-1200,0,0,0,-1200,0,-1199,0,0,-1200,0,200,0,-1200,199,-1199,0,199,-1200],"normals":[],"indices":[0,3,1,9,15,14,6,11,13,7,13,14,8,14,15,4,10,11,2,7,5,16,19,17,9,17,10,20,22,21,23,25,24,0,2,3,13,11,9,9,12,15,14,13,9,6,4,11,7,6,13,8,7,14,4,3,10,2,4,6,7,8,5,2,6,7,16,18,19,9,16,17,19,25,22,19,18,25],"colors":[["#6C6367",26]]};
-let map = [[0,0,-6,-6,-6,-6,-6,0,-6,0,0,0],[0,-6,-4,-18,-4,-18,-1.67,-10.5,-1.67,-10.5,0,-6],[-18,0,-6,-1.67,-6,-1.67,-10.5,-1.67,-10.5,-1.67,-18,0],[0,0,0,-6,0,-6,-6,-6,-6,-6,0,0],[-1.67,-10.5,-1.67,-6,-1.67,-6,0,-6,0,-6,-1.67,-10.5],[0,-6,0,-18,0,-18,-4,-18,-4,-18,0,-6],[-4,-18,-4,-10.5,-4,-10.5,-1.67,-10.5,-1.67,-10.5,-4,-18],[-10.5,-4,-18,-4,-18,-4,-18,0,-18,0,-10.5,-4],[-18,0,-6,0,-6,0,-6,-1.67,-6,-1.67,-18,0],[-10.5,-1.67,-10.5,-4,-10.5,-4,-18,0,-18,0,-10.5,-1.67]];
-
-map = [...map, ...(map.map(a=>a.map((x,i)=>i%2?x:-x)))];
-map = [...map, ...(map.map(a=>a.map((y,i)=>i%2?-y:y)))];
+// let level = {"vertices":[-403,200,-400,-403,0,-400,-110,200,-400,-110,0,-400,-110,102,-400,0,199,-400,-75,153,-400,-39,168,-400,0,170,-400,-110,200,-699,-110,0,-699,-110,102,-700,0,199,-699,-75,154,-700,-39,169,-700,0,170,-700,-270,200,-699,-270,0,-699,-270,200,-1200,-270,0,-1200,0,0,0,-1200,0,-1199,0,0,-1200,0,200,0,-1200,199,-1199,0,199,-1200],"normals":[],"indices":[0,3,1,9,15,14,6,11,13,7,13,14,8,14,15,4,10,11,2,7,5,16,19,17,9,17,10,20,22,21,23,25,24,0,2,3,13,11,9,9,12,15,14,13,9,6,4,11,7,6,13,8,7,14,4,3,10,2,4,6,7,8,5,2,6,7,16,18,19,9,16,17,19,25,22,19,18,25],"colors":[["#6C6367",26]]};
+let gem = {"vertices":[0,0,-150,-86,0,-75,-86,0,75,0,0,150,86,0,75,86,0,-75,0,50,-96,-55,50,-48,-55,50,48,0,50,96,55,50,48,55,50,-48,0,-50,-96,-55,-50,-48,-55,-50,48,0,-50,96,55,-50,48,55,-50,-48],"normals":[],"indices":[4,9,3,2,7,1,5,10,4,3,8,2,1,6,0,0,11,5,8,10,6,15,4,3,1,14,2,4,17,5,2,15,3,12,1,0,5,12,0,12,16,14,4,10,9,2,8,7,5,11,10,3,9,8,1,7,6,0,6,11,6,7,8,8,9,10,10,11,6,15,16,4,1,13,14,4,16,17,2,14,15,12,13,1,5,17,12,14,13,12,12,17,16,16,15,14],"colors":[["#A0C743",32]]};
+let spider_body = {"vertices":[-91,208,125,-91,338,-4,-91,78,-4,-206,208,-257,0,208,154,0,367,-4,-112,288,75,-112,129,75,-124,295,-67,-124,120,-67,0,50,-4,-202,212,-397,0,318,104,-154,208,-4,0,87,-100,0,99,104,0,328,-100,-107,296,-582,-88,220,-631,-107,144,-582,0,220,-658,0,115,-611,0,325,-611,-150,345,-261,0,395,-312,0,28,-312,-188,78,-261],"normals":[],"indices":[12,1,6,12,0,4,0,13,7,1,13,6,8,9,13,13,2,7,2,14,10,11,17,18,0,15,4,2,15,7,24,17,23,1,16,8,18,21,19,18,22,20,11,19,26,25,19,21,14,26,25,3,26,9,16,23,8,3,23,11,12,5,1,12,6,0,0,6,13,1,8,13,8,3,9,13,9,2,2,9,14,11,23,17,0,7,15,2,10,15,24,22,17,1,5,16,18,20,21,18,17,22,11,18,19,25,26,19,14,9,26,3,11,26,16,24,23,3,8,23],"colors":[["#442424",40]]};
+let spider_leg = {"vertices":[-328,194,-200,-326,234,-200,-324,194,-160,-322,234,-160,-167,165,-168,-161,223,-168,-172,165,-221,-166,223,-222,-442,195,-185,-450,227,-184,-439,195,-153,-446,227,-152,-569,143,-170,-589,161,-168,-567,143,-144,-586,161,-142,-627,0,-158,-640,5,-157,-625,0,-144,-639,5,-143],"normals":[],"indices":[5,2,4,3,10,2,2,6,4,5,1,3,0,7,6,11,14,10,1,8,9,2,8,0,1,11,3,13,19,15,9,12,13,10,12,8,9,15,11,14,19,18,12,17,13,14,16,12,5,3,2,3,11,10,2,0,6,5,7,1,0,1,7,11,15,14,1,0,8,2,10,8,1,9,11,13,17,19,9,8,12,10,14,12,9,13,15,14,15,19,12,16,17,14,18,16],"colors":[["#795D5E",32]]};
+let cube = {"vertices":[100,200,-100,100,0,-100,100,200,100,100,0,100,-100,200,-100,-100,0,-100,-100,200,100,-100,0,100],"normals":[],"indices":[2,7,3,6,5,7,0,3,1,4,1,5,2,6,7,6,4,5,0,2,3,4,0,1],"colors":[["#6C6367",8]]};
+let map = [];
 
 var pointIsOnMap = (x, y) => {
     //for each polygon on the walking map verify if the count of intersecting edges is odd or not. 
@@ -60,15 +61,31 @@ drawMap = (context, camera) => {
     context.moveTo(playerX, playerZ);
     context.lineTo(playerX + 10 * Math.cos(camera.yaw + Math.PI / 2), playerZ + 10 * Math.sin(camera.yaw + Math.PI / 2));
     context.stroke();
-    // draw all npcs
-    context.fillStyle = "red";
-    npcs.forEach(npc => { context.fillRect(xOffset + npc.position.x - 2, yOffset + npc.position.z - 2, 4, 4); });
-
-    // draw npc count
-    context.fillText(npcs.length, 60, 20);
 
     context.fillText(Math.round(camera.position.x), 30, 200);
     context.fillText(Math.round(camera.position.z), 30, 250);
+}
+const maze = () => {
+    var mz = Group([]);
+
+    var size = 26;
+    
+    var mazeMap = `1111111111111111111111111111000000000000000000000011101101001001001001001011111011000000000000000000100110101100100100100100111101101011000000000000001000011010101010010010010111011110101011000000000010000001101010101001001001111111011010101011000000100000000110001000101100111101111101101010101010000100000010011010101010000000000000100110101010100000000000001001101000101010000100000010011010101000110011111101111110101010110000001000000001101010101001111001111111011010101100100001001000000110101010010011001001110111101011000001001001001000011010100100100001001001110110110010010011001001001001101001001000001000001001111100100100100001001001001111111111111111111111111111`.split("").map(x=>+x);
+
+    for (let i = 0; i < size * size; i++) {
+        const x = 4 * (i % size) - size;
+        const y = Math.floor(i / size) * 4 - size;
+        if (mazeMap[i]) {
+            mz.meshes.push(Mesh(cube.vertices, cube.indices, cube.colors, vector3(x, 0, y), vector3(0, 0, 0), vector3(2, 2, 2)));
+        }
+        else map.push([
+            x - 2, y - 2, x - 2, y + 2,
+            x - 2, y + 2, x + 2, y + 2,
+            x + 2, y + 2, x + 2, y - 2,
+            x + 2, y - 2, x - 2, y - 2
+        ]);
+    }
+    meshes.push(mz);
 }
 messages = [];
 
@@ -92,7 +109,7 @@ updateMessages = () => {
     });
 }
 
-const font = 'Luminari, Baskerville, serif';
+const font = 'serif';
 
 const raycast = (camera, points) => { 
     let cameraDirection = substract(camera.position, camera.target)
@@ -101,14 +118,41 @@ const raycast = (camera, points) => {
         let difference = summate(substract(cameraDirection, direction));
         let distance = distanceTo(camera.position, point);
 
-        
-
         if (distance < .70 && difference < .2) {
             return point;
         }
     }
 }
-const Geometry = (vertices, indices, colors, mir = 0) => {
+const Spider = (pos) => {
+    let index = meshes.length;
+    let time = 0;
+    let rotation = 0;
+
+    let group = Group([
+        Mesh(spider_body.vertices, spider_body.indices, spider_body.colors, add(pos, vector3(0, 0, .8)), u, vector3(.25, .25, .25), 1),
+        Mesh(spider_leg.vertices, spider_leg.indices, spider_leg.colors, add(pos, vector3(0, 0, 0)), u, vector3(.25, .25, .25), 1),
+        Mesh(spider_leg.vertices, spider_leg.indices, spider_leg.colors, add(pos, vector3(0, 0, .4)), u, vector3(.25, .25, .25), 1),
+        Mesh(spider_leg.vertices, spider_leg.indices, spider_leg.colors, add(pos, vector3(0, 0, .8)), u, vector3(.25, .25, .25), 1),
+        Mesh(spider_leg.vertices, spider_leg.indices, spider_leg.colors, add(pos, vector3(0, 0, 1.2)), u, vector3(.25, .25, .25), 1)
+    ]
+    );
+
+    group.scale = vector3(.5, .5, .5);
+
+    meshes.push(group);
+
+    return deltaTime => {
+        time += deltaTime;
+
+        group.meshes[1].rotation = vector3(0, Math.cos(time) * .05, Math.sin(time) * .15);
+        group.meshes[2].rotation = vector3(0, Math.sin(time) * .05, Math.cos(time) * .15);
+        group.meshes[3].rotation = vector3(0, Math.cos(time) * .05, Math.sin(time) * .15);
+        group.meshes[4].rotation = vector3(0, Math.sin(time) * .05, Math.cos(time) * .15);
+
+        group.rotation.y = Math.atan2(camera.position.x - group.position.x, camera.position.z - group.position.z);
+    }
+}
+const Geometry = (vertices, indices, colors, mx = 0,my = 0) => {
     // Necessary for webgl calls, update if IBO is modified
     var indicesLength = indices.length;
 
@@ -118,16 +162,21 @@ const Geometry = (vertices, indices, colors, mir = 0) => {
 
     for (let i = 0; i < colors.length; i += 3)  finalColors.push(colors[i], colors[i + 1], colors[i + 2], colors[i], colors[i + 1], colors[i + 2], colors[i], colors[i + 1], colors[i + 2]);
 
-    if (mir) {
+    if (mx) {
         finalVertices = [...finalVertices, ...(finalVertices.map((x, i) => (i % 3 ? x : -x)))];
+        
+        finalColors = [...finalColors, ...finalColors];
+        indicesLength*=2;
+    } if (my) {
         finalVertices = [...finalVertices, ...(finalVertices.map((y, i) => (i % 3 == 2 ? -y : y)))];
         finalVertices = [...finalVertices, ...(finalVertices.map((k, i, m) => {
             if (i % 3 == 1)return k;
             if (i % 3 == 2)return m[i-2];
             else return m[i+2]
         }))];
-        finalColors = [...finalColors, ...finalColors, ...finalColors, ...finalColors, ...finalColors, ...finalColors, ...finalColors, ...finalColors, ];
-        indicesLength*=8;
+
+        finalColors = [...finalColors, ...finalColors, ...finalColors, ...finalColors];
+        indicesLength*=4;
     }
 
     //Set up VBO 
@@ -157,6 +206,9 @@ CreateAndBindBufferData = (bufferArray) => {
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(bufferArray), gl.STATIC_DRAW);
     return buffer;
 }
+const Group = (meshes) => {
+    return {isGroup:true, position:vector3(0, 0, 0), rotation: vector3(0, 0, 0), scale: vector3(1, 1, 1), meshes:meshes};
+};
 const
     // vector3
     vector3 = (x = 0.0, y = 0.0, z = 0.0) => ({ x, y, z }),
@@ -196,23 +248,29 @@ const
     easeInOutCubic = (x) => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2,
     angleBetween = (a, b) => Math.atan2(a.x - b.x, a.z - b.z),
     abs = Math.abs;
-const Mesh = (vertices, indices, colors, position = vector3(), rotation = vector3(), scale = vector3(1, 1, 1), mir = 0) => {
+const Mesh = (vertices, indices, colors, position = vector3(), rotation = vector3(), scale = vector3(1, 1, 1), mx = 0, my = 0) => {
     let finalColors = [];
     for (let color of colors) for (let i = 0; i < color[1]; i++) finalColors.push(...hexToRgbArray(color[0]));
-    return ({ geometry: Geometry(vertices.map(v => v / 100), indices, finalColors, mir), position, rotation, scale });
+    return ({ geometry: Geometry(vertices.map(v => v / 100), indices, finalColors, mx, my), position, rotation, scale });
 },
 
     hexToRgbArray = hex => [parseInt(hex.slice(1, 3), 16) / 255, parseInt(hex.slice(3, 5), 16) / 255, parseInt(hex.slice(5, 7), 16) / 255];
-const render = (meshes, camera) => {
+const render = (meshes, camera, clear = 1, additionalMatrix = null) => {
+    if (clear) {
     // Clear the color and depth buffers
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    
     // Set the viewport
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+
     // Set camera matrix (once per render). DO NOT BY ANY MEANS MOVE THE CAMERA DURING RENDERING.
     gl.uniformMatrix4fv(cameraMatrixLocation, false, lookAt(camera.position, camera.target, camera.up));
+    }
 
     for (const mesh of meshes) {
         if (mesh.off) continue;
+        if (mesh.isGroup) return render(mesh.meshes, camera, 0, transform(mesh.position,  mesh.rotation, mesh.scale));
+        
         // Bind vertex buffer for the current mesh
         bindBufferAttribute(mesh.geometry.vertexBuffer, program.aVertexPosition);
         // Bind color buffer for the current mesh
@@ -220,7 +278,11 @@ const render = (meshes, camera) => {
         //Normal buffer
         bindBufferAttribute(mesh.geometry.normalBuffer, program.aNormal)
         // Update the model-view matrix for the current mesh
-        gl.uniformMatrix4fv(meshMatrixLocation, false, transform(mesh.position, mesh.rotation, mesh.scale));
+        if (additionalMatrix)
+            gl.uniformMatrix4fv(meshMatrixLocation, false, 
+                multiply(transform(mesh.position, mesh.rotation, mesh.scale), additionalMatrix)
+            );
+        else gl.uniformMatrix4fv(meshMatrixLocation, false, transform(mesh.position, mesh.rotation, mesh.scale));
         // Draw the current mesh using gl.drawArrays
         gl.drawArrays(gl.TRIANGLES, 0, mesh.geometry.indicesLength);
         // Clean up
@@ -267,7 +329,7 @@ const initialiseWebGl = () => {
         in vec3 vNormal, vColor;
         out vec4 fragColor;
         void main(void) {
-            float fog = max(min(1.0 - vPosition.z / 10.0, 1.0), 0.05);
+            float fog = max(min(1.0 - vPosition.z / 100.0, 1.0), 0.05);
             float light = max(dot(normalize(vNormal), normalize(vec3(6.0, 6.0, 6.0))), .3);
             fragColor = vec4(vColor * fog, 1.0);
         }
@@ -326,7 +388,7 @@ updateGameOverScene = () => {
 const initialiseMenuScene = () => {
     messages = [];
 
-    showMessage("13th Second of Terror", halfWidth, halfHeight * 0.8, halfHeight * 0.4, 1e7, 30);
+    showMessage("𝕿𝖍𝖎𝖗𝖙𝖊𝖊𝖓 𝖘𝖊𝖈𝖔𝖓𝖉𝖘", halfWidth, halfHeight * 0.8, halfHeight * 0.4, 1e7, 30);
     showMessage('Escape the lair of Triskaideka', halfWidth, halfHeight * 1.2, halfHeight * 0.2, 1e7, 60);
 }
 
@@ -341,28 +403,39 @@ const updateMenuScene = (deltaTime) => {
 
 var meshes, camera, playSceneCounter, cameraPos;
 var timerBreathe = 0, timer = 0;
+var heartbeat = .2;
 var u;//undefined
 var points = [
     vector3(0,0,0)
 ];
+var spiders = [];
+var health = 1;
 
 const initialisePlayScene = () => {
     messages = [];
-    meshes = [Mesh(level.vertices, level.indices, level.colors, u, u, vector3(1.5, 1.5, 1.5), 1)];
+    meshes = [
+       
+    ];
 
-    camera = { position: vector3(0, 1.73, 0), direction: vector3(0, 0, 1), forwardSpeed: 1.4, yaw: 0, pitch: 0, target: vector3(0, 0, 0), yaw: 0, fov: Math.PI / 2, aspect: width / height, near: .1, far: 200, up: vector3(0, 1, 0) };
+    camera = { position: vector3(0, 1,69, 0), direction: vector3(0, 0, 1), forwardSpeed: 1.4, yaw: 0, pitch: 0, target: vector3(0, 0, 0), yaw: 0, fov: Math.PI / 2, aspect: width / height, near: .1, far: 200, up: vector3(0, 1, 0) };
     
     setInterval(f=>{
-     //   zzfx(...[2,.8,100,,,,,1.5,,.3,-99,.1,1.63,,,.11,.22]);
+        zzfx(...[2,.8,100,,,,,1.5,,.3,-99,.1,1.63,,,.11,.22]);
         timerBreathe = 1;
         timer++;
-    }, 950);    
+    }, 950);
+    setInterval(f => {
+      zzfx(...[0.4,.1,10,,.07,.26,,5,,,-100,.01,,,,,.25,.73,,,-1473]); // Random 107
+      heartbeat = .8;
+    }, 1200);
+    
+    //spiders.push(Spider(vector3(0, 0, 0)));
 
     initialiseWebGl();
 
     function onMouseMove(event) {
        camera.yaw += event.movementX / 500;
-       camera.pitch += event.movementY / 500;
+       camera.pitch -= event.movementY / 500;
       }
   
       function enterPointerLock() {
@@ -383,14 +456,20 @@ const initialisePlayScene = () => {
       document.addEventListener('pointerlockerror', () => {
         console.log('Pointer lock failed');
       });
+
+      maze();
+
 }
 
 updatePlayScene = (deltaTime) => {
     playSceneCounter++;
+    heartbeat = heartbeat * heartbeat;
 
     processInputPlayScene(deltaTime);
 
     render(meshes, camera);
+
+    spiders.forEach(spider => spider(deltaTime));
 
     context.globalAlpha = .4;
     context.drawImage(glCanvas, 0, 0);
@@ -401,6 +480,15 @@ updatePlayScene = (deltaTime) => {
     timerBreathe -= deltaTime;
     timerBreathe *= timerBreathe;
     context.fillText(timer, 10, 20);
+
+    context.fillRect(halfWidth - 0.5, halfHeight - 3.5, 0.5, 7);
+    context.fillRect(halfWidth - 3.5, halfHeight - 0.5, 7, 0.5);
+
+
+    context.fillStyle = "#E37E90";
+    context.fillRect(width / 4, 10, halfWidth, 5);
+    context.font = `${15*(1+heartbeat)}px sans-serif`;
+    context.fillText("❤️", width / 4, 15);
 
     raycast(camera, points);
 

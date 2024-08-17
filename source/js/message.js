@@ -20,5 +20,5 @@ updateMessages = () => {
     });
 }
 
-const font = 'Luminari, Baskerville, serif';
+const font = 'serif';
 

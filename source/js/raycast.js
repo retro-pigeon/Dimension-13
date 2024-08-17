@@ -5,8 +5,6 @@ const raycast = (camera, points) => {
         let difference = summate(substract(cameraDirection, direction));
         let distance = distanceTo(camera.position, point);
 
-        
-
         if (distance < .70 && difference < .2) {
             return point;
         }

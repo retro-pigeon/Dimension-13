@@ -1,7 +1,4 @@
-let map = [[0,0,-6,-6,-6,-6,-6,0,-6,0,0,0],[0,-6,-4,-18,-4,-18,-1.67,-10.5,-1.67,-10.5,0,-6],[-18,0,-6,-1.67,-6,-1.67,-10.5,-1.67,-10.5,-1.67,-18,0],[0,0,0,-6,0,-6,-6,-6,-6,-6,0,0],[-1.67,-10.5,-1.67,-6,-1.67,-6,0,-6,0,-6,-1.67,-10.5],[0,-6,0,-18,0,-18,-4,-18,-4,-18,0,-6],[-4,-18,-4,-10.5,-4,-10.5,-1.67,-10.5,-1.67,-10.5,-4,-18],[-10.5,-4,-18,-4,-18,-4,-18,0,-18,0,-10.5,-4],[-18,0,-6,0,-6,0,-6,-1.67,-6,-1.67,-18,0],[-10.5,-1.67,-10.5,-4,-10.5,-4,-18,0,-18,0,-10.5,-1.67]];
-
-map = [...map, ...(map.map(a=>a.map((x,i)=>i%2?x:-x)))];
-map = [...map, ...(map.map(a=>a.map((y,i)=>i%2?-y:y)))];
+let map = [];
 
 var pointIsOnMap = (x, y) => {
     //for each polygon on the walking map verify if the count of intersecting edges is odd or not. 
@@ -40,12 +37,6 @@ drawMap = (context, camera) => {
     context.moveTo(playerX, playerZ);
     context.lineTo(playerX + 10 * Math.cos(camera.yaw + Math.PI / 2), playerZ + 10 * Math.sin(camera.yaw + Math.PI / 2));
     context.stroke();
-    // draw all npcs
-    context.fillStyle = "red";
-    npcs.forEach(npc => { context.fillRect(xOffset + npc.position.x - 2, yOffset + npc.position.z - 2, 4, 4); });
-
-    // draw npc count
-    context.fillText(npcs.length, 60, 20);
 
     context.fillText(Math.round(camera.position.x), 30, 200);
     context.fillText(Math.round(camera.position.z), 30, 250);
