@@ -1,12 +1,12 @@
 const raycast = (camera, points) => { 
     let cameraDirection = substract(camera.position, camera.target)
-    for (point of points) {
-        let direction = normalize(substract(camera.position, point));
+    for (index in points) {
+        let direction = normalize(substract(camera.position, points[index]));
         let difference = summate(substract(cameraDirection, direction));
-        let distance = distanceTo(camera.position, point);
+        let distance = distanceTo(camera.position, points[index]);
 
         if (distance < .70 && difference < .2) {
-            return point;
+            spider_healths[index] -= .5;
         }
     }
 }

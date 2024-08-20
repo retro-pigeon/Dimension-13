@@ -20,8 +20,10 @@ zzfxX = new (window.AudioContext || webkitAudioContext);
 // let level = {"vertices":[-403,200,-400,-403,0,-400,-110,200,-400,-110,0,-400,-110,102,-400,0,199,-400,-75,153,-400,-39,168,-400,0,170,-400,-110,200,-699,-110,0,-699,-110,102,-700,0,199,-699,-75,154,-700,-39,169,-700,0,170,-700,-270,200,-699,-270,0,-699,-270,200,-1200,-270,0,-1200,0,0,0,-1200,0,-1199,0,0,-1200,0,200,0,-1200,199,-1199,0,199,-1200],"normals":[],"indices":[0,3,1,9,15,14,6,11,13,7,13,14,8,14,15,4,10,11,2,7,5,16,19,17,9,17,10,20,22,21,23,25,24,0,2,3,13,11,9,9,12,15,14,13,9,6,4,11,7,6,13,8,7,14,4,3,10,2,4,6,7,8,5,2,6,7,16,18,19,9,16,17,19,25,22,19,18,25],"colors":[["#6C6367",26]]};
 let gem = {"vertices":[0,0,-150,-86,0,-75,-86,0,75,0,0,150,86,0,75,86,0,-75,0,50,-96,-55,50,-48,-55,50,48,0,50,96,55,50,48,55,50,-48,0,-50,-96,-55,-50,-48,-55,-50,48,0,-50,96,55,-50,48,55,-50,-48],"normals":[],"indices":[4,9,3,2,7,1,5,10,4,3,8,2,1,6,0,0,11,5,8,10,6,15,4,3,1,14,2,4,17,5,2,15,3,12,1,0,5,12,0,12,16,14,4,10,9,2,8,7,5,11,10,3,9,8,1,7,6,0,6,11,6,7,8,8,9,10,10,11,6,15,16,4,1,13,14,4,16,17,2,14,15,12,13,1,5,17,12,14,13,12,12,17,16,16,15,14],"colors":[["#A0C743",32]]};
 let spider_body = {"vertices":[-91,208,125,-91,338,-4,-91,78,-4,-206,208,-257,0,208,154,0,367,-4,-112,288,75,-112,129,75,-124,295,-67,-124,120,-67,0,50,-4,-202,212,-397,0,318,104,-154,208,-4,0,87,-100,0,99,104,0,328,-100,-107,296,-582,-88,220,-631,-107,144,-582,0,220,-658,0,115,-611,0,325,-611,-150,345,-261,0,395,-312,0,28,-312,-188,78,-261],"normals":[],"indices":[12,1,6,12,0,4,0,13,7,1,13,6,8,9,13,13,2,7,2,14,10,11,17,18,0,15,4,2,15,7,24,17,23,1,16,8,18,21,19,18,22,20,11,19,26,25,19,21,14,26,25,3,26,9,16,23,8,3,23,11,12,5,1,12,6,0,0,6,13,1,8,13,8,3,9,13,9,2,2,9,14,11,23,17,0,7,15,2,10,15,24,22,17,1,5,16,18,20,21,18,17,22,11,18,19,25,26,19,14,9,26,3,11,26,16,24,23,3,8,23],"colors":[["#442424",40]]};
-let spider_leg = {"vertices":[-328,194,-200,-326,234,-200,-324,194,-160,-322,234,-160,-167,165,-168,-161,223,-168,-172,165,-221,-166,223,-222,-442,195,-185,-450,227,-184,-439,195,-153,-446,227,-152,-569,143,-170,-589,161,-168,-567,143,-144,-586,161,-142,-627,0,-158,-640,5,-157,-625,0,-144,-639,5,-143],"normals":[],"indices":[5,2,4,3,10,2,2,6,4,5,1,3,0,7,6,11,14,10,1,8,9,2,8,0,1,11,3,13,19,15,9,12,13,10,12,8,9,15,11,14,19,18,12,17,13,14,16,12,5,3,2,3,11,10,2,0,6,5,7,1,0,1,7,11,15,14,1,0,8,2,10,8,1,9,11,13,17,19,9,8,12,10,14,12,9,13,15,14,15,19,12,16,17,14,18,16],"colors":[["#795D5E",32]]};
-let cube = {"vertices":[100,200,-100,100,0,-100,100,200,100,100,0,100,-100,200,-100,-100,0,-100,-100,200,100,-100,0,100],"normals":[],"indices":[2,7,3,6,5,7,0,3,1,4,1,5,2,6,7,6,4,5,0,2,3,4,0,1],"colors":[["#6C6367",8]]};
+let spider_leg = {"vertices":[-328,194,-200,-326,234,-200,-324,194,-160,-322,234,-160,-167,165,-168,-161,223,-168,-172,165,-221,-166,223,-222,-442,195,-185,-450,227,-184,-439,195,-153,-446,227,-152,-569,143,-170,-589,161,-168,-567,143,-144,-586,161,-142,-627,0,-158,-640,5,-157,-625,0,-144,-639,5,-143],"normals":[],"indices":[5,2,4,3,10,2,2,6,4,5,1,3,0,7,6,11,14,10,1,8,9,2,8,0,1,11,3,13,19,15,9,12,13,10,12,8,9,15,11,14,19,18,12,17,13,14,16,12,5,3,2,3,11,10,2,0,6,5,7,1,0,1,7,11,15,14,1,0,8,2,10,8,1,9,11,13,17,19,9,8,12,10,14,12,9,13,15,14,15,19,12,16,17,14,18,16],"colors":[["#5d5775",32]]};
+let cube = {"vertices":[100,200,-100,100,0,-100,100,200,100,100,0,100,-100,200,-100,-100,0,-100,-100,200,100,-100,0,100],"normals":[],"indices":[2,7,3,6,5,7,0,3,1,4,1,5,2,6,7,6,4,5,0,2,3,4,0,1],"colors":[["#5d5775",8]]};
+let plane = {"vertices":[-100,0,100,100,0,100,-100,0,-100,100,0,-100],"normals":[],"indices":[1,2,0,1,3,2],"colors":[["#474259",2]]};
+let circle = {"vertices":[-70,0,-70,-100,0,0,-61,0,-61,-86,0,0],"normals":[],"indices":[0,3,1,0,2,3],"colors":[["#B44840",2]]};
 let map = [];
 
 var pointIsOnMap = (x, y) => {
@@ -69,21 +71,29 @@ const maze = () => {
     var mz = Group([]);
 
     var size = 26;
-    
-    var mazeMap = `1111111111111111111111111111000000000000000000000011101101001001001001001011111011000000000000000000100110101100100100100100111101101011000000000000001000011010101010010010010111011110101011000000000010000001101010101001001001111111011010101011000000100000000110001000101100111101111101101010101010000100000010011010101010000000000000100110101010100000000000001001101000101010000100000010011010101000110011111101111110101010110000001000000001101010101001111001111111011010101100100001001000000110101010010011001001110111101011000001001001001000011010100100100001001001110110110010010011001001001001101001001000001000001001111100100100100001001001001111111111111111111111111111`.split("").map(x=>+x);
+
+    var mazeMap = `1111111111111111111111111111000000000000000000000011101101001001001001001011111011000000000000000000100110101100100100100100111101101011000000000000001000011010101010010010010111011110101011000000000010000001101010101001001001111111011010101011000000100000000110001000101100111101111101101010101010000100000010011010101010000000000000100110101010100000000000001001101000101010000100000010011010101000110011111101111110101010110000001000000001101010101001111001111111011010101100100001001000000110101010010011001001110111101011000001001001001000011010100100100001001001110110110010010011001001001001101001001000001000001001111100100100100001001001001111111111111111111111111111`.split("").map(x => +x);
 
     for (let i = 0; i < size * size; i++) {
-        const x = 4 * (i % size) - size;
-        const y = Math.floor(i / size) * 4 - size;
+        const x = 4 * (i % size) - size * 2 + 3;
+        const y = Math.floor(i / size) * 4 - size * 2 + 3;
         if (mazeMap[i]) {
             mz.meshes.push(Mesh(cube.vertices, cube.indices, cube.colors, vector3(x, 0, y), vector3(0, 0, 0), vector3(2, 2, 2)));
         }
-        else map.push([
-            x - 2, y - 2, x - 2, y + 2,
-            x - 2, y + 2, x + 2, y + 2,
-            x + 2, y + 2, x + 2, y - 2,
-            x + 2, y - 2, x - 2, y - 2
-        ]);
+
+        else {
+            let yN = .2 * mazeMap[i - size];
+            let yP = -.2 * mazeMap[i + size];
+            let xN = .2 * mazeMap[i - 1];
+            let xP = -.2 * mazeMap[i + 1];
+            
+            map.push([
+                x - 2 + xN, y - 2 + yN, x - 2 + xN, y + 2 + yP,
+                x - 2 + xN, y + 2 + yP, x + 2 + xP, y + 2 + yP,
+                x + 2 + xP, y + 2 + yP, x + 2 + xP, y - 2 + yN,
+                x + 2 + xP, y - 2 + yN, x - 2 + xN, y - 2 + yN
+            ]);
+        }
     }
     meshes.push(mz);
 }
@@ -113,35 +123,44 @@ const font = 'serif';
 
 const raycast = (camera, points) => { 
     let cameraDirection = substract(camera.position, camera.target)
-    for (point of points) {
-        let direction = normalize(substract(camera.position, point));
+    for (index in points) {
+        let direction = normalize(substract(camera.position, points[index]));
         let difference = summate(substract(cameraDirection, direction));
-        let distance = distanceTo(camera.position, point);
+        let distance = distanceTo(camera.position, points[index]);
 
         if (distance < .70 && difference < .2) {
-            return point;
+            spider_healths[index] -= .5;
         }
     }
 }
+let spider_positions = [];
+let spider_healths = [];
+
 const Spider = (pos) => {
-    let index = meshes.length;
+    let index = spiders.length;
     let time = 0;
     let rotation = 0;
+    let cooldown = 3;
+
+    spider_positions.push(pos);
+    spider_healths.push(1);
 
     let group = Group([
-        Mesh(spider_body.vertices, spider_body.indices, spider_body.colors, add(pos, vector3(0, 0, .8)), u, vector3(.25, .25, .25), 1),
-        Mesh(spider_leg.vertices, spider_leg.indices, spider_leg.colors, add(pos, vector3(0, 0, 0)), u, vector3(.25, .25, .25), 1),
-        Mesh(spider_leg.vertices, spider_leg.indices, spider_leg.colors, add(pos, vector3(0, 0, .4)), u, vector3(.25, .25, .25), 1),
-        Mesh(spider_leg.vertices, spider_leg.indices, spider_leg.colors, add(pos, vector3(0, 0, .8)), u, vector3(.25, .25, .25), 1),
-        Mesh(spider_leg.vertices, spider_leg.indices, spider_leg.colors, add(pos, vector3(0, 0, 1.2)), u, vector3(.25, .25, .25), 1)
+        Mesh(spider_body.vertices, spider_body.indices, spider_body.colors, vector3(0, 0, .8), u, vector3(.25, .25, .25), 1),
+        Mesh(spider_leg.vertices, spider_leg.indices, spider_leg.colors, vector3(0, 0, 0), u, vector3(.25, .25, .25), 1),
+        Mesh(spider_leg.vertices, spider_leg.indices, spider_leg.colors, vector3(0, 0, .4), u, vector3(.25, .25, .25), 1),
+        Mesh(spider_leg.vertices, spider_leg.indices, spider_leg.colors, vector3(0, 0, .8), u, vector3(.25, .25, .25), 1),
+        Mesh(spider_leg.vertices, spider_leg.indices, spider_leg.colors, vector3(0, 0, 1.2), u, vector3(.25, .25, .25), 1)
     ]
     );
 
-    group.scale = vector3(.5, .5, .5);
+    group.scale = vector3(1, 1, 1);
+    group.position = pos;
 
     meshes.push(group);
 
     return deltaTime => {
+        cooldown -= deltaTime;
         time += deltaTime;
 
         group.meshes[1].rotation = vector3(0, Math.cos(time) * .05, Math.sin(time) * .15);
@@ -150,6 +169,23 @@ const Spider = (pos) => {
         group.meshes[4].rotation = vector3(0, Math.sin(time) * .05, Math.cos(time) * .15);
 
         group.rotation.y = Math.atan2(camera.position.x - group.position.x, camera.position.z - group.position.z);
+
+        if (distanceTo(vector3(u, u, u), camera.position) <= 4.358) return;
+
+        if (distanceTo(group.position, camera.position) > 3) {
+            let p = clone(group.position);
+            p.x += Math.sin(group.rotation.y) * deltaTime;
+            p.z += Math.cos(group.rotation.y) * deltaTime;
+            if (pointIsOnMap(p.x, p.z)) group.position = p;
+            
+        }
+        if (distanceTo(group.position, camera.position) < 4) {
+            if (cooldown <= 0) {
+                health -= .05;
+                cooldown = 3;
+                zzfx(...[,,100,,.04,,4,5,,,,,,1.4,,.1,,.89,,,-2247]);
+            }  
+        }
     }
 }
 const Geometry = (vertices, indices, colors, mx = 0,my = 0) => {
@@ -269,8 +305,11 @@ const render = (meshes, camera, clear = 1, additionalMatrix = null) => {
 
     for (const mesh of meshes) {
         if (mesh.off) continue;
-        if (mesh.isGroup) return render(mesh.meshes, camera, 0, transform(mesh.position,  mesh.rotation, mesh.scale));
-        
+        if (mesh.isGroup) {
+            render(mesh.meshes, camera, 0, transform(mesh.position,  mesh.rotation, mesh.scale));
+            continue;
+        }
+
         // Bind vertex buffer for the current mesh
         bindBufferAttribute(mesh.geometry.vertexBuffer, program.aVertexPosition);
         // Bind color buffer for the current mesh
@@ -404,120 +443,158 @@ const updateMenuScene = (deltaTime) => {
 var meshes, camera, playSceneCounter, cameraPos;
 var timerBreathe = 0, timer = 0;
 var heartbeat = .2;
+var energy = 1;
 var u;//undefined
 var points = [
-    vector3(0,0,0)
+  vector3(0, 0, 0)
 ];
 var spiders = [];
 var health = 1;
 
 const initialisePlayScene = () => {
-    messages = [];
-    meshes = [
-       
-    ];
+  messages = [];
+  meshes = [
+    Mesh(plane.vertices, plane.indices, plane.colors, u, u, vector3(100, 100, 100)),
+    Mesh(plane.vertices, plane.indices, plane.colors, vector3(0, 5, 0), u, vector3(100, 100, 100)),
+    Mesh(circle.vertices, circle.indices, circle.colors, vector3(0, 0.1, 0), u, vector3(5, 5, 5), 1, 1)
+  ];
 
-    camera = { position: vector3(0, 1,69, 0), direction: vector3(0, 0, 1), forwardSpeed: 1.4, yaw: 0, pitch: 0, target: vector3(0, 0, 0), yaw: 0, fov: Math.PI / 2, aspect: width / height, near: .1, far: 200, up: vector3(0, 1, 0) };
-    
-    setInterval(f=>{
-        zzfx(...[2,.8,100,,,,,1.5,,.3,-99,.1,1.63,,,.11,.22]);
-        timerBreathe = 1;
-        timer++;
-    }, 950);
-    setInterval(f => {
-      zzfx(...[0.4,.1,10,,.07,.26,,5,,,-100,.01,,,,,.25,.73,,,-1473]); // Random 107
-      heartbeat = .8;
-    }, 1200);
-    
-    //spiders.push(Spider(vector3(0, 0, 0)));
+  camera = { position: vector3(0, 1.69, 0), direction: vector3(0, 0, 1), forwardSpeed: 1.4, yaw: 0, pitch: 0, target: vector3(0, 0, 0), yaw: 0, fov: Math.PI / 2, aspect: width / height, near: .1, far: 200, up: vector3(0, 1, 0) };
 
-    initialiseWebGl();
-
-    function onMouseMove(event) {
-       camera.yaw += event.movementX / 500;
-       camera.pitch -= event.movementY / 500;
-      }
-  
-      function enterPointerLock() {
-        document.documentElement.requestPointerLock();
-      }
-  
-      document.addEventListener('click', enterPointerLock);
-      document.addEventListener('mousemove', onMouseMove);
-  
-      document.addEventListener('pointerlockchange', () => {
-        if (document.pointerLockElement === document.documentElement) {
-          console.log('Pointer lock engaged');
-        } else {
-          console.log('Pointer lock released');
+  setInterval(f => {
+    if (distanceTo(vector3(u, u, u), camera.position) > 4.358) {
+      if (timer >= 12) {
+        zzfx(...[5,.1,261.6256,,,.5,,10,,1.2,19,1,,,,,.05,.6,.3,1]); // Random 141
+        for (let i = 0; i < 5; i++) {
+          let x = 50 - Math.random() * 100;
+          let z = 50 - Math.random() * 100;
+          if (pointIsOnMap(x, z)) {
+            spiders.push(Spider(vector3(x, 0, z)));
+          }
         }
-      });
+      }
+      zzfx(...[2, .8, 100, , , , , 1.5, , .3, -99, .1, 1.63, , , .11, .22]);
+      timerBreathe = 1;
+      timer++;
+    }
+  }, 950);
+  setInterval(f => {
+    zzfx(...[0.4, .1, 10, , .07, .26, , 5, , , -100, .01, , , , , .25, .73, , , -1473]); // Random 107
+    heartbeat = .8;
+    health += .05;
+  }, 1200);
   
-      document.addEventListener('pointerlockerror', () => {
-        console.log('Pointer lock failed');
-      });
+  initialiseWebGl();
 
-      maze();
+  function onMouseMove(event) {
+    camera.yaw += event.movementX / 500;
+    camera.pitch -= event.movementY / 500;
+  }
 
+  function enterPointerLock() {
+    document.documentElement.requestPointerLock();
+  }
+
+  document.addEventListener('click', enterPointerLock);
+  document.addEventListener('mousemove', onMouseMove);
+
+  document.addEventListener('pointerlockchange', () => {
+    if (document.pointerLockElement === document.documentElement) {
+      console.log('Pointer lock engaged');
+    }
+  });
+
+  document.addEventListener('pointerlockerror', () => {
+    console.log('Pointer lock failed');
+  });
+
+  maze();
+
+  for (let i = 0; i < 20; i++) {
+    let x = 50 - Math.random() * 100;
+    let z = 50 - Math.random() * 100;
+    if (pointIsOnMap(x, z)) {
+      spiders.push(Spider(vector3(x, 0, z)));
+    }
+  }
 }
 
 updatePlayScene = (deltaTime) => {
-    playSceneCounter++;
-    heartbeat = heartbeat * heartbeat;
+  playSceneCounter++;
+  heartbeat = heartbeat * heartbeat;
 
-    processInputPlayScene(deltaTime);
+  processInputPlayScene(deltaTime);
 
-    render(meshes, camera);
+  render(meshes, camera);
 
-    spiders.forEach(spider => spider(deltaTime));
+  spiders.forEach(spider => spider(deltaTime));
 
-    context.globalAlpha = .4;
-    context.drawImage(glCanvas, 0, 0);
-    context.globalAlpha = 1;
-    
-    context.fillStyle = "white";
-    context.font = `${15 * (1+timerBreathe)}px monospace`;
-    timerBreathe -= deltaTime;
-    timerBreathe *= timerBreathe;
-    context.fillText(timer, 10, 20);
+  context.globalAlpha = .4;
+  context.drawImage(glCanvas, 0, 0);
+  context.globalAlpha = 1;
 
-    context.fillRect(halfWidth - 0.5, halfHeight - 3.5, 0.5, 7);
-    context.fillRect(halfWidth - 3.5, halfHeight - 0.5, 7, 0.5);
+  context.fillStyle = "white";
+  context.font = `${15 * (1 + timerBreathe)}px monospace`;
+  timerBreathe -= deltaTime;
+  timerBreathe *= timerBreathe;
+  context.fillText(timer, 10, 20);
+
+  context.fillRect(halfWidth - 0.5, halfHeight - 3.5, 0.5, 7);
+  context.fillRect(halfWidth - 3.5, halfHeight - 0.5, 7, 0.5);
 
 
-    context.fillStyle = "#E37E90";
-    context.fillRect(width / 4, 10, halfWidth, 5);
-    context.font = `${15*(1+heartbeat)}px sans-serif`;
-    context.fillText("❤️", width / 4, 15);
+  context.fillStyle = "#E37E90";
+  context.fillRect(width / 4, 10, halfWidth * health, 5);
+  context.font = `${15 * (1 + heartbeat)}px sans-serif`;
+  context.fillText("❤️", width / 4, 15);
 
-    raycast(camera, points);
+  context.fillStyle = "#E8C165";
+  context.fillRect(width / 4, 25, halfWidth * energy, 5);
+  context.font = `${15}px sans-serif`;
+  context.fillText("⚡", width / 4, 30);
 
-    updateMessages();
+  raycast(camera, points);
+
+  if (health > 1) health = 1;
+  if (distanceTo(vector3(u, u, u), camera.position) < 4.358) {
+    timer = 0;
+  }
+
+  if (raycast(camera, spider_positions))
+
+  updateMessages();
 }
 
 const processInputPlayScene = (deltaTime) => {
-    let direction = vector3(0, 0, 0);
-    if (up) {
-        direction = vector3(0, 0, 1);
-    }
+  let direction = vector3(0, 0, 0);
+  if (up) {
+    direction = vector3(0, 0, 1 + (shift & (energy > 0)));
+  }
 
-    if (down) {
-        direction = vector3(0, 0, -2/3);
-    }
+  else if (down) {
+    direction = vector3(0, 0, -2 / 3);
+  }
 
-    if (left) {
-        direction = vector3(2/3, 0, 0);
-    }
+  else if (left) {
+    direction = vector3(2 / 3, 0, 0);
+  }
 
-    if (right) {
-        direction = vector3(-2/3, 0, 0);
-    }
+  else if (right) {
+    direction = vector3(-2 / 3, 0, 0);
+  }
 
-    cameraPos = add(camera.position, multiplyBy(rotY(direction, camera.yaw), camera.forwardSpeed * deltaTime));
-    if (pointIsOnMap(cameraPos.x, cameraPos.z)) camera.position = cameraPos;
+  else energy = Math.min(energy + deltaTime / 100, 1);
 
-    camera.direction = add(rotY(vector3(0, 0, 1), camera.yaw), vector3(0, camera.pitch, 0));
-    camera.target = add(camera.position, camera.direction);
+  if (shift && energy > 0) {
+    energy -= deltaTime / 100;
+  }
+
+
+  cameraPos = add(camera.position, multiplyBy(rotY(direction, camera.yaw), camera.forwardSpeed * deltaTime));
+  if (pointIsOnMap(cameraPos.x, cameraPos.z)) camera.position = cameraPos;
+
+  camera.direction = add(rotY(vector3(0, 0, 1), camera.yaw), vector3(0, camera.pitch, 0));
+  camera.target = add(camera.position, camera.direction);
 }
 
 
@@ -553,55 +630,54 @@ menuScene = () => ({ initialise: initialiseMenuScene, update: updateMenuScene })
 playScene = () => ({ initialise: initialisePlayScene, update: updatePlayScene })
 gameOverScene = () => ({ initialise: initialiseGameOverScene, update: updateGameOverScene })
 var glCanvas = document.getElementById("glCanvas");
-        var gl = glCanvas.getContext("webgl2");
+var gl = glCanvas.getContext("webgl2");
 
-        var hudCanvas = document.getElementById("hudCanvas");
-        var context = hudCanvas.getContext("2d");
+var hudCanvas = document.getElementById("hudCanvas");
+var context = hudCanvas.getContext("2d");
 
-        var width, height, halfWidth, halfHeight;
+var width, height, halfWidth, halfHeight;
 
-        function resize() {
-            width = window.innerWidth / 4;
-            height = window.innerHeight / 4;
-            halfWidth = width * .5 ;
-            halfHeight = height * .5;
-            hudCanvas.width = width;
-            hudCanvas.height = height;
-            glCanvas.width = width;
-            glCanvas.height = height;
+function resize() {
+    width = window.innerWidth / 4;
+    height = window.innerHeight / 4;
+    halfWidth = width * .5;
+    halfHeight = height * .5;
+    hudCanvas.width = width;
+    hudCanvas.height = height;
+    glCanvas.width = width;
+    glCanvas.height = height;
 
-            if (camera !== undefined && projectionMatrixLocation !== undefined) {
-                camera.aspect = width / height;
-                gl.uniformMatrix4fv(projectionMatrixLocation, false, perspective(camera.fov, camera.aspect, camera.near, camera.far));
-            }
-        }
-        resize();
-        onresize = resize;
+    if (camera !== undefined && projectionMatrixLocation !== undefined) {
+        camera.aspect = width / height;
+        gl.uniformMatrix4fv(projectionMatrixLocation, false, perspective(camera.fov, camera.aspect, camera.near, camera.far));
+    }
+}
+resize();
+onresize = resize;
 
 
-        var meshMatrixLocation, cameraMatrixLocation, projectionMatrixLocation, camera, meshes, program;
+var meshMatrixLocation, cameraMatrixLocation, projectionMatrixLocation, camera, meshes, program;
 
-        var currentScene = menuScene();
-        currentScene.initialise();
+var currentScene = menuScene();
+currentScene.initialise();
 
-        var deltaTime, previousTime = 0;
-        const gameLoop = (timeStamp) => {
+var deltaTime, previousTime = 0;
+const gameLoop = (timeStamp) => {
 
-            deltaTime = (timeStamp - previousTime) * .01;
-            previousTime = timeStamp;
-            window.timeStamp = timeStamp;
+    deltaTime = (timeStamp - previousTime) * .01;
+    previousTime = timeStamp;
+    window.timeStamp = timeStamp;
 
-            currentScene.update(deltaTime);
+    currentScene.update(deltaTime);
 
-            if (isInTransition) updateTransition(deltaTime);
+    if (isInTransition) updateTransition(deltaTime);
 
-            requestAnimationFrame(gameLoop);
-        }
-        requestAnimationFrame(gameLoop);
+    requestAnimationFrame(gameLoop);
+}
+requestAnimationFrame(gameLoop);
 
-        var left, right, up, down, space, esc, enter;
-        const updateKeys = (code, val) => { switch (code) { case 65: left = val; break; case 87: up = val; break; case 68: right = val; break; case 32: space = val; break; case 27: esc = val; break; case 13: enter = val; break; case 83: down = val; break; default: break; } }
-        onkeydown = e => updateKeys(e.keyCode, true);
-        onkeyup = e => updateKeys(e.keyCode, false);
+var left, right, up, down, space, esc, enter, shift;
+const updateKeys = (code, val) => { switch (code) { case 65: left = val; break; case 16: shift = val;  break; case 87: up = val; break; case 68: right = val; break; case 32: space = val; break; case 27: esc = val; break; case 13: enter = val; break; case 83: down = val; break; default: break; } }
+onkeydown = e => updateKeys(e.keyCode, true);
+onkeyup = e => updateKeys(e.keyCode, false);
 
-        

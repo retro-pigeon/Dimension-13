@@ -12,8 +12,11 @@ const render = (meshes, camera, clear = 1, additionalMatrix = null) => {
 
     for (const mesh of meshes) {
         if (mesh.off) continue;
-        if (mesh.isGroup) return render(mesh.meshes, camera, 0, transform(mesh.position,  mesh.rotation, mesh.scale));
-        
+        if (mesh.isGroup) {
+            render(mesh.meshes, camera, 0, transform(mesh.position,  mesh.rotation, mesh.scale));
+            continue;
+        }
+
         // Bind vertex buffer for the current mesh
         bindBufferAttribute(mesh.geometry.vertexBuffer, program.aVertexPosition);
         // Bind color buffer for the current mesh
