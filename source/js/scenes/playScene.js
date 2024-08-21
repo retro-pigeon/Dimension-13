@@ -12,9 +12,9 @@ var health = 1;
 const initialisePlayScene = () => {
   messages = [];
   meshes = [
-    Mesh(plane.vertices, plane.indices, plane.colors, u, u, vector3(100, 100, 100)),
-    Mesh(plane.vertices, plane.indices, plane.colors, vector3(0, 5, 0), u, vector3(100, 100, 100)),
-    Mesh(circle.vertices, circle.indices, circle.colors, vector3(0, 0.1, 0), u, vector3(5, 5, 5), 1, 1)
+    Mesh(plane.vertices, plane.indices, plane.colors, u, u, vector3(1e3, 1e3, 1e3)),
+    Mesh(plane.vertices, plane.indices, plane.colors, vector3(0, 5, 0), u, vector3(1e3, 1e3, 1e3)),
+    Mesh(circle.vertices, circle.indices, circle.colors, vector3(0, 0.1, 0), vector3(0, Math.PI/4, 0), vector3(5, 5, 5), 1, 1)
   ];
 
   camera = { position: vector3(0, 1.69, 0), direction: vector3(0, 0, 1), forwardSpeed: 1.4, yaw: 0, pitch: 0, target: vector3(0, 0, 0), yaw: 0, fov: Math.PI / 2, aspect: width / height, near: .1, far: 200, up: vector3(0, 1, 0) };
@@ -22,10 +22,10 @@ const initialisePlayScene = () => {
   setInterval(f => {
     if (distanceTo(vector3(u, u, u), camera.position) > 4.358) {
       if (timer >= 12) {
-        zzfx(...[5,.1,261.6256,,,.5,,10,,1.2,19,1,,,,,.05,.6,.3,1]); // Random 141
+        zzfx(...[5, .1, 261.6256, , , .5, , 10, , 1.2, 19, 1, , , , , .05, .6, .3, 1]); // Random 141
         for (let i = 0; i < 5; i++) {
-          let x = 50 - Math.random() * 100;
-          let z = 50 - Math.random() * 100;
+          let x = 100 - Math.random() * 200;
+          let z = 100 - Math.random() * 200;
           if (pointIsOnMap(x, z)) {
             spiders.push(Spider(vector3(x, 0, z)));
           }
@@ -41,7 +41,7 @@ const initialisePlayScene = () => {
     heartbeat = .8;
     health += .05;
   }, 1200);
-  
+
   initialiseWebGl();
 
   function onMouseMove(event) {
@@ -51,6 +51,8 @@ const initialisePlayScene = () => {
 
   function enterPointerLock() {
     document.documentElement.requestPointerLock();
+    raycast(camera, spider_positions);
+    
   }
 
   document.addEventListener('click', enterPointerLock);
@@ -60,6 +62,8 @@ const initialisePlayScene = () => {
     if (document.pointerLockElement === document.documentElement) {
       console.log('Pointer lock engaged');
     }
+
+    
   });
 
   document.addEventListener('pointerlockerror', () => {
@@ -75,6 +79,8 @@ const initialisePlayScene = () => {
       spiders.push(Spider(vector3(x, 0, z)));
     }
   }
+
+ 
 }
 
 updatePlayScene = (deltaTime) => {
@@ -111,16 +117,16 @@ updatePlayScene = (deltaTime) => {
   context.font = `${15}px sans-serif`;
   context.fillText("⚡", width / 4, 30);
 
-  raycast(camera, points);
-
   if (health > 1) health = 1;
   if (distanceTo(vector3(u, u, u), camera.position) < 4.358) {
     timer = 0;
   }
 
-  if (raycast(camera, spider_positions))
+    updateMessages();
 
-  updateMessages();
+    if (health < 0) {
+      showScene(gameOverScene(), false);
+    }
 }
 
 const processInputPlayScene = (deltaTime) => {

@@ -24,6 +24,7 @@ let spider_leg = {"vertices":[-328,194,-200,-326,234,-200,-324,194,-160,-322,234
 let cube = {"vertices":[100,200,-100,100,0,-100,100,200,100,100,0,100,-100,200,-100,-100,0,-100,-100,200,100,-100,0,100],"normals":[],"indices":[2,7,3,6,5,7,0,3,1,4,1,5,2,6,7,6,4,5,0,2,3,4,0,1],"colors":[["#5d5775",8]]};
 let plane = {"vertices":[-100,0,100,100,0,100,-100,0,-100,100,0,-100],"normals":[],"indices":[1,2,0,1,3,2],"colors":[["#474259",2]]};
 let circle = {"vertices":[-70,0,-70,-100,0,0,-61,0,-61,-86,0,0],"normals":[],"indices":[0,3,1,0,2,3],"colors":[["#B44840",2]]};
+let elevator = {"vertices":[0,298,266,0,309,299,0,15,266,0,4,299,0,304,254,-14,20,268,-14,293,268,0,10,254,-127,304,127,-133,298,133,-149,309,149,-141,293,141,-141,20,141,-133,15,133,-149,4,149,-127,10,127,0,15,0,0,309,0,0,304,0],"normals":[],"indices":[4,9,8,6,2,5,5,1,6,6,10,11,5,13,12,7,14,15,7,13,2,5,14,3,17,10,1,6,9,0,4,10,1,18,8,4,13,16,2,4,0,9,6,0,2,5,3,1,6,1,10,5,2,13,7,3,14,7,15,13,5,12,14,6,11,9,4,8,10],"colors":[["#626D56",23]]}
 let map = [];
 
 var pointIsOnMap = (x, y) => {
@@ -67,12 +68,53 @@ drawMap = (context, camera) => {
     context.fillText(Math.round(camera.position.x), 30, 200);
     context.fillText(Math.round(camera.position.z), 30, 250);
 }
+function generateMaze(w, h) {
+    const m = Array.from({ length: h }, () => Array(w).fill(1));
+    const dirs = [[0,2], [2,0], [0,-2], [-2,0]];
+  
+    function inBounds(x, y) {
+      return x >= 0 && y >= 0 && x < w && y < h;
+    }
+  
+    function dfs(x, y) {
+      m[y][x] = 0;
+      dirs.sort(() => Math.random() - 0.5).forEach(([dx, dy]) => {
+        const [nx, ny] = [x + dx, y + dy];
+        const [mx, my] = [x + dx / 2, y + dy / 2];
+        if (inBounds(nx, ny) && m[ny][nx]) {
+          m[my][mx] = 0;
+          dfs(nx, ny);
+        }
+      });
+    }
+  
+    dfs(1, 1);
+  
+    // Create a 3x3 hole in the middle
+    const cx = w >> 1;
+    const cy = w >> 1;
+    for (let dy = -2; dy <= 2; dy++) {
+      for (let dx = -2; dx <= 2 ; dx++) {
+        if (inBounds(cx + dx, cy + dy)) {
+          m[cy + dy][cx + dx] = 0;
+        }
+      }
+    }
+  
+    m[0][1] = m[h-1][w-2] = 0;
+  
+    return m;
+  }
+  
+
+
 const maze = () => {
     var mz = Group([]);
 
-    var size = 26;
+    var size = 101;
 
-    var mazeMap = `1111111111111111111111111111000000000000000000000011101101001001001001001011111011000000000000000000100110101100100100100100111101101011000000000000001000011010101010010010010111011110101011000000000010000001101010101001001001111111011010101011000000100000000110001000101100111101111101101010101010000100000010011010101010000000000000100110101010100000000000001001101000101010000100000010011010101000110011111101111110101010110000001000000001101010101001111001111111011010101100100001001000000110101010010011001001110111101011000001001001001000011010100100100001001001110110110010010011001001001001101001001000001000001001111100100100100001001001001111111111111111111111111111`.split("").map(x => +x);
+    var mazeMap = generateMaze(101, 101).flat();
+
 
     for (let i = 0; i < size * size; i++) {
         const x = 4 * (i % size) - size * 2 + 3;
@@ -86,7 +128,7 @@ const maze = () => {
             let yP = -.2 * mazeMap[i + size];
             let xN = .2 * mazeMap[i - 1];
             let xP = -.2 * mazeMap[i + 1];
-            
+
             map.push([
                 x - 2 + xN, y - 2 + yN, x - 2 + xN, y + 2 + yP,
                 x - 2 + xN, y + 2 + yP, x + 2 + xP, y + 2 + yP,
@@ -128,13 +170,19 @@ const raycast = (camera, points) => {
         let difference = summate(substract(cameraDirection, direction));
         let distance = distanceTo(camera.position, points[index]);
 
-        if (distance < .70 && difference < .2) {
+        if (distance < 3 && difference < 3 && spider_death[index]) {
             spider_healths[index] -= .5;
+            
+            zzfx(...[1.1,,219,,.01,.03,4,4.2,,,,,,,,,,.67,,,198]);
+
+            return;
         }
     }
 }
-let spider_positions = [];
-let spider_healths = [];
+var spider_positions = [];
+var spider_healths = [];
+var spider_death = [];
+var spider_ricoshate = 1;
 
 const Spider = (pos) => {
     let index = spiders.length;
@@ -144,6 +192,7 @@ const Spider = (pos) => {
 
     spider_positions.push(pos);
     spider_healths.push(1);
+    spider_death.push(1);
 
     let group = Group([
         Mesh(spider_body.vertices, spider_body.indices, spider_body.colors, vector3(0, 0, .8), u, vector3(.25, .25, .25), 1),
@@ -160,6 +209,13 @@ const Spider = (pos) => {
     meshes.push(group);
 
     return deltaTime => {
+        if (spider_healths[index] <= 0) {
+            group.off = true;
+            spider_death[index] = 0;
+            return;
+        }
+
+
         cooldown -= deltaTime;
         time += deltaTime;
 
@@ -177,15 +233,18 @@ const Spider = (pos) => {
             p.x += Math.sin(group.rotation.y) * deltaTime;
             p.z += Math.cos(group.rotation.y) * deltaTime;
             if (pointIsOnMap(p.x, p.z)) group.position = p;
-            
         }
         if (distanceTo(group.position, camera.position) < 4) {
             if (cooldown <= 0) {
                 health -= .05;
                 cooldown = 3;
                 zzfx(...[,,100,,.04,,4,5,,,,,,1.4,,.1,,.89,,,-2247]);
+                
             }  
         }
+        
+        spider_positions[index] = group.position;
+        
     }
 }
 const Geometry = (vertices, indices, colors, mx = 0,my = 0) => {
@@ -415,7 +474,7 @@ compileShader = (shaderSource, shaderType, program) => {
 }
 initialiseGameOverScene = () => {
     messages = [];
-    showMessage("Triskaideka murdered you in cold blood", halfWidth, halfHeight, 100);
+    showMessage("You will never get back home to see your wife and kids again.", halfWidth, halfHeight, 100);
     showMessage("Press enter to suffer again!", halfWidth, halfHeight + 100, 50);
 }
 
@@ -454,9 +513,9 @@ var health = 1;
 const initialisePlayScene = () => {
   messages = [];
   meshes = [
-    Mesh(plane.vertices, plane.indices, plane.colors, u, u, vector3(100, 100, 100)),
-    Mesh(plane.vertices, plane.indices, plane.colors, vector3(0, 5, 0), u, vector3(100, 100, 100)),
-    Mesh(circle.vertices, circle.indices, circle.colors, vector3(0, 0.1, 0), u, vector3(5, 5, 5), 1, 1)
+    Mesh(plane.vertices, plane.indices, plane.colors, u, u, vector3(1e3, 1e3, 1e3)),
+    Mesh(plane.vertices, plane.indices, plane.colors, vector3(0, 5, 0), u, vector3(1e3, 1e3, 1e3)),
+    Mesh(circle.vertices, circle.indices, circle.colors, vector3(0, 0.1, 0), vector3(0, Math.PI/4, 0), vector3(5, 5, 5), 1, 1)
   ];
 
   camera = { position: vector3(0, 1.69, 0), direction: vector3(0, 0, 1), forwardSpeed: 1.4, yaw: 0, pitch: 0, target: vector3(0, 0, 0), yaw: 0, fov: Math.PI / 2, aspect: width / height, near: .1, far: 200, up: vector3(0, 1, 0) };
@@ -464,10 +523,10 @@ const initialisePlayScene = () => {
   setInterval(f => {
     if (distanceTo(vector3(u, u, u), camera.position) > 4.358) {
       if (timer >= 12) {
-        zzfx(...[5,.1,261.6256,,,.5,,10,,1.2,19,1,,,,,.05,.6,.3,1]); // Random 141
+        zzfx(...[5, .1, 261.6256, , , .5, , 10, , 1.2, 19, 1, , , , , .05, .6, .3, 1]); // Random 141
         for (let i = 0; i < 5; i++) {
-          let x = 50 - Math.random() * 100;
-          let z = 50 - Math.random() * 100;
+          let x = 100 - Math.random() * 200;
+          let z = 100 - Math.random() * 200;
           if (pointIsOnMap(x, z)) {
             spiders.push(Spider(vector3(x, 0, z)));
           }
@@ -483,7 +542,7 @@ const initialisePlayScene = () => {
     heartbeat = .8;
     health += .05;
   }, 1200);
-  
+
   initialiseWebGl();
 
   function onMouseMove(event) {
@@ -493,6 +552,8 @@ const initialisePlayScene = () => {
 
   function enterPointerLock() {
     document.documentElement.requestPointerLock();
+    raycast(camera, spider_positions);
+    
   }
 
   document.addEventListener('click', enterPointerLock);
@@ -502,6 +563,8 @@ const initialisePlayScene = () => {
     if (document.pointerLockElement === document.documentElement) {
       console.log('Pointer lock engaged');
     }
+
+    
   });
 
   document.addEventListener('pointerlockerror', () => {
@@ -517,6 +580,8 @@ const initialisePlayScene = () => {
       spiders.push(Spider(vector3(x, 0, z)));
     }
   }
+
+ 
 }
 
 updatePlayScene = (deltaTime) => {
@@ -553,16 +618,16 @@ updatePlayScene = (deltaTime) => {
   context.font = `${15}px sans-serif`;
   context.fillText("⚡", width / 4, 30);
 
-  raycast(camera, points);
-
   if (health > 1) health = 1;
   if (distanceTo(vector3(u, u, u), camera.position) < 4.358) {
     timer = 0;
   }
 
-  if (raycast(camera, spider_positions))
+    updateMessages();
 
-  updateMessages();
+    if (health < 0) {
+      showScene(gameOverScene(), false);
+    }
 }
 
 const processInputPlayScene = (deltaTime) => {

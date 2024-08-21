@@ -1,5 +1,7 @@
-let spider_positions = [];
-let spider_healths = [];
+var spider_positions = [];
+var spider_healths = [];
+var spider_death = [];
+var spider_ricoshate = 1;
 
 const Spider = (pos) => {
     let index = spiders.length;
@@ -9,6 +11,7 @@ const Spider = (pos) => {
 
     spider_positions.push(pos);
     spider_healths.push(1);
+    spider_death.push(1);
 
     let group = Group([
         Mesh(spider_body.vertices, spider_body.indices, spider_body.colors, vector3(0, 0, .8), u, vector3(.25, .25, .25), 1),
@@ -25,6 +28,13 @@ const Spider = (pos) => {
     meshes.push(group);
 
     return deltaTime => {
+        if (spider_healths[index] <= 0) {
+            group.off = true;
+            spider_death[index] = 0;
+            return;
+        }
+
+
         cooldown -= deltaTime;
         time += deltaTime;
 
@@ -42,14 +52,17 @@ const Spider = (pos) => {
             p.x += Math.sin(group.rotation.y) * deltaTime;
             p.z += Math.cos(group.rotation.y) * deltaTime;
             if (pointIsOnMap(p.x, p.z)) group.position = p;
-            
         }
         if (distanceTo(group.position, camera.position) < 4) {
             if (cooldown <= 0) {
                 health -= .05;
                 cooldown = 3;
                 zzfx(...[,,100,,.04,,4,5,,,,,,1.4,,.1,,.89,,,-2247]);
+                
             }  
         }
+        
+        spider_positions[index] = group.position;
+        
     }
 }
