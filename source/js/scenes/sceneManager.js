@@ -29,3 +29,4 @@ updateTransition = () => {
 menuScene = () => ({ initialise: initialiseMenuScene, update: updateMenuScene })
 playScene = () => ({ initialise: initialisePlayScene, update: updatePlayScene })
 gameOverScene = () => ({ initialise: initialiseGameOverScene, update: updateGameOverScene })
+winScene = () => ({ initialise: initialiseWinScene, update: updateWinScene })

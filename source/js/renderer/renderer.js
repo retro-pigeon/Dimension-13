@@ -1,7 +1,10 @@
+var fog = 15;
+
 const render = (meshes, camera, clear = 1, additionalMatrix = null) => {
     if (clear) {
     // Clear the color and depth buffers
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    gl.uniform1f(uFogLocation, fog);
     
     // Set the viewport
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);

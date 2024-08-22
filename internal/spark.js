@@ -1,3 +1,9 @@
+const style = 'font-size: 20px; color: red;';
+console.log("%cIntellectual property of @retro-pigeon", style);
+
+var glCanvas = document.getElementById("glCanvas");
+var gl = glCanvas.getContext("webgl2");
+
 var glCanvas = document.getElementById("glCanvas");
 var gl = glCanvas.getContext("webgl2");
 

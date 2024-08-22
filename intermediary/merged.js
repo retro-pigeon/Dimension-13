@@ -18,13 +18,30 @@ zzfxX = new (window.AudioContext || webkitAudioContext);
 // Here we can include all of our raw data
 
 // let level = {"vertices":[-403,200,-400,-403,0,-400,-110,200,-400,-110,0,-400,-110,102,-400,0,199,-400,-75,153,-400,-39,168,-400,0,170,-400,-110,200,-699,-110,0,-699,-110,102,-700,0,199,-699,-75,154,-700,-39,169,-700,0,170,-700,-270,200,-699,-270,0,-699,-270,200,-1200,-270,0,-1200,0,0,0,-1200,0,-1199,0,0,-1200,0,200,0,-1200,199,-1199,0,199,-1200],"normals":[],"indices":[0,3,1,9,15,14,6,11,13,7,13,14,8,14,15,4,10,11,2,7,5,16,19,17,9,17,10,20,22,21,23,25,24,0,2,3,13,11,9,9,12,15,14,13,9,6,4,11,7,6,13,8,7,14,4,3,10,2,4,6,7,8,5,2,6,7,16,18,19,9,16,17,19,25,22,19,18,25],"colors":[["#6C6367",26]]};
-let gem = {"vertices":[0,0,-150,-86,0,-75,-86,0,75,0,0,150,86,0,75,86,0,-75,0,50,-96,-55,50,-48,-55,50,48,0,50,96,55,50,48,55,50,-48,0,-50,-96,-55,-50,-48,-55,-50,48,0,-50,96,55,-50,48,55,-50,-48],"normals":[],"indices":[4,9,3,2,7,1,5,10,4,3,8,2,1,6,0,0,11,5,8,10,6,15,4,3,1,14,2,4,17,5,2,15,3,12,1,0,5,12,0,12,16,14,4,10,9,2,8,7,5,11,10,3,9,8,1,7,6,0,6,11,6,7,8,8,9,10,10,11,6,15,16,4,1,13,14,4,16,17,2,14,15,12,13,1,5,17,12,14,13,12,12,17,16,16,15,14],"colors":[["#A0C743",32]]};
+let gem = {"vertices":[0,0,-150,-86,0,-75,-86,0,75,0,0,150,86,0,75,86,0,-75,0,50,-96,-55,50,-48,-55,50,48,0,50,96,55,50,48,55,50,-48,0,-50,-96,-55,-50,-48,-55,-50,48,0,-50,96,55,-50,48,55,-50,-48],"normals":[],"indices":[4,9,3,2,7,1,5,10,4,3,8,2,1,6,0,0,11,5,8,10,6,15,4,3,1,14,2,4,17,5,2,15,3,12,1,0,5,12,0,12,16,14,4,10,9,2,8,7,5,11,10,3,9,8,1,7,6,0,6,11,6,7,8,8,9,10,10,11,6,15,16,4,1,13,14,4,16,17,2,14,15,12,13,1,5,17,12,14,13,12,12,17,16,16,15,14],"colors":[["#80D08C",32]]};
 let spider_body = {"vertices":[-91,208,125,-91,338,-4,-91,78,-4,-206,208,-257,0,208,154,0,367,-4,-112,288,75,-112,129,75,-124,295,-67,-124,120,-67,0,50,-4,-202,212,-397,0,318,104,-154,208,-4,0,87,-100,0,99,104,0,328,-100,-107,296,-582,-88,220,-631,-107,144,-582,0,220,-658,0,115,-611,0,325,-611,-150,345,-261,0,395,-312,0,28,-312,-188,78,-261],"normals":[],"indices":[12,1,6,12,0,4,0,13,7,1,13,6,8,9,13,13,2,7,2,14,10,11,17,18,0,15,4,2,15,7,24,17,23,1,16,8,18,21,19,18,22,20,11,19,26,25,19,21,14,26,25,3,26,9,16,23,8,3,23,11,12,5,1,12,6,0,0,6,13,1,8,13,8,3,9,13,9,2,2,9,14,11,23,17,0,7,15,2,10,15,24,22,17,1,5,16,18,20,21,18,17,22,11,18,19,25,26,19,14,9,26,3,11,26,16,24,23,3,8,23],"colors":[["#442424",40]]};
 let spider_leg = {"vertices":[-328,194,-200,-326,234,-200,-324,194,-160,-322,234,-160,-167,165,-168,-161,223,-168,-172,165,-221,-166,223,-222,-442,195,-185,-450,227,-184,-439,195,-153,-446,227,-152,-569,143,-170,-589,161,-168,-567,143,-144,-586,161,-142,-627,0,-158,-640,5,-157,-625,0,-144,-639,5,-143],"normals":[],"indices":[5,2,4,3,10,2,2,6,4,5,1,3,0,7,6,11,14,10,1,8,9,2,8,0,1,11,3,13,19,15,9,12,13,10,12,8,9,15,11,14,19,18,12,17,13,14,16,12,5,3,2,3,11,10,2,0,6,5,7,1,0,1,7,11,15,14,1,0,8,2,10,8,1,9,11,13,17,19,9,8,12,10,14,12,9,13,15,14,15,19,12,16,17,14,18,16],"colors":[["#5d5775",32]]};
 let cube = {"vertices":[100,200,-100,100,0,-100,100,200,100,100,0,100,-100,200,-100,-100,0,-100,-100,200,100,-100,0,100],"normals":[],"indices":[2,7,3,6,5,7,0,3,1,4,1,5,2,6,7,6,4,5,0,2,3,4,0,1],"colors":[["#5d5775",8]]};
 let plane = {"vertices":[-100,0,100,100,0,100,-100,0,-100,100,0,-100],"normals":[],"indices":[1,2,0,1,3,2],"colors":[["#474259",2]]};
 let circle = {"vertices":[-70,0,-70,-100,0,0,-61,0,-61,-86,0,0],"normals":[],"indices":[0,3,1,0,2,3],"colors":[["#B44840",2]]};
 let elevator = {"vertices":[0,298,266,0,309,299,0,15,266,0,4,299,0,304,254,-14,20,268,-14,293,268,0,10,254,-127,304,127,-133,298,133,-149,309,149,-141,293,141,-141,20,141,-133,15,133,-149,4,149,-127,10,127,0,15,0,0,309,0,0,304,0],"normals":[],"indices":[4,9,8,6,2,5,5,1,6,6,10,11,5,13,12,7,14,15,7,13,2,5,14,3,17,10,1,6,9,0,4,10,1,18,8,4,13,16,2,4,0,9,6,0,2,5,3,1,6,1,10,5,2,13,7,3,14,7,15,13,5,12,14,6,11,9,4,8,10],"colors":[["#626D56",23]]}
+const Gem = () => {
+    let x = 50 - 100 * Math.random(),
+        z = 50 - 100 * Math.random();
+    if (!pointIsOnMap(x, z)) return Gem();
+    const mesh = Mesh(gem.vertices, gem.indices, gem.colors, vector3(x, 0, z), vector3(Math.PI / 2, 0, 0), vector3(.25, .25, .25));
+    meshes.push(mesh);
+
+    return deltaTime => {
+        mesh.position.y = Math.sin(timeStamp / 1000) * .25 + 1;
+        mesh.rotation.y += deltaTime;
+
+        if (!mesh.off && distanceTo(mesh.position, camera.position) < 3) {
+            mesh.off = true;
+            gemsFound++;
+        }
+    };
+}
 let map = [];
 
 var pointIsOnMap = (x, y) => {
@@ -45,28 +62,30 @@ var pointIsOnMap = (x, y) => {
 
 drawMap = (context, camera) => {
     // x and y offset of the map relative to screen top
-    const xOffset = 70, yOffset = 100;
+    const xOffset = 25.5, yOffset = 25.5;
     // draw the map
     context.fillStyle = "rgba(191, 191, 191,.2)";
     map.forEach(polygon => {
         context.beginPath();
-        for (let i = 0; i < polygon.length; i += 2) context.lineTo(xOffset + polygon[i], yOffset + polygon[i + 1]);
+        for (let i = 0; i < polygon.length; i += 2) context.lineTo(xOffset + polygon[i] / 4, yOffset + polygon[i + 1] / 4);
         context.fill();
     });
     // draw the player as a blue square
-    let playerX = xOffset + camera.position.x;
-    let playerZ = yOffset + camera.position.z;
+    let playerX = xOffset + camera.position.x / 2;
+    let playerZ = yOffset + camera.position.z / 2;
     context.fillStyle = "blue";
     context.fillRect(playerX - 2, playerZ - 2, 4, 4);
     // draw player direction as a white line
     context.strokeStyle = "white";
+    context.lineWidth = 1;
     context.beginPath();
     context.moveTo(playerX, playerZ);
     context.lineTo(playerX + 10 * Math.cos(camera.yaw + Math.PI / 2), playerZ + 10 * Math.sin(camera.yaw + Math.PI / 2));
     context.stroke();
 
-    context.fillText(Math.round(camera.position.x), 30, 200);
-    context.fillText(Math.round(camera.position.z), 30, 250);
+    for (let p of spider_positions) {
+        context.fillRect(p.x/2 + xOffset, p.z/2 + yOffset, 1, 1);
+    }
 }
 function generateMaze(w, h) {
     const m = Array.from({ length: h }, () => Array(w).fill(1));
@@ -111,9 +130,9 @@ function generateMaze(w, h) {
 const maze = () => {
     var mz = Group([]);
 
-    var size = 101;
+    var size = 50;
 
-    var mazeMap = generateMaze(101, 101).flat();
+    var mazeMap = generateMaze(50, 50).flat().map(f=>Math.random() < .2 ? 0 : f);
 
 
     for (let i = 0; i < size * size; i++) {
@@ -170,10 +189,12 @@ const raycast = (camera, points) => {
         let difference = summate(substract(cameraDirection, direction));
         let distance = distanceTo(camera.position, points[index]);
 
-        if (distance < 3 && difference < 3 && spider_death[index]) {
+        if (distance < 5 && difference < 3 && spider_death[index]) {
             spider_healths[index] -= .5;
             
             zzfx(...[1.1,,219,,.01,.03,4,4.2,,,,,,,,,,.67,,,198]);
+
+            spider_ricoshate = 1;
 
             return;
         }
@@ -182,7 +203,7 @@ const raycast = (camera, points) => {
 var spider_positions = [];
 var spider_healths = [];
 var spider_death = [];
-var spider_ricoshate = 1;
+var spider_ricoshate = 0;
 
 const Spider = (pos) => {
     let index = spiders.length;
@@ -191,7 +212,7 @@ const Spider = (pos) => {
     let cooldown = 3;
 
     spider_positions.push(pos);
-    spider_healths.push(1);
+    spider_healths.push(1 + Math.random() / 2);
     spider_death.push(1);
 
     let group = Group([
@@ -203,7 +224,7 @@ const Spider = (pos) => {
     ]
     );
 
-    group.scale = vector3(1, 1, 1);
+    group.scale = vector3(spider_healths[index], spider_healths[index], spider_healths[index]);
     group.position = pos;
 
     meshes.push(group);
@@ -234,11 +255,18 @@ const Spider = (pos) => {
             p.z += Math.cos(group.rotation.y) * deltaTime;
             if (pointIsOnMap(p.x, p.z)) group.position = p;
         }
+        if (spider_ricoshate > .1) {
+            let p = clone(group.position);
+            p.x -= Math.sin(group.rotation.y) * deltaTime * spider_ricoshate * 5;
+            p.z -= Math.cos(group.rotation.y) * deltaTime * spider_ricoshate * 5;
+            if (pointIsOnMap(p.x, p.z)) group.position = p;
+            spider_ricoshate -= deltaTime / 10;
+        }
         if (distanceTo(group.position, camera.position) < 4) {
             if (cooldown <= 0) {
                 health -= .05;
                 cooldown = 3;
-                zzfx(...[,,100,,.04,,4,5,,,,,,1.4,,.1,,.89,,,-2247]);
+                zzfx(...[,,100,,.04,,4,5,,,,,,1.4,,.1,,.89,,,-2247]);spider_ricoshate = 1;
                 
             }  
         }
@@ -350,10 +378,13 @@ const Mesh = (vertices, indices, colors, position = vector3(), rotation = vector
 },
 
     hexToRgbArray = hex => [parseInt(hex.slice(1, 3), 16) / 255, parseInt(hex.slice(3, 5), 16) / 255, parseInt(hex.slice(5, 7), 16) / 255];
+var fog = 15;
+
 const render = (meshes, camera, clear = 1, additionalMatrix = null) => {
     if (clear) {
     // Clear the color and depth buffers
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    gl.uniform1f(uFogLocation, fog);
     
     // Set the viewport
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
@@ -393,6 +424,8 @@ bindBufferAttribute = (buffer, attribute) => {
     gl.vertexAttribPointer(attribute, 3, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(attribute);
 }
+var uFogLocation;
+
 const initialiseWebGl = () => {
     gl.clearColor(0, 0, 0, 1);
     gl.enable(gl.DEPTH_TEST);
@@ -425,9 +458,10 @@ const initialiseWebGl = () => {
         precision mediump float;
         in vec4 vPosition;
         in vec3 vNormal, vColor;
+        uniform float uFog;
         out vec4 fragColor;
         void main(void) {
-            float fog = max(min(1.0 - vPosition.z / 100.0, 1.0), 0.05);
+            float fog = max(min(1.0 - vPosition.z / uFog, 1.0), 0.05);
             float light = max(dot(normalize(vNormal), normalize(vec3(6.0, 6.0, 6.0))), .3);
             fragColor = vec4(vColor * fog, 1.0);
         }
@@ -450,6 +484,9 @@ const initialiseWebGl = () => {
     const uLightPosition = new Float32Array(60).fill(0).map((v, i) => i % 3 == 1 ? 0 : 40 - Math.random() * 80);
     const uConstantColorLocation = gl.getUniformLocation(program, 'uLightPosition');
     gl.uniform3fv(uConstantColorLocation, uLightPosition);
+
+    uFogLocation = gl.getUniformLocation(program, 'uFog');
+    gl.uniform1f(uFogLocation, 15);
 
     //Bind projection matrix (must do when fov changes or when resizing)
     gl.uniformMatrix4fv(projectionMatrixLocation, false, perspective(camera.fov, camera.aspect, camera.near, camera.far));
@@ -474,11 +511,13 @@ compileShader = (shaderSource, shaderType, program) => {
 }
 initialiseGameOverScene = () => {
     messages = [];
-    showMessage("You will never get back home to see your wife and kids again.", halfWidth, halfHeight, 100);
-    showMessage("Press enter to suffer again!", halfWidth, halfHeight + 100, 50);
+    showMessage("𝕲𝖍𝖔𝖘𝖙 𝖆𝖌𝖆𝖎𝖓", halfWidth, halfHeight - 15, 30);
+    showMessage("Press enter to reincarnate!", halfWidth, halfHeight + 25, 15);
 }
 
 updateGameOverScene = () => {
+    console.log(messages);
+    context.clearRect(0, 0, width, height);
     updateMessages();
     if (enter) showScene(playScene(), true);
 } 
@@ -486,7 +525,8 @@ updateGameOverScene = () => {
 const initialiseMenuScene = () => {
     messages = [];
 
-    showMessage("𝕿𝖍𝖎𝖗𝖙𝖊𝖊𝖓 𝖘𝖊𝖈𝖔𝖓𝖉𝖘", halfWidth, halfHeight * 0.8, halfHeight * 0.4, 1e7, 30);
+    showMessage("𝕯𝖎𝖒𝖊𝖓𝖘𝖎𝖔𝖓", halfWidth, halfHeight * 0.5, halfHeight * 0.4, 1e7, 30);
+    showMessage("𝕿𝖍𝖎𝖗𝖙𝖊𝖊𝖓", halfWidth, halfHeight * 0.85, halfHeight * 0.4, 1e7, 35);
     showMessage('Escape the lair of Triskaideka', halfWidth, halfHeight * 1.2, halfHeight * 0.2, 1e7, 60);
 }
 
@@ -499,32 +539,52 @@ const updateMenuScene = (deltaTime) => {
 
 };
 
-var meshes, camera, playSceneCounter, cameraPos;
-var timerBreathe = 0, timer = 0;
-var heartbeat = .2;
-var energy = 1;
-var u;//undefined
-var points = [
-  vector3(0, 0, 0)
-];
-var spiders = [];
-var health = 1;
+// Global Variables
+let playSceneCounter, cameraPos;
+let timerBreathe = 0, timer = 0;
+let heartbeat = 0.2;
+let energy = 1;
+let u; // undefined
+let points = [vector3(0, 0, 0)];
+let spiders = [];
+let health = 1  ;
+let sword = 0.99;
+let gems = [];
+var gemsFound = 0;
 
+// Initialize Play Scene
 const initialisePlayScene = () => {
+  // Hide messages
   messages = [];
+
+  // Initialize meshes
   meshes = [
-    Mesh(plane.vertices, plane.indices, plane.colors, u, u, vector3(1e3, 1e3, 1e3)),
-    Mesh(plane.vertices, plane.indices, plane.colors, vector3(0, 5, 0), u, vector3(1e3, 1e3, 1e3)),
-    Mesh(circle.vertices, circle.indices, circle.colors, vector3(0, 0.1, 0), vector3(0, Math.PI/4, 0), vector3(5, 5, 5), 1, 1)
+    Mesh(plane.vertices, plane.indices, plane.colors, u, u, vector3(1000, 1000, 1000)),
+    Mesh(plane.vertices, plane.indices, plane.colors, vector3(0, 5, 0), u, vector3(1000, 1000, 1000)),
+    Mesh(circle.vertices, circle.indices, circle.colors, vector3(0, 0.1, 0), vector3(0, Math.PI / 4, 0), vector3(5, 5, 5), 1, 1)
   ];
 
-  camera = { position: vector3(0, 1.69, 0), direction: vector3(0, 0, 1), forwardSpeed: 1.4, yaw: 0, pitch: 0, target: vector3(0, 0, 0), yaw: 0, fov: Math.PI / 2, aspect: width / height, near: .1, far: 200, up: vector3(0, 1, 0) };
+  // Initialize camera
+  camera = {
+    position: vector3(0, 1.69, 0),
+    direction: vector3(0, 0, 1),
+    forwardSpeed: 1.4,
+    yaw: 0,
+    pitch: 0,
+    target: vector3(0, 0, 0),
+    fov: Math.PI / 2,
+    aspect: width / height,
+    near: 0.1,
+    far: 200,
+    up: vector3(0, 1, 0)
+  };
 
-  setInterval(f => {
+  // Set up intervals
+  setInterval(() => {
     if (distanceTo(vector3(u, u, u), camera.position) > 4.358) {
       if (timer >= 12) {
-        zzfx(...[5, .1, 261.6256, , , .5, , 10, , 1.2, 19, 1, , , , , .05, .6, .3, 1]); // Random 141
-        for (let i = 0; i < 5; i++) {
+        zzfx(...[5, 0.1, 261.6256, , , 0.5, , 10, , 1.2, 19, 1, , , , , 0.05, 0.6, 0.3, 1]); // Random 141
+        for (let i = 0; i < timer * timer / 10; i++) {
           let x = 100 - Math.random() * 200;
           let z = 100 - Math.random() * 200;
           if (pointIsOnMap(x, z)) {
@@ -532,48 +592,27 @@ const initialisePlayScene = () => {
           }
         }
       }
-      zzfx(...[2, .8, 100, , , , , 1.5, , .3, -99, .1, 1.63, , , .11, .22]);
+      zzfx(...[2, 0.8, 100, , , , , 1.5, , 0.3, -99, 0.1, 1.63, , , 0.11, 0.22]);
       timerBreathe = 1;
       timer++;
     }
   }, 950);
-  setInterval(f => {
-    zzfx(...[0.4, .1, 10, , .07, .26, , 5, , , -100, .01, , , , , .25, .73, , , -1473]); // Random 107
-    heartbeat = .8;
-    health += .05;
+
+  setInterval(() => {
+    zzfx(...[0.4, 0.1, 10, , 0.07, 0.26, , 5, , , -100, 0.01, , , , , 0.25, 0.73, , , -1473]); // Random 107
+    heartbeat = 0.8;
+    health += 0.05;
   }, 1200);
 
   initialiseWebGl();
 
-  function onMouseMove(event) {
-    camera.yaw += event.movementX / 500;
-    camera.pitch -= event.movementY / 500;
-  }
-
-  function enterPointerLock() {
-    document.documentElement.requestPointerLock();
-    raycast(camera, spider_positions);
-    
-  }
-
+  // Event Listeners
   document.addEventListener('click', enterPointerLock);
   document.addEventListener('mousemove', onMouseMove);
 
-  document.addEventListener('pointerlockchange', () => {
-    if (document.pointerLockElement === document.documentElement) {
-      console.log('Pointer lock engaged');
-    }
-
-    
-  });
-
-  document.addEventListener('pointerlockerror', () => {
-    console.log('Pointer lock failed');
-  });
-
+  // Maze and initial spiders
   maze();
-
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 50; i++) {
     let x = 50 - Math.random() * 100;
     let z = 50 - Math.random() * 100;
     if (pointIsOnMap(x, z)) {
@@ -581,20 +620,23 @@ const initialisePlayScene = () => {
     }
   }
 
- 
-}
+  for (let i = 0; i < 7; i++)
+  gems.push(Gem());
+};
 
-updatePlayScene = (deltaTime) => {
+// Update Play Scene
+const updatePlayScene = (deltaTime) => {
+  fog = Math.sin(timeStamp / 200) * 2 + 20 + Math.random() * 0.4 - 0.8;
   playSceneCounter++;
-  heartbeat = heartbeat * heartbeat;
+  heartbeat *= heartbeat;
 
   processInputPlayScene(deltaTime);
-
   render(meshes, camera);
 
   spiders.forEach(spider => spider(deltaTime));
+  gems.forEach(gem => gem(deltaTime));
 
-  context.globalAlpha = .4;
+  context.globalAlpha = 0.4;
   context.drawImage(glCanvas, 0, 0);
   context.globalAlpha = 1;
 
@@ -607,48 +649,57 @@ updatePlayScene = (deltaTime) => {
   context.fillRect(halfWidth - 0.5, halfHeight - 3.5, 0.5, 7);
   context.fillRect(halfWidth - 3.5, halfHeight - 0.5, 7, 0.5);
 
-
   context.fillStyle = "#E37E90";
-  context.fillRect(width / 4, 10, halfWidth * health, 5);
+  context.fillRect(width / 4 - 10, 10, halfWidth * health, 5);
   context.font = `${15 * (1 + heartbeat)}px sans-serif`;
-  context.fillText("❤️", width / 4, 15);
+  context.fillText("❤️", width / 4 - 10, 15);
 
   context.fillStyle = "#E8C165";
-  context.fillRect(width / 4, 25, halfWidth * energy, 5);
+  context.fillRect(width / 4 - 10, 25, halfWidth * energy, 5);
   context.font = `${15}px sans-serif`;
-  context.fillText("⚡", width / 4, 30);
+  context.fillText("⚡", width / 4 - 10, 30);
+
+  context.strokeStyle = "#BFDDE722";
+  context.lineWidth = (halfWidth >> 1) * sword;
+  context.beginPath();
+  context.arc(halfWidth, height * 1.5, halfWidth, 0, sword * Math.PI + Math.PI);
+  context.stroke();
+
+  context.fillStyle = "#80D08C";
+  context.fillText("⬡⬡⬡⬡⬡⬡⬡".replace(/⬡/g, (match, offset) => offset < gemsFound ? '⬢' : match), width - 40, 10);
+
+  sword *= sword * sword;
 
   if (health > 1) health = 1;
   if (distanceTo(vector3(u, u, u), camera.position) < 4.358) {
     timer = 0;
   }
 
-    updateMessages();
+  if (gemsFound > 0) {
+    showScene(winScene(), true);
+  }
 
-    if (health < 0) {
-      showScene(gameOverScene(), false);
-    }
-}
+  updateMessages();
 
+  if (health < 0) {
+    showScene(gameOverScene(), true);
+  }
+};
+
+// Process Input Play Scene
 const processInputPlayScene = (deltaTime) => {
   let direction = vector3(0, 0, 0);
   if (up) {
-    direction = vector3(0, 0, 1 + (shift & (energy > 0)));
-  }
-
-  else if (down) {
+    direction = vector3(0, 0, 1 + (shift && energy > 0));
+  } else if (down) {
     direction = vector3(0, 0, -2 / 3);
-  }
-
-  else if (left) {
+  } else if (left) {
     direction = vector3(2 / 3, 0, 0);
-  }
-
-  else if (right) {
+  } else if (right) {
     direction = vector3(-2 / 3, 0, 0);
+  } else {
+    energy = Math.min(energy + deltaTime / 100, 1);
   }
-
-  else energy = Math.min(energy + deltaTime / 100, 1);
 
   if (shift && energy > 0) {
     energy -= deltaTime / 100;
@@ -660,9 +711,22 @@ const processInputPlayScene = (deltaTime) => {
 
   camera.direction = add(rotY(vector3(0, 0, 1), camera.yaw), vector3(0, camera.pitch, 0));
   camera.target = add(camera.position, camera.direction);
-}
+};
 
+// Mouse and Pointer Lock Events
+const onMouseMove = (event) => {
+  camera.yaw += event.movementX / 500;
+  camera.pitch -= event.movementY / 500;
+};
 
+const enterPointerLock = () => {
+  if (energy < 0) return;
+  document.documentElement.requestPointerLock();
+  raycast(camera, spider_positions);
+  zzfx(...[0.8, , 1000, 0.11, 0.01, 0.21, 4, 0.2, -0.1, , , , , 0.4, 0.1, , , 0.59, , , 19]);
+  energy -= 0.05;
+  sword = 0.99;
+};
 
 var isInTransition = false,
     transitionCounter = 0,
@@ -694,6 +758,25 @@ updateTransition = () => {
 menuScene = () => ({ initialise: initialiseMenuScene, update: updateMenuScene })
 playScene = () => ({ initialise: initialisePlayScene, update: updatePlayScene })
 gameOverScene = () => ({ initialise: initialiseGameOverScene, update: updateGameOverScene })
+winScene = () => ({ initialise: initialiseWinScene, update: updateWinScene })
+var initialiseWinScene = () => {
+    messages = [];
+    showMessage("𝕲𝖍𝖔𝖘𝖙 𝖆𝖌𝖆𝖎𝖓", halfWidth, halfHeight - 15, 30);
+    showMessage("Press enter to reincarnate!", halfWidth, halfHeight + 25, 15);
+}
+
+var updateWinScene = () => {
+    console.log(messages);
+    context.clearRect(0, 0, width, height);
+    updateMessages();
+    if (enter) showScene(playScene(), true);
+} 
+const style = 'font-size: 20px; color: red;';
+console.log("%cIntellectual property of @retro-pigeon", style);
+
+var glCanvas = document.getElementById("glCanvas");
+var gl = glCanvas.getContext("webgl2");
+
 var glCanvas = document.getElementById("glCanvas");
 var gl = glCanvas.getContext("webgl2");
 

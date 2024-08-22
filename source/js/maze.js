@@ -41,9 +41,9 @@ function generateMaze(w, h) {
 const maze = () => {
     var mz = Group([]);
 
-    var size = 101;
+    var size = 50;
 
-    var mazeMap = generateMaze(101, 101).flat();
+    var mazeMap = generateMaze(50, 50).flat().map(f=>Math.random() < .2 ? 0 : f);
 
 
     for (let i = 0; i < size * size; i++) {

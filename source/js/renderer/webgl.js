@@ -1,3 +1,5 @@
+var uFogLocation;
+
 const initialiseWebGl = () => {
     gl.clearColor(0, 0, 0, 1);
     gl.enable(gl.DEPTH_TEST);
@@ -30,9 +32,10 @@ const initialiseWebGl = () => {
         precision mediump float;
         in vec4 vPosition;
         in vec3 vNormal, vColor;
+        uniform float uFog;
         out vec4 fragColor;
         void main(void) {
-            float fog = max(min(1.0 - vPosition.z / 100.0, 1.0), 0.05);
+            float fog = max(min(1.0 - vPosition.z / uFog, 1.0), 0.05);
             float light = max(dot(normalize(vNormal), normalize(vec3(6.0, 6.0, 6.0))), .3);
             fragColor = vec4(vColor * fog, 1.0);
         }
@@ -55,6 +58,9 @@ const initialiseWebGl = () => {
     const uLightPosition = new Float32Array(60).fill(0).map((v, i) => i % 3 == 1 ? 0 : 40 - Math.random() * 80);
     const uConstantColorLocation = gl.getUniformLocation(program, 'uLightPosition');
     gl.uniform3fv(uConstantColorLocation, uLightPosition);
+
+    uFogLocation = gl.getUniformLocation(program, 'uFog');
+    gl.uniform1f(uFogLocation, 15);
 
     //Bind projection matrix (must do when fov changes or when resizing)
     gl.uniformMatrix4fv(projectionMatrixLocation, false, perspective(camera.fov, camera.aspect, camera.near, camera.far));
