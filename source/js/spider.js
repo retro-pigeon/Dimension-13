@@ -59,12 +59,14 @@ const Spider = (pos) => {
             p.z -= Math.cos(group.rotation.y) * deltaTime * spider_ricoshate * 5;
             if (pointIsOnMap(p.x, p.z)) group.position = p;
             spider_ricoshate -= deltaTime / 10;
+            
         }
         if (distanceTo(group.position, camera.position) < 4) {
             if (cooldown <= 0) {
                 health -= .05;
                 cooldown = 3;
                 zzfx(...[,,100,,.04,,4,5,,,,,,1.4,,.1,,.89,,,-2247]);spider_ricoshate = 1;
+                vibrate(0, 1, 0, 0.1);
                 
             }  
         }

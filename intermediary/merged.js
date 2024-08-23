@@ -18,13 +18,15 @@ zzfxX = new (window.AudioContext || webkitAudioContext);
 // Here we can include all of our raw data
 
 // let level = {"vertices":[-403,200,-400,-403,0,-400,-110,200,-400,-110,0,-400,-110,102,-400,0,199,-400,-75,153,-400,-39,168,-400,0,170,-400,-110,200,-699,-110,0,-699,-110,102,-700,0,199,-699,-75,154,-700,-39,169,-700,0,170,-700,-270,200,-699,-270,0,-699,-270,200,-1200,-270,0,-1200,0,0,0,-1200,0,-1199,0,0,-1200,0,200,0,-1200,199,-1199,0,199,-1200],"normals":[],"indices":[0,3,1,9,15,14,6,11,13,7,13,14,8,14,15,4,10,11,2,7,5,16,19,17,9,17,10,20,22,21,23,25,24,0,2,3,13,11,9,9,12,15,14,13,9,6,4,11,7,6,13,8,7,14,4,3,10,2,4,6,7,8,5,2,6,7,16,18,19,9,16,17,19,25,22,19,18,25],"colors":[["#6C6367",26]]};
-let gem = {"vertices":[0,0,-150,-86,0,-75,-86,0,75,0,0,150,86,0,75,86,0,-75,0,50,-96,-55,50,-48,-55,50,48,0,50,96,55,50,48,55,50,-48,0,-50,-96,-55,-50,-48,-55,-50,48,0,-50,96,55,-50,48,55,-50,-48],"normals":[],"indices":[4,9,3,2,7,1,5,10,4,3,8,2,1,6,0,0,11,5,8,10,6,15,4,3,1,14,2,4,17,5,2,15,3,12,1,0,5,12,0,12,16,14,4,10,9,2,8,7,5,11,10,3,9,8,1,7,6,0,6,11,6,7,8,8,9,10,10,11,6,15,16,4,1,13,14,4,16,17,2,14,15,12,13,1,5,17,12,14,13,12,12,17,16,16,15,14],"colors":[["#80D08C",32]]};
-let spider_body = {"vertices":[-91,208,125,-91,338,-4,-91,78,-4,-206,208,-257,0,208,154,0,367,-4,-112,288,75,-112,129,75,-124,295,-67,-124,120,-67,0,50,-4,-202,212,-397,0,318,104,-154,208,-4,0,87,-100,0,99,104,0,328,-100,-107,296,-582,-88,220,-631,-107,144,-582,0,220,-658,0,115,-611,0,325,-611,-150,345,-261,0,395,-312,0,28,-312,-188,78,-261],"normals":[],"indices":[12,1,6,12,0,4,0,13,7,1,13,6,8,9,13,13,2,7,2,14,10,11,17,18,0,15,4,2,15,7,24,17,23,1,16,8,18,21,19,18,22,20,11,19,26,25,19,21,14,26,25,3,26,9,16,23,8,3,23,11,12,5,1,12,6,0,0,6,13,1,8,13,8,3,9,13,9,2,2,9,14,11,23,17,0,7,15,2,10,15,24,22,17,1,5,16,18,20,21,18,17,22,11,18,19,25,26,19,14,9,26,3,11,26,16,24,23,3,8,23],"colors":[["#442424",40]]};
-let spider_leg = {"vertices":[-328,194,-200,-326,234,-200,-324,194,-160,-322,234,-160,-167,165,-168,-161,223,-168,-172,165,-221,-166,223,-222,-442,195,-185,-450,227,-184,-439,195,-153,-446,227,-152,-569,143,-170,-589,161,-168,-567,143,-144,-586,161,-142,-627,0,-158,-640,5,-157,-625,0,-144,-639,5,-143],"normals":[],"indices":[5,2,4,3,10,2,2,6,4,5,1,3,0,7,6,11,14,10,1,8,9,2,8,0,1,11,3,13,19,15,9,12,13,10,12,8,9,15,11,14,19,18,12,17,13,14,16,12,5,3,2,3,11,10,2,0,6,5,7,1,0,1,7,11,15,14,1,0,8,2,10,8,1,9,11,13,17,19,9,8,12,10,14,12,9,13,15,14,15,19,12,16,17,14,18,16],"colors":[["#5d5775",32]]};
-let cube = {"vertices":[100,200,-100,100,0,-100,100,200,100,100,0,100,-100,200,-100,-100,0,-100,-100,200,100,-100,0,100],"normals":[],"indices":[2,7,3,6,5,7,0,3,1,4,1,5,2,6,7,6,4,5,0,2,3,4,0,1],"colors":[["#5d5775",8]]};
-let plane = {"vertices":[-100,0,100,100,0,100,-100,0,-100,100,0,-100],"normals":[],"indices":[1,2,0,1,3,2],"colors":[["#474259",2]]};
-let circle = {"vertices":[-70,0,-70,-100,0,0,-61,0,-61,-86,0,0],"normals":[],"indices":[0,3,1,0,2,3],"colors":[["#B44840",2]]};
-let elevator = {"vertices":[0,298,266,0,309,299,0,15,266,0,4,299,0,304,254,-14,20,268,-14,293,268,0,10,254,-127,304,127,-133,298,133,-149,309,149,-141,293,141,-141,20,141,-133,15,133,-149,4,149,-127,10,127,0,15,0,0,309,0,0,304,0],"normals":[],"indices":[4,9,8,6,2,5,5,1,6,6,10,11,5,13,12,7,14,15,7,13,2,5,14,3,17,10,1,6,9,0,4,10,1,18,8,4,13,16,2,4,0,9,6,0,2,5,3,1,6,1,10,5,2,13,7,3,14,7,15,13,5,12,14,6,11,9,4,8,10],"colors":[["#626D56",23]]}
+let gem = { "vertices": [0, 0, -150, -86, 0, -75, -86, 0, 75, 0, 0, 150, 86, 0, 75, 86, 0, -75, 0, 50, -96, -55, 50, -48, -55, 50, 48, 0, 50, 96, 55, 50, 48, 55, 50, -48, 0, -50, -96, -55, -50, -48, -55, -50, 48, 0, -50, 96, 55, -50, 48, 55, -50, -48], "normals": [], "indices": [4, 9, 3, 2, 7, 1, 5, 10, 4, 3, 8, 2, 1, 6, 0, 0, 11, 5, 8, 10, 6, 15, 4, 3, 1, 14, 2, 4, 17, 5, 2, 15, 3, 12, 1, 0, 5, 12, 0, 12, 16, 14, 4, 10, 9, 2, 8, 7, 5, 11, 10, 3, 9, 8, 1, 7, 6, 0, 6, 11, 6, 7, 8, 8, 9, 10, 10, 11, 6, 15, 16, 4, 1, 13, 14, 4, 16, 17, 2, 14, 15, 12, 13, 1, 5, 17, 12, 14, 13, 12, 12, 17, 16, 16, 15, 14], "colors": [["#80D08C", 32]] };
+let spider_body = { "vertices": [-91, 208, 125, -91, 338, -4, -91, 78, -4, -206, 208, -257, 0, 208, 154, 0, 367, -4, -112, 288, 75, -112, 129, 75, -124, 295, -67, -124, 120, -67, 0, 50, -4, -202, 212, -397, 0, 318, 104, -154, 208, -4, 0, 87, -100, 0, 99, 104, 0, 328, -100, -107, 296, -582, -88, 220, -631, -107, 144, -582, 0, 220, -658, 0, 115, -611, 0, 325, -611, -150, 345, -261, 0, 395, -312, 0, 28, -312, -188, 78, -261], "normals": [], "indices": [12, 1, 6, 12, 0, 4, 0, 13, 7, 1, 13, 6, 8, 9, 13, 13, 2, 7, 2, 14, 10, 11, 17, 18, 0, 15, 4, 2, 15, 7, 24, 17, 23, 1, 16, 8, 18, 21, 19, 18, 22, 20, 11, 19, 26, 25, 19, 21, 14, 26, 25, 3, 26, 9, 16, 23, 8, 3, 23, 11, 12, 5, 1, 12, 6, 0, 0, 6, 13, 1, 8, 13, 8, 3, 9, 13, 9, 2, 2, 9, 14, 11, 23, 17, 0, 7, 15, 2, 10, 15, 24, 22, 17, 1, 5, 16, 18, 20, 21, 18, 17, 22, 11, 18, 19, 25, 26, 19, 14, 9, 26, 3, 11, 26, 16, 24, 23, 3, 8, 23], "colors": [["#442424", 40]] };
+let spider_leg = { "vertices": [-328, 194, -200, -326, 234, -200, -324, 194, -160, -322, 234, -160, -167, 165, -168, -161, 223, -168, -172, 165, -221, -166, 223, -222, -442, 195, -185, -450, 227, -184, -439, 195, -153, -446, 227, -152, -569, 143, -170, -589, 161, -168, -567, 143, -144, -586, 161, -142, -627, 0, -158, -640, 5, -157, -625, 0, -144, -639, 5, -143], "normals": [], "indices": [5, 2, 4, 3, 10, 2, 2, 6, 4, 5, 1, 3, 0, 7, 6, 11, 14, 10, 1, 8, 9, 2, 8, 0, 1, 11, 3, 13, 19, 15, 9, 12, 13, 10, 12, 8, 9, 15, 11, 14, 19, 18, 12, 17, 13, 14, 16, 12, 5, 3, 2, 3, 11, 10, 2, 0, 6, 5, 7, 1, 0, 1, 7, 11, 15, 14, 1, 0, 8, 2, 10, 8, 1, 9, 11, 13, 17, 19, 9, 8, 12, 10, 14, 12, 9, 13, 15, 14, 15, 19, 12, 16, 17, 14, 18, 16], "colors": [["#5d5775", 32]] };
+let cube = { "vertices": [0, -26, -200, 84, -26, -97, 226, -26, 0, 84, -26, 97, 0, -26, 200, -84, -26, 97, -173, -26, 0, -84, -26, -97, 0, 1015, 0], "normals": [], "indices": [0, 8, 1, 1, 8, 2, 2, 8, 3, 3, 8, 4, 4, 8, 5, 5, 8, 6, 6, 8, 7, 7, 8, 0], "colors": [["#247BA0", 8]] };
+let plane = { "vertices": [-100, 0, 100, 100, 0, 100, -100, 0, -100, 100, 0, -100], "normals": [], "indices": [1, 2, 0, 1, 3, 2], "colors": [["#70C1B3", 2]] };
+let circle = {"vertices":[-70,0,70,-100,0,0,-100,23,0,-70,23,70,0,0,0,0,23,0,-35,0,35,-50,0,0,-50,23,0,-35,23,35,-82,0,82,-116,0,0,-116,13,0,-82,13,82],"normals":[],"indices":[5,3,9,3,4,5,3,6,0,5,1,2,8,6,9,1,8,2,2,9,3,1,12,11,0,13,3,3,12,2,13,11,12,8,2,5,9,8,5,3,0,4,3,9,6,5,4,1,8,7,6,1,7,8,2,8,9,1,2,12,0,10,13,3,13,12,13,10,11],"colors":[["#778899",23]]};
+let star = { "vertices": [0, 0, -100, -86, 0, 50, 86, 0, 50, 0, 0, 100, 86, 0, -50, -86, 0, -50], "normals": [], "indices": [4, 5, 3, 1, 2, 0], "colors": [["#FFFFFF", 2]] };
+let sun = {"vertices":[0,0,-100,-38,0,-86,-70,0,-76,-92,0,-28,-100,0,-9,-92,0,46,-70,0,62,-38,0,92,0,0,100,38,0,92,70,0,62,92,0,46,100,0,-9,92,0,-28,70,0,-76,38,0,-86],"normals":[],"indices":[0,15,1,3,14,2,3,13,14,11,4,5,11,12,4,7,10,6,7,9,10],"colors":[["#E87C00",1],["#E85F5A",2],["#E81F67",2],["#E700B5",2]]};
+let ray = {"vertices":[-92,-2,-38,12,197,99,-83,2,-55,-6,202,99,-21,164,97,-53,131,84,-79,97,60,-95,64,29,-99,31,-4,-40,168,91,-68,135,72,-89,102,44,-99,68,11,-97,35,-23],"normals":[],"indices":[0,13,2,7,11,12,5,9,10,0,8,13,7,6,11,5,4,9,4,3,9,8,12,13,6,10,11,4,1,3,8,7,12,6,5,10],"colors":[["#73E1E7",6],["#50BEEF",6]]};
 const Gem = () => {
     let x = 50 - 100 * Math.random(),
         z = 50 - 100 * Math.random();
@@ -32,13 +34,22 @@ const Gem = () => {
     const mesh = Mesh(gem.vertices, gem.indices, gem.colors, vector3(x, 0, z), vector3(Math.PI / 2, 0, 0), vector3(.25, .25, .25));
     meshes.push(mesh);
 
+    const st = Mesh(star.vertices, star.indices, star.colors, vector3(x, 30, z), vector3(Math.PI / 2, 0, 0), vector3(2, 2, 2));
+    meshes.push(st);
+
     return deltaTime => {
         mesh.position.y = Math.sin(timeStamp / 1000) * .25 + 1;
         mesh.rotation.y += deltaTime;
 
+        st.rotation.y += deltaTime*Math.random();
+
         if (!mesh.off && distanceTo(mesh.position, camera.position) < 3) {
             mesh.off = true;
             gemsFound++;
+
+            zzfx(...[,,539,0,.04,.29,1,1.92,,,567,.02,.02,,,,.04]);
+
+            if (gemsFound == 7) Message("You found all gems, return to the teleporter!")
         }
     };
 }
@@ -139,7 +150,7 @@ const maze = () => {
         const x = 4 * (i % size) - size * 2 + 3;
         const y = Math.floor(i / size) * 4 - size * 2 + 3;
         if (mazeMap[i]) {
-            mz.meshes.push(Mesh(cube.vertices, cube.indices, cube.colors, vector3(x, 0, y), vector3(0, 0, 0), vector3(2, 2, 2)));
+            mz.meshes.push(Mesh(cube.vertices, cube.indices, cube.colors, vector3(x, 0, y), vector3(.2-Math.random()*.4,Math.random()*Math.PI*2,0), vector3(1, 1, 1)));
         }
 
         else {
@@ -261,18 +272,48 @@ const Spider = (pos) => {
             p.z -= Math.cos(group.rotation.y) * deltaTime * spider_ricoshate * 5;
             if (pointIsOnMap(p.x, p.z)) group.position = p;
             spider_ricoshate -= deltaTime / 10;
+            
         }
         if (distanceTo(group.position, camera.position) < 4) {
             if (cooldown <= 0) {
                 health -= .05;
                 cooldown = 3;
                 zzfx(...[,,100,,.04,,4,5,,,,,,1.4,,.1,,.89,,,-2247]);spider_ricoshate = 1;
+                vibrate(0, 1, 0, 0.1);
                 
             }  
         }
         
         spider_positions[index] = group.position;
         
+    }
+}
+/**
+ * Vibrates the specified gamepad.
+ * @param {number} gamepadIndex - Index of the gamepad to vibrate.
+ * @param {number} duration - Duration of the vibration in milliseconds.
+ * @param {number} weakMagnitude - Magnitude of the weak motor (0.0 to 1.0).
+ * @param {number} strongMagnitude - Magnitude of the strong motor (0.0 to 1.0).
+ */
+function vibrate(gamepadIndex, duration = 1000, weakMagnitude = 1.0, strongMagnitude = 1.0) {
+    // Get the list of gamepads
+    const gamepads = navigator.getGamepads();
+    const gamepad = gamepads[gamepadIndex];
+    
+    if (gamepad) {
+        // Ensure the gamepad supports vibration
+        if (gamepad.vibrationActuator) {
+            gamepad.vibrationActuator.playEffect('dual-rumble', {
+                startDelay: 0,
+                duration: duration, // Vibration duration in milliseconds
+                weakMagnitude: weakMagnitude, // Weak motor magnitude
+                strongMagnitude: strongMagnitude // Strong motor magnitude
+            }).catch(err => console.log('Vibration error:', err));
+        } else {
+            console.log('Vibration actuator not available on this gamepad.');
+        }
+    } else {
+        console.log(`Gamepad with index ${gamepadIndex} not found.`);
     }
 }
 const Geometry = (vertices, indices, colors, mx = 0,my = 0) => {
@@ -404,7 +445,7 @@ const render = (meshes, camera, clear = 1, additionalMatrix = null) => {
         bindBufferAttribute(mesh.geometry.vertexBuffer, program.aVertexPosition);
         // Bind color buffer for the current mesh
         bindBufferAttribute(mesh.geometry.colorBuffer, program.aVertexColor);
-        //Normal buffer
+        //Normal buffer 
         bindBufferAttribute(mesh.geometry.normalBuffer, program.aNormal)
         // Update the model-view matrix for the current mesh
         if (additionalMatrix)
@@ -427,45 +468,30 @@ bindBufferAttribute = (buffer, attribute) => {
 var uFogLocation;
 
 const initialiseWebGl = () => {
-    gl.clearColor(0, 0, 0, 1);
-    gl.enable(gl.DEPTH_TEST);
-    gl.clearDepth(1.0);
-    gl.depthFunc(gl.LEQUAL);
-    gl.disable(gl.CULL_FACE);
+    gl.clearColor(0.2, 0.094, 0.196, 1);
+gl.enable(gl.DEPTH_TEST);
+gl.clearDepth(1.0);
+gl.depthFunc(gl.LEQUAL);
+
+gl.enable(gl.BLEND);
+gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
+gl.disable(gl.CULL_FACE);
 
     // Create a shader program
     program = gl.createProgram();
 
     const vertexShaderSource =
         `#version 300 es
-        precision mediump float;
-        uniform mat4 uMeshMatrix, uCameraMatrix, uProjectionMatrix;
-        in vec3 aVertexPosition, aVertexColor,aNormal ;
-        out vec4 vPosition;
-        out vec3 vColor,vNormal;
-        void main(void) {
-            gl_Position = uProjectionMatrix * uCameraMatrix * uMeshMatrix * vec4(aVertexPosition, 1.0);
-            vColor = aVertexColor;
-            vPosition = gl_Position;
-            vNormal = aNormal;
-        }`
+precision mediump float;uniform mat4 uMeshMatrix,uCameraMatrix,uProjectionMatrix;in vec3 B,C,D;out vec4 A,Z;out vec3 E,F;void main(){gl_Position=uProjectionMatrix*uCameraMatrix*uMeshMatrix*vec4(B,1);E=C;A=gl_Position;Z=uMeshMatrix*vec4(B,1.0);}`
 
     // Create a vertex shader and compile it
     compileShader(vertexShaderSource, gl.VERTEX_SHADER, program);
 
     const fragmentShaderSource =
         `#version 300 es
-        precision mediump float;
-        in vec4 vPosition;
-        in vec3 vNormal, vColor;
-        uniform float uFog;
-        out vec4 fragColor;
-        void main(void) {
-            float fog = max(min(1.0 - vPosition.z / uFog, 1.0), 0.05);
-            float light = max(dot(normalize(vNormal), normalize(vec3(6.0, 6.0, 6.0))), .3);
-            fragColor = vec4(vColor * fog, 1.0);
-        }
-        `
+precision mediump float;in vec4 A;in vec3 F,E;in vec4 Z;uniform float G;out vec4 fragColor;void main(){float P=max(min(1.-A.z/G,1.),.05)+.05-fract(sin(dot(A.xy.xy,vec2(12.9898,78.233)))*43758.5453123)*.1;P*=P;if(Z.y>10.)P=1.;fragColor=vec4(mix(vec3(.2,.094,.196),E,P),1.0);}
+`
 
     // Create a fragment shader and compile it
     compileShader(fragmentShaderSource, gl.FRAGMENT_SHADER, program);
@@ -485,18 +511,18 @@ const initialiseWebGl = () => {
     const uConstantColorLocation = gl.getUniformLocation(program, 'uLightPosition');
     gl.uniform3fv(uConstantColorLocation, uLightPosition);
 
-    uFogLocation = gl.getUniformLocation(program, 'uFog');
+    uFogLocation = gl.getUniformLocation(program, 'G');
     gl.uniform1f(uFogLocation, 15);
 
     //Bind projection matrix (must do when fov changes or when resizing)
     gl.uniformMatrix4fv(projectionMatrixLocation, false, perspective(camera.fov, camera.aspect, camera.near, camera.far));
 
     // Get attribute location
-    program.aVertexPosition = gl.getAttribLocation(program, 'aVertexPosition');
+    program.aVertexPosition = gl.getAttribLocation(program, 'B');
     gl.enableVertexAttribArray(program.aVertexPosition);
-    program.aVertexColor = gl.getAttribLocation(program, 'aVertexColor');
+    program.aVertexColor = gl.getAttribLocation(program, 'C');
     gl.enableVertexAttribArray(program.aVertexColor);
-    program.aNormal = gl.getAttribLocation(program, 'aNormal');
+    program.aNormal = gl.getAttribLocation(program, 'D');
     gl.enableVertexAttribArray(program.aNormal);
 }
 
@@ -519,7 +545,7 @@ updateGameOverScene = () => {
     console.log(messages);
     context.clearRect(0, 0, width, height);
     updateMessages();
-    if (enter) showScene(playScene(), true);
+    if (enter) window.location.reload();
 } 
 
 const initialiseMenuScene = () => {
@@ -533,36 +559,52 @@ const initialiseMenuScene = () => {
 const updateMenuScene = (deltaTime) => {
     context.clearRect(0, 0, 1e6, 1e6);
     updateMessages();
-    if (enter) {
+    if (enter || xButtonPressed || yButtonPressed) {
         showScene(playScene(), true);
     }
-
 };
 
-// Global Variables
-let playSceneCounter, cameraPos;
-let timerBreathe = 0, timer = 0;
-let heartbeat = 0.2;
-let energy = 1;
-let u; // undefined
-let points = [vector3(0, 0, 0)];
-let spiders = [];
-let health = 1  ;
-let sword = 0.99;
-let gems = [];
-var gemsFound = 0;
+document.onclick = f => {
+    document.documentElement.requestPointerLock();
 
+    
+}
+
+// Global Variables
+var playSceneCounter, cameraPos;
+var timerBreathe = 0, timer = 0;
+var heartbeat = 0.2;
+var energy = 1;
+var u; // undefined
+var points = [vector3(0, 0, 0)];
+var spiders = [];
+var health = 1;
+var sword = 0.99;
+var gems = [];
+var gemsFound = 0;
+var leftJoystick, rightJoystick, xButtonPressed, yButtonPressed;
+var previousX;
+var spiralGroup;
+const drawUI = true;
 // Initialize Play Scene
 const initialisePlayScene = () => {
   // Hide messages
   messages = [];
 
+  // Create spiral
+  spiralGroup = Group([]);
+  for (let i = 0; i < 10; i++) spiralGroup.meshes.push(
+    Mesh(ray.vertices, ray.indices, ray.colors, vector3(0, 0, 0), vector3(0,i/10*Math.PI*2,0), vector3(4.5, 4.5, 4.5))
+  );
+
   // Initialize meshes
   meshes = [
     Mesh(plane.vertices, plane.indices, plane.colors, u, u, vector3(1000, 1000, 1000)),
-    Mesh(plane.vertices, plane.indices, plane.colors, vector3(0, 5, 0), u, vector3(1000, 1000, 1000)),
-    Mesh(circle.vertices, circle.indices, circle.colors, vector3(0, 0.1, 0), vector3(0, Math.PI / 4, 0), vector3(5, 5, 5), 1, 1)
+    Mesh(circle.vertices, circle.indices, circle.colors, vector3(0, 0.1, 0), vector3(0, Math.PI / 4, 0), vector3(4.5, 1, 4.5), 1, 1),
+    Group([Mesh(sun.vertices, sun.indices, sun.colors, vector3(0, 90, 0),u,vector3(15, 15, 15))]),
+    spiralGroup
   ];
+  
 
   // Initialize camera
   camera = {
@@ -615,13 +657,16 @@ const initialisePlayScene = () => {
   for (let i = 0; i < 50; i++) {
     let x = 50 - Math.random() * 100;
     let z = 50 - Math.random() * 100;
-    if (pointIsOnMap(x, z)) {
+    if (pointIsOnMap(x, z) && distanceTo(vector3(u,u,u),vector3(x, 0, z)) > 5) {
       spiders.push(Spider(vector3(x, 0, z)));
     }
   }
 
   for (let i = 0; i < 7; i++)
-  gems.push(Gem());
+    gems.push(Gem());
+
+  for (let i = 0; i < 100; i++)
+    meshes.push(Mesh(star.vertices, star.indices, star.colors, vector3(50-100*Math.random(), 30, 50-100*Math.random()), u, vector3(.5, .5, .5)))
 };
 
 // Update Play Scene
@@ -629,6 +674,9 @@ const updatePlayScene = (deltaTime) => {
   fog = Math.sin(timeStamp / 200) * 2 + 20 + Math.random() * 0.4 - 0.8;
   playSceneCounter++;
   heartbeat *= heartbeat;
+
+  meshes[2].rotation.x += deltaTime / 40;
+  spiralGroup.rotation.y += deltaTime / 40;
 
   processInputPlayScene(deltaTime);
   render(meshes, camera);
@@ -640,6 +688,7 @@ const updatePlayScene = (deltaTime) => {
   context.drawImage(glCanvas, 0, 0);
   context.globalAlpha = 1;
 
+  if(drawUI) {
   context.fillStyle = "white";
   context.font = `${15 * (1 + timerBreathe)}px monospace`;
   timerBreathe -= deltaTime;
@@ -667,6 +716,7 @@ const updatePlayScene = (deltaTime) => {
 
   context.fillStyle = "#80D08C";
   context.fillText("⬡⬡⬡⬡⬡⬡⬡".replace(/⬡/g, (match, offset) => offset < gemsFound ? '⬢' : match), width - 40, 10);
+  }
 
   sword *= sword * sword;
 
@@ -675,7 +725,7 @@ const updatePlayScene = (deltaTime) => {
     timer = 0;
   }
 
-  if (gemsFound > 0) {
+  if (gemsFound > 6) {
     showScene(winScene(), true);
   }
 
@@ -684,13 +734,15 @@ const updatePlayScene = (deltaTime) => {
   if (health < 0) {
     showScene(gameOverScene(), true);
   }
+
+  previousX = xButtonPressed;
 };
 
 // Process Input Play Scene
 const processInputPlayScene = (deltaTime) => {
   let direction = vector3(0, 0, 0);
   if (up) {
-    direction = vector3(0, 0, 1 + (shift && energy > 0));
+    direction = vector3(0, 0, 1 + ((shift) && energy > 0));
   } else if (down) {
     direction = vector3(0, 0, -2 / 3);
   } else if (left) {
@@ -698,10 +750,25 @@ const processInputPlayScene = (deltaTime) => {
   } else if (right) {
     direction = vector3(-2 / 3, 0, 0);
   } else {
-    energy = Math.min(energy + deltaTime / 100, 1);
+    energy = Math.min(energy + deltaTime / 50, 1);
   }
 
-  if (shift && energy > 0) {
+  if (leftJoystick) {
+    camera.yaw += leftJoystick[0] / 10;
+    direction.z = -leftJoystick[1] * (1 + yButtonPressed);
+  }
+
+  if (rightJoystick) {
+    camera.yaw += rightJoystick[0] / 10;
+    camera.pitch -= rightJoystick[1] / 10;
+  }
+
+  if (previousX == 0 && xButtonPressed == 1) {
+    enterPointerLock();
+  }
+
+
+  if ((shift || yButtonPressed) && energy > 0) {
     energy -= deltaTime / 100;
   }
 
@@ -761,8 +828,8 @@ gameOverScene = () => ({ initialise: initialiseGameOverScene, update: updateGame
 winScene = () => ({ initialise: initialiseWinScene, update: updateWinScene })
 var initialiseWinScene = () => {
     messages = [];
-    showMessage("𝕲𝖍𝖔𝖘𝖙 𝖆𝖌𝖆𝖎𝖓", halfWidth, halfHeight - 15, 30);
-    showMessage("Press enter to reincarnate!", halfWidth, halfHeight + 25, 15);
+    showMessage("𝔈𝔳𝔞𝔡𝔢𝔡", halfWidth, halfHeight - 15, 30);
+    showMessage("GG, you win.", halfWidth, halfHeight + 25, 15);
 }
 
 var updateWinScene = () => {
@@ -773,9 +840,6 @@ var updateWinScene = () => {
 } 
 const style = 'font-size: 20px; color: red;';
 console.log("%cIntellectual property of @retro-pigeon", style);
-
-var glCanvas = document.getElementById("glCanvas");
-var gl = glCanvas.getContext("webgl2");
 
 var glCanvas = document.getElementById("glCanvas");
 var gl = glCanvas.getContext("webgl2");
@@ -819,6 +883,24 @@ const gameLoop = (timeStamp) => {
     currentScene.update(deltaTime);
 
     if (isInTransition) updateTransition(deltaTime);
+
+    const gamepads = navigator.getGamepads();
+    
+    // Iterate through all gamepads
+    for (let i = 0; i < gamepads.length; i++) {
+        const gamepad = gamepads[i];
+        if (gamepad) {
+
+            // Log joystick positions
+            leftJoystick = gamepad.axes.slice(0, 2); // Left joystick axes
+            rightJoystick = gamepad.axes.slice(2, 4); // Right joystick axes
+            
+            // Check for X button state (typically button index 2)
+            xButtonPressed = gamepad.buttons[4].pressed;// Check for X button state (typically button index 2)
+            yButtonPressed = gamepad.buttons[5].pressed;
+        }
+    }
+
 
     requestAnimationFrame(gameLoop);
 }

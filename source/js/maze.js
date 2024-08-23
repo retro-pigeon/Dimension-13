@@ -50,7 +50,7 @@ const maze = () => {
         const x = 4 * (i % size) - size * 2 + 3;
         const y = Math.floor(i / size) * 4 - size * 2 + 3;
         if (mazeMap[i]) {
-            mz.meshes.push(Mesh(cube.vertices, cube.indices, cube.colors, vector3(x, 0, y), vector3(0, 0, 0), vector3(2, 2, 2)));
+            mz.meshes.push(Mesh(cube.vertices, cube.indices, cube.colors, vector3(x, 0, y), vector3(.2-Math.random()*.4,Math.random()*Math.PI*2,0), vector3(1, 1, 1)));
         }
 
         else {

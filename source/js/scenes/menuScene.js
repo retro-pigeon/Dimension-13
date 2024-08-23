@@ -10,9 +10,14 @@ const initialiseMenuScene = () => {
 const updateMenuScene = (deltaTime) => {
     context.clearRect(0, 0, 1e6, 1e6);
     updateMessages();
-    if (enter) {
+    if (enter || xButtonPressed || yButtonPressed) {
         showScene(playScene(), true);
     }
-
 };
+
+document.onclick = f => {
+    document.documentElement.requestPointerLock();
+
+    
+}
 

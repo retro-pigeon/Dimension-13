@@ -1,27 +1,38 @@
 // Global Variables
-let playSceneCounter, cameraPos;
-let timerBreathe = 0, timer = 0;
-let heartbeat = 0.2;
-let energy = 1;
-let u; // undefined
-let points = [vector3(0, 0, 0)];
-let spiders = [];
-let health = 1  ;
-let sword = 0.99;
-let gems = [];
+var playSceneCounter, cameraPos;
+var timerBreathe = 0, timer = 0;
+var heartbeat = 0.2;
+var energy = 1;
+var u; // undefined
+var points = [vector3(0, 0, 0)];
+var spiders = [];
+var health = 1;
+var sword = 0.99;
+var gems = [];
 var gemsFound = 0;
-
+var leftJoystick, rightJoystick, xButtonPressed, yButtonPressed;
+var previousX;
+var spiralGroup;
+const drawUI = true;
 // Initialize Play Scene
 const initialisePlayScene = () => {
   // Hide messages
   messages = [];
 
+  // Create spiral
+  spiralGroup = Group([]);
+  for (let i = 0; i < 10; i++) spiralGroup.meshes.push(
+    Mesh(ray.vertices, ray.indices, ray.colors, vector3(0, 0, 0), vector3(0,i/10*Math.PI*2,0), vector3(4.5, 4.5, 4.5))
+  );
+
   // Initialize meshes
   meshes = [
     Mesh(plane.vertices, plane.indices, plane.colors, u, u, vector3(1000, 1000, 1000)),
-    Mesh(plane.vertices, plane.indices, plane.colors, vector3(0, 5, 0), u, vector3(1000, 1000, 1000)),
-    Mesh(circle.vertices, circle.indices, circle.colors, vector3(0, 0.1, 0), vector3(0, Math.PI / 4, 0), vector3(5, 5, 5), 1, 1)
+    Mesh(circle.vertices, circle.indices, circle.colors, vector3(0, 0.1, 0), vector3(0, Math.PI / 4, 0), vector3(4.5, 1, 4.5), 1, 1),
+    Group([Mesh(sun.vertices, sun.indices, sun.colors, vector3(0, 90, 0),u,vector3(15, 15, 15))]),
+    spiralGroup
   ];
+  
 
   // Initialize camera
   camera = {
@@ -74,13 +85,16 @@ const initialisePlayScene = () => {
   for (let i = 0; i < 50; i++) {
     let x = 50 - Math.random() * 100;
     let z = 50 - Math.random() * 100;
-    if (pointIsOnMap(x, z)) {
+    if (pointIsOnMap(x, z) && distanceTo(vector3(u,u,u),vector3(x, 0, z)) > 5) {
       spiders.push(Spider(vector3(x, 0, z)));
     }
   }
 
   for (let i = 0; i < 7; i++)
-  gems.push(Gem());
+    gems.push(Gem());
+
+  for (let i = 0; i < 100; i++)
+    meshes.push(Mesh(star.vertices, star.indices, star.colors, vector3(50-100*Math.random(), 30, 50-100*Math.random()), u, vector3(.5, .5, .5)))
 };
 
 // Update Play Scene
@@ -88,6 +102,9 @@ const updatePlayScene = (deltaTime) => {
   fog = Math.sin(timeStamp / 200) * 2 + 20 + Math.random() * 0.4 - 0.8;
   playSceneCounter++;
   heartbeat *= heartbeat;
+
+  meshes[2].rotation.x += deltaTime / 40;
+  spiralGroup.rotation.y += deltaTime / 40;
 
   processInputPlayScene(deltaTime);
   render(meshes, camera);
@@ -99,6 +116,7 @@ const updatePlayScene = (deltaTime) => {
   context.drawImage(glCanvas, 0, 0);
   context.globalAlpha = 1;
 
+  if(drawUI) {
   context.fillStyle = "white";
   context.font = `${15 * (1 + timerBreathe)}px monospace`;
   timerBreathe -= deltaTime;
@@ -126,6 +144,7 @@ const updatePlayScene = (deltaTime) => {
 
   context.fillStyle = "#80D08C";
   context.fillText("⬡⬡⬡⬡⬡⬡⬡".replace(/⬡/g, (match, offset) => offset < gemsFound ? '⬢' : match), width - 40, 10);
+  }
 
   sword *= sword * sword;
 
@@ -134,7 +153,7 @@ const updatePlayScene = (deltaTime) => {
     timer = 0;
   }
 
-  if (gemsFound > 0) {
+  if (gemsFound > 6) {
     showScene(winScene(), true);
   }
 
@@ -143,13 +162,15 @@ const updatePlayScene = (deltaTime) => {
   if (health < 0) {
     showScene(gameOverScene(), true);
   }
+
+  previousX = xButtonPressed;
 };
 
 // Process Input Play Scene
 const processInputPlayScene = (deltaTime) => {
   let direction = vector3(0, 0, 0);
   if (up) {
-    direction = vector3(0, 0, 1 + (shift && energy > 0));
+    direction = vector3(0, 0, 1 + ((shift) && energy > 0));
   } else if (down) {
     direction = vector3(0, 0, -2 / 3);
   } else if (left) {
@@ -157,10 +178,25 @@ const processInputPlayScene = (deltaTime) => {
   } else if (right) {
     direction = vector3(-2 / 3, 0, 0);
   } else {
-    energy = Math.min(energy + deltaTime / 100, 1);
+    energy = Math.min(energy + deltaTime / 50, 1);
   }
 
-  if (shift && energy > 0) {
+  if (leftJoystick) {
+    camera.yaw += leftJoystick[0] / 10;
+    direction.z = -leftJoystick[1] * (1 + yButtonPressed);
+  }
+
+  if (rightJoystick) {
+    camera.yaw += rightJoystick[0] / 10;
+    camera.pitch -= rightJoystick[1] / 10;
+  }
+
+  if (previousX == 0 && xButtonPressed == 1) {
+    enterPointerLock();
+  }
+
+
+  if ((shift || yButtonPressed) && energy > 0) {
     energy -= deltaTime / 100;
   }
 

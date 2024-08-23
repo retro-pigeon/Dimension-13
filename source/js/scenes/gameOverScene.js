@@ -8,5 +8,5 @@ updateGameOverScene = () => {
     console.log(messages);
     context.clearRect(0, 0, width, height);
     updateMessages();
-    if (enter) showScene(playScene(), true);
+    if (enter) window.location.reload();
 } 

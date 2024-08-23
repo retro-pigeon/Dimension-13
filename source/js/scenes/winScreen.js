@@ -1,7 +1,7 @@
 var initialiseWinScene = () => {
     messages = [];
-    showMessage("𝕲𝖍𝖔𝖘𝖙 𝖆𝖌𝖆𝖎𝖓", halfWidth, halfHeight - 15, 30);
-    showMessage("Press enter to reincarnate!", halfWidth, halfHeight + 25, 15);
+    showMessage("𝔈𝔳𝔞𝔡𝔢𝔡", halfWidth, halfHeight - 15, 30);
+    showMessage("GG, you win.", halfWidth, halfHeight + 25, 15);
 }
 
 var updateWinScene = () => {

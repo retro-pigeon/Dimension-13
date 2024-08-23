@@ -24,7 +24,7 @@ const render = (meshes, camera, clear = 1, additionalMatrix = null) => {
         bindBufferAttribute(mesh.geometry.vertexBuffer, program.aVertexPosition);
         // Bind color buffer for the current mesh
         bindBufferAttribute(mesh.geometry.colorBuffer, program.aVertexColor);
-        //Normal buffer
+        //Normal buffer 
         bindBufferAttribute(mesh.geometry.normalBuffer, program.aNormal)
         // Update the model-view matrix for the current mesh
         if (additionalMatrix)

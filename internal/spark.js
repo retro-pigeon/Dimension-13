@@ -4,9 +4,6 @@ console.log("%cIntellectual property of @retro-pigeon", style);
 var glCanvas = document.getElementById("glCanvas");
 var gl = glCanvas.getContext("webgl2");
 
-var glCanvas = document.getElementById("glCanvas");
-var gl = glCanvas.getContext("webgl2");
-
 var hudCanvas = document.getElementById("hudCanvas");
 var context = hudCanvas.getContext("2d");
 
@@ -46,6 +43,24 @@ const gameLoop = (timeStamp) => {
     currentScene.update(deltaTime);
 
     if (isInTransition) updateTransition(deltaTime);
+
+    const gamepads = navigator.getGamepads();
+    
+    // Iterate through all gamepads
+    for (let i = 0; i < gamepads.length; i++) {
+        const gamepad = gamepads[i];
+        if (gamepad) {
+
+            // Log joystick positions
+            leftJoystick = gamepad.axes.slice(0, 2); // Left joystick axes
+            rightJoystick = gamepad.axes.slice(2, 4); // Right joystick axes
+            
+            // Check for X button state (typically button index 2)
+            xButtonPressed = gamepad.buttons[4].pressed;// Check for X button state (typically button index 2)
+            yButtonPressed = gamepad.buttons[5].pressed;
+        }
+    }
+
 
     requestAnimationFrame(gameLoop);
 }

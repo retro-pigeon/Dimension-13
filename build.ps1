@@ -2,7 +2,7 @@ Get-ChildItem -Path "./source/js/" -Recurse -Filter *.js | ForEach-Object { Get-
 
 Add-Content -Path "./intermediary/merged.js" -Value (Get-Content "./internal/spark.js")
 
-terser "./intermediary/merged.js" -o "./intermediary/tersed.js"
+google-closure-compiler --js=./intermediary/merged.js --js_output_file=./intermediary/tersed.js -O ADVANCED
 
 roadroller "./intermediary/tersed.js" -o "./intermediary/roadrolled.js"
 
