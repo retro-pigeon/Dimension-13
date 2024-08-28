@@ -19,13 +19,14 @@ const render = (meshes, camera, clear = 1, additionalMatrix = null) => {
             render(mesh.meshes, camera, 0, transform(mesh.position,  mesh.rotation, mesh.scale));
             continue;
         }
+        gl.uniform1f(uOpacityLocation, mesh.opacity || 1);
 
         // Bind vertex buffer for the current mesh
         bindBufferAttribute(mesh.geometry.vertexBuffer, program.aVertexPosition);
         // Bind color buffer for the current mesh
-        bindBufferAttribute(mesh.geometry.colorBuffer, program.aVertexColor);
+        bindBufferAttribute(mesh.geometry.colorBuffer, program.aVertexColor, 4);
         //Normal buffer 
-        bindBufferAttribute(mesh.geometry.normalBuffer, program.aNormal)
+        bindBufferAttribute(mesh.geometry.normalBuffer, program.aNormal);
         // Update the model-view matrix for the current mesh
         if (additionalMatrix)
             gl.uniformMatrix4fv(meshMatrixLocation, false, 
@@ -39,8 +40,8 @@ const render = (meshes, camera, clear = 1, additionalMatrix = null) => {
     }
 }
 
-bindBufferAttribute = (buffer, attribute) => {
+bindBufferAttribute = (buffer, attribute, size = 3) => {
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-    gl.vertexAttribPointer(attribute, 3, gl.FLOAT, false, 0, 0);
+    gl.vertexAttribPointer(attribute, size, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(attribute);
 }

@@ -13,26 +13,42 @@ var gemsFound = 0;
 var leftJoystick, rightJoystick, xButtonPressed, yButtonPressed;
 var previousX;
 var spiralGroup;
+var starGroup = Group([]);
+var ufos = [];
+var landmines = [];
+var red = 0;
 const drawUI = true;
+var particleGroup;
+var meshes;
+
 // Initialize Play Scene
 const initialisePlayScene = () => {
+  if (debug_narrative)
+  speak(`
+    Hey, Comrade.
+
+Your teleporter's dead, and you're now stranded in the 13th dimension thanks to the Poland Space Program. To escape, find seven power gems.
+
+Also, that timer? If it hits 13, run back to the teleporter or face an epic ending.
+
+Good luck, which you don't need because you will die anyway!`, 1.2);
   // Hide messages
   messages = [];
 
   // Create spiral
   spiralGroup = Group([]);
   for (let i = 0; i < 10; i++) spiralGroup.meshes.push(
-    Mesh(ray.vertices, ray.indices, ray.colors, vector3(0, 0, 0), vector3(0,i/10*Math.PI*2,0), vector3(4.5, 4.5, 4.5))
+    Mesh(ray.vertices, ray.indices, ray.colors, vector3(0, 0, 0), vector3(0, i / 10 * Math.PI * 2, 0), vector3(4.5, 4.5, 4.5))
   );
 
   // Initialize meshes
   meshes = [
     Mesh(plane.vertices, plane.indices, plane.colors, u, u, vector3(1000, 1000, 1000)),
     Mesh(circle.vertices, circle.indices, circle.colors, vector3(0, 0.1, 0), vector3(0, Math.PI / 4, 0), vector3(4.5, 1, 4.5), 1, 1),
-    Group([Mesh(sun.vertices, sun.indices, sun.colors, vector3(0, 90, 0),u,vector3(15, 15, 15))]),
-    spiralGroup
+    Group([Mesh(sun.vertices, sun.indices, sun.colors, vector3(0, 90, 0), u, vector3(30, 30, 30))])
   ];
-  
+
+  // landmines.push(Landmine(vector3(10, 0, 10)));
 
   // Initialize camera
   camera = {
@@ -53,18 +69,23 @@ const initialisePlayScene = () => {
   setInterval(() => {
     if (distanceTo(vector3(u, u, u), camera.position) > 4.358) {
       if (timer >= 12) {
-        zzfx(...[5, 0.1, 261.6256, , , 0.5, , 10, , 1.2, 19, 1, , , , , 0.05, 0.6, 0.3, 1]); // Random 141
+        red = .5;
+        redShift = 2;
+        ufos.push(Ufo());
+        //zzfx(...[5, 0.1, 261.6256, , , 0.5, , 10, , 1.2, 19, 1, , , , , 0.05, 0.6, 0.3, 1]); // Random 141
         for (let i = 0; i < timer * timer / 10; i++) {
           let x = 100 - Math.random() * 200;
           let z = 100 - Math.random() * 200;
-          if (pointIsOnMap(x, z)) {
-            spiders.push(Spider(vector3(x, 0, z)));
+          if (pointIsOnMap(x, z) && distanceTo(vector3(u, u, u), vector3(x, 0, z)) > 1 && distanceTo(camera.position, vector3(x, 0, z)) > 10) {
+            spiders.push(Spider(vector3(x, 0, z), Math.random() < .3));
           }
         }
-      }
+        zzfx(...[2.1, 0, 1e6, , .5, 0, 3, 2.6, , , , , , , , .5]); // Hit 203
+      } else redShift = 1;
       zzfx(...[2, 0.8, 100, , , , , 1.5, , 0.3, -99, 0.1, 1.63, , , 0.11, 0.22]);
       timerBreathe = 1;
       timer++;
+      if (timer == 13) speak("Run back");
     }
   }, 950);
 
@@ -82,71 +103,87 @@ const initialisePlayScene = () => {
 
   // Maze and initial spiders
   maze();
-  for (let i = 0; i < 50; i++) {
-    let x = 50 - Math.random() * 100;
-    let z = 50 - Math.random() * 100;
-    if (pointIsOnMap(x, z) && distanceTo(vector3(u,u,u),vector3(x, 0, z)) > 5) {
-      spiders.push(Spider(vector3(x, 0, z)));
-    }
+
+
+  for (let i = 0; i < 100; i++) {
+    let x = 100 - Math.random() * 200;
+    let z = 100 - Math.random() * 200;
+    if (pointIsOnMap(x, z) && distanceTo(vector3(u, u, u), vector3(x, 0, z)) > 10)
+      landmines.push(Landmine(vector3(x, 0, z)));
   }
+
 
   for (let i = 0; i < 7; i++)
     gems.push(Gem());
 
-  for (let i = 0; i < 100; i++)
-    meshes.push(Mesh(star.vertices, star.indices, star.colors, vector3(50-100*Math.random(), 30, 50-100*Math.random()), u, vector3(.5, .5, .5)))
+
+  for (let i = 0; i < 1000; i++)
+    starGroup.meshes.push(Mesh(star.vertices, star.indices, star.colors, vector3(rand(150), 30, rand(150)), u, vector3(.5, .5, .5)))
+
+  meshes.push(starGroup);
+
+  meshes.push(spiralGroup);
+
+
+  particleGroup = Group([]);
+  meshes.push(particleGroup);
 };
 
 // Update Play Scene
 const updatePlayScene = (deltaTime) => {
-  fog = Math.sin(timeStamp / 200) * 2 + 20 + Math.random() * 0.4 - 0.8;
+  fog = Math.sin(timeStamp / 200) * 2 + 10 + Math.random() * 0.4 - 0.8;
   playSceneCounter++;
   heartbeat *= heartbeat;
+  red -= deltaTime / 10;
 
   meshes[2].rotation.x += deltaTime / 40;
   spiralGroup.rotation.y += deltaTime / 40;
 
-  processInputPlayScene(deltaTime);
-  render(meshes, camera);
 
   spiders.forEach(spider => spider(deltaTime));
   gems.forEach(gem => gem(deltaTime));
+  ufos.forEach(ufo => ufo(deltaTime));
+  landmines.forEach(l => l(deltaTime));
 
-  context.globalAlpha = 0.4;
+  context.globalAlpha = 0.8;
   context.drawImage(glCanvas, 0, 0);
   context.globalAlpha = 1;
 
-  if(drawUI) {
-  context.fillStyle = "white";
-  context.font = `${15 * (1 + timerBreathe)}px monospace`;
-  timerBreathe -= deltaTime;
-  timerBreathe *= timerBreathe;
-  context.fillText(timer, 10, 20);
+  if (drawUI) {
+    context.fillStyle = "white";
+    context.font = `${15 * (1 + timerBreathe)}px monospace`;
+    timerBreathe -= deltaTime;
+    timerBreathe *= timerBreathe;
+    context.fillText(timer, 10, 20);
 
-  context.fillRect(halfWidth - 0.5, halfHeight - 3.5, 0.5, 7);
-  context.fillRect(halfWidth - 3.5, halfHeight - 0.5, 7, 0.5);
+    context.fillRect(halfWidth - 0.5, halfHeight - 3.5, 0.5, 7);
+    context.fillRect(halfWidth - 3.5, halfHeight - 0.5, 7, 0.5);
 
-  context.fillStyle = "#E37E90";
-  context.fillRect(width / 4 - 10, 10, halfWidth * health, 5);
-  context.font = `${15 * (1 + heartbeat)}px sans-serif`;
-  context.fillText("❤️", width / 4 - 10, 15);
+    context.fillStyle = "#E37E90";
+    context.fillRect(width / 4 - 10, 10, halfWidth * Math.max(Math.min(1, health), 0), 5);
+    context.font = `${15 * (1 + heartbeat)}px sans-serif`;
+    context.fillText("❤️", width / 4 - 10, 15);
 
-  context.fillStyle = "#E8C165";
-  context.fillRect(width / 4 - 10, 25, halfWidth * energy, 5);
-  context.font = `${15}px sans-serif`;
-  context.fillText("⚡", width / 4 - 10, 30);
+    context.fillStyle = "#E8C165";
+    context.fillRect(width / 4 - 10, 25, halfWidth * Math.max(Math.min(1, energy), 0), 5);
+    context.font = `${15}px sans-serif`;
+    context.fillText("⚡", width / 4 - 10, 30);
 
-  context.strokeStyle = "#BFDDE722";
-  context.lineWidth = (halfWidth >> 1) * sword;
-  context.beginPath();
-  context.arc(halfWidth, height * 1.5, halfWidth, 0, sword * Math.PI + Math.PI);
-  context.stroke();
+    context.strokeStyle = "#BFDDE722";
+    context.lineWidth = (halfWidth >> 1) * sword;
+    context.beginPath();
+    context.arc(halfWidth, height * 1.5, halfWidth, 0, sword * Math.PI + Math.PI);
+    context.stroke();
 
-  context.fillStyle = "#80D08C";
-  context.fillText("⬡⬡⬡⬡⬡⬡⬡".replace(/⬡/g, (match, offset) => offset < gemsFound ? '⬢' : match), width - 40, 10);
+    context.fillStyle = "#FF000022";
+    if (red > 0)
+      context.fillRect(0, 0, width, height);
+
+    context.fillStyle = "#80D08C";
+    context.fillText("⬡⬡⬡⬡⬡⬡⬡".replace(/⬡/g, (match, offset) => offset < gemsFound ? '⬢' : match), width - 40, 10);
   }
 
-  sword *= sword * sword;
+  sword *= Math.pow(sword, 60 * deltaTime);
 
   if (health > 1) health = 1;
   if (distanceTo(vector3(u, u, u), camera.position) < 4.358) {
@@ -157,13 +194,23 @@ const updatePlayScene = (deltaTime) => {
     showScene(winScene(), true);
   }
 
+  starGroup.rotation.y += deltaTime / 100;
+
   updateMessages();
 
   if (health < 0) {
     showScene(gameOverScene(), true);
   }
 
+  updateParticles();
+
+
+
   previousX = xButtonPressed;
+
+
+  processInputPlayScene(deltaTime);
+  render(meshes, camera);
 };
 
 // Process Input Play Scene
@@ -177,26 +224,25 @@ const processInputPlayScene = (deltaTime) => {
     direction = vector3(2 / 3, 0, 0);
   } else if (right) {
     direction = vector3(-2 / 3, 0, 0);
-  } else {
+  } else if (!yButtonPressed && (!leftJoystick || Math.abs(leftJoystick[1]) < .1)) {
     energy = Math.min(energy + deltaTime / 50, 1);
   }
 
   if (leftJoystick) {
-    camera.yaw += leftJoystick[0] / 10;
-    direction.z = -leftJoystick[1] * (1 + yButtonPressed);
+    camera.yaw += leftJoystick[0] * 1 * deltaTime;
+    direction.z = -leftJoystick[1] * (1 + yButtonPressed) * 1;
   }
 
   if (rightJoystick) {
-    camera.yaw += rightJoystick[0] / 10;
-    camera.pitch -= rightJoystick[1] / 10;
+    camera.yaw += rightJoystick[0] / 2 * deltaTime;
+    camera.pitch -= rightJoystick[1] / 2 * deltaTime;
   }
 
   if (previousX == 0 && xButtonPressed == 1) {
     enterPointerLock();
   }
 
-
-  if ((shift || yButtonPressed) && energy > 0) {
+  if (yButtonPressed || shift) {
     energy -= deltaTime / 100;
   }
 

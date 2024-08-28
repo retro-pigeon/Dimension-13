@@ -1,0 +1,1 @@
+// Of course there is nothing here, ghosts don't exist

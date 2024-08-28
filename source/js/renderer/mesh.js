@@ -4,4 +4,4 @@ const Mesh = (vertices, indices, colors, position = vector3(), rotation = vector
     return ({ geometry: Geometry(vertices.map(v => v / 100), indices, finalColors, mx, my), position, rotation, scale });
 },
 
-    hexToRgbArray = hex => [parseInt(hex.slice(1, 3), 16) / 255, parseInt(hex.slice(3, 5), 16) / 255, parseInt(hex.slice(5, 7), 16) / 255];
+    hexToRgbArray = hex => [parseInt(hex.slice(1, 3), 16) / 255, parseInt(hex.slice(3, 5), 16) / 255, parseInt(hex.slice(5, 7), 16) / 255, parseInt(hex.slice(7, 9), 16) / 255 || 1];

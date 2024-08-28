@@ -25,12 +25,16 @@ let cube = { "vertices": [0, -26, -200, 84, -26, -97, 226, -26, 0, 84, -26, 97, 
 let plane = { "vertices": [-100, 0, 100, 100, 0, 100, -100, 0, -100, 100, 0, -100], "normals": [], "indices": [1, 2, 0, 1, 3, 2], "colors": [["#70C1B3", 2]] };
 let circle = {"vertices":[-70,0,70,-100,0,0,-100,23,0,-70,23,70,0,0,0,0,23,0,-35,0,35,-50,0,0,-50,23,0,-35,23,35,-82,0,82,-116,0,0,-116,13,0,-82,13,82],"normals":[],"indices":[5,3,9,3,4,5,3,6,0,5,1,2,8,6,9,1,8,2,2,9,3,1,12,11,0,13,3,3,12,2,13,11,12,8,2,5,9,8,5,3,0,4,3,9,6,5,4,1,8,7,6,1,7,8,2,8,9,1,2,12,0,10,13,3,13,12,13,10,11],"colors":[["#778899",23]]};
 let star = { "vertices": [0, 0, -100, -86, 0, 50, 86, 0, 50, 0, 0, 100, 86, 0, -50, -86, 0, -50], "normals": [], "indices": [4, 5, 3, 1, 2, 0], "colors": [["#FFFFFF", 2]] };
-let sun = {"vertices":[0,0,-100,-38,0,-86,-70,0,-76,-92,0,-28,-100,0,-9,-92,0,46,-70,0,62,-38,0,92,0,0,100,38,0,92,70,0,62,92,0,46,100,0,-9,92,0,-28,70,0,-76,38,0,-86],"normals":[],"indices":[0,15,1,3,14,2,3,13,14,11,4,5,11,12,4,7,10,6,7,9,10],"colors":[["#E87C00",1],["#E85F5A",2],["#E81F67",2],["#E700B5",2]]};
-let ray = {"vertices":[-92,-2,-38,12,197,99,-83,2,-55,-6,202,99,-21,164,97,-53,131,84,-79,97,60,-95,64,29,-99,31,-4,-40,168,91,-68,135,72,-89,102,44,-99,68,11,-97,35,-23],"normals":[],"indices":[0,13,2,7,11,12,5,9,10,0,8,13,7,6,11,5,4,9,4,3,9,8,12,13,6,10,11,4,1,3,8,7,12,6,5,10],"colors":[["#73E1E7",6],["#50BEEF",6]]};
+let sun = {"vertices":[0,0,-100,-28,0,-95,-54,0,-84,-75,0,-65,-90,0,-41,-98,0,-14,-98,0,14,-90,0,41,-75,0,65,-54,0,84,-28,0,95,0,0,99,28,0,95,54,0,84,75,0,65,90,0,41,98,0,14,98,0,-14,90,0,-41,75,0,-65,54,0,-84,28,0,-95],"normals":[],"indices":[2,21,0,0,1,2,2,20,21,5,18,3,3,4,5,5,17,18,18,19,3,8,15,6,6,7,8,8,14,15,15,16,6,11,13,9,9,10,11,11,12,13],"colors":[["#E87C00",3],["#E85F5A",4],["#E81F67",4],["#E700B5",3]]};
+let ray = {"vertices":[-92,-2,-38,12,197,99,-83,2,-55,-6,202,99,-21,164,97,-53,131,84,-79,97,60,-95,64,29,-99,31,-4,-40,168,91,-68,135,72,-89,102,44,-99,68,11,-97,35,-23],"normals":[],"indices":[0,13,2,7,11,12,5,9,10,0,8,13,7,6,11,5,4,9,4,3,9,8,12,13,6,10,11,4,1,3,8,7,12,6,5,10],"colors":[["#73E1E733",6],["#50BEEF22",6]]};
+let ufo = {"vertices":[0,1950,0,-578,2156,0,-408,2156,408,0,2156,0,-460,1806,460,-650,1806,0,0,1806,0,-358,2446,367,-506,2480,0,0,2337,0,-151,2718,0,-107,2685,132,0,2608,0,0,2718,0,-1237,1973,0,-1236,1930,0,-1240,1950,0,-874,1930,874,-875,1973,875,-877,1950,877,-1374,0,0,-971,0,971],"normals":[],"indices":[3,7,9,1,9,8,1,7,2,9,11,12,9,10,8,8,11,7,10,12,13,12,11,13,11,10,13,5,4,6,4,20,5,3,2,7,1,3,9,1,8,7,9,7,11,9,12,10,8,10,11,4,21,20,16,3,1,19,6,4,19,2,3,16,5,6,15,4,5,14,15,16,17,18,19,15,18,17,18,1,2,1,14,16,16,0,3,4,17,19,19,0,6,3,0,19,19,18,2,6,0,16,16,15,5,15,17,4,15,14,18,18,14,1],"colors":[["#10E70022",18],["#6FB2BE",20]]};
+let mine = {"vertices":[-70,0,70,0,0,100,0,0,0,-56,-16,56,0,-16,80,0,-16,44,-31,-16,31,0,-9,44,-31,-9,31,0,-9,0],"normals":[],"indices":[7,9,8,4,6,3,0,4,3,5,8,6,4,5,6,0,1,4,5,7,8],"colors":[["#E7000E",1],["#E7B500",6]]};
+let particle = {"vertices":[0,-70,-100,86,-70,50,-86,-70,50,0,70,0],"normals":[],"indices":[0,3,1,0,1,2,1,3,2,2,3,0],"colors":[["#FFFFFF",4]]};
+const debug_narrative = false;
 const Gem = () => {
     let x = 50 - 100 * Math.random(),
         z = 50 - 100 * Math.random();
-    if (!pointIsOnMap(x, z)) return Gem();
+    if (!pointIsOnMap(x, z) && Math.hypot(x, z) > 10) return Gem();
     const mesh = Mesh(gem.vertices, gem.indices, gem.colors, vector3(x, 0, z), vector3(Math.PI / 2, 0, 0), vector3(.25, .25, .25));
     meshes.push(mesh);
 
@@ -42,17 +46,66 @@ const Gem = () => {
         mesh.rotation.y += deltaTime;
 
         st.rotation.y += deltaTime*Math.random();
+        if (!mesh.off) 
+            if (Math.random() < deltaTime) Particle(clone(mesh.position), vector3(rand(.005), rand(.025), rand(.005)), "#80D08C");
+    
 
         if (!mesh.off && distanceTo(mesh.position, camera.position) < 3) {
+
+            
             mesh.off = true;
             gemsFound++;
 
             zzfx(...[,,539,0,.04,.29,1,1.92,,,567,.02,.02,,,,.04]);
 
-            if (gemsFound == 7) Message("You found all gems, return to the teleporter!")
+            //if (gemsFound == 7) Message("You found all gems, return to the teleporter!");
+
+            if (gemsFound == 4) {
+                speak("Is it a bird? Is it a plane? It's a UFO", 1.2);
+                ufos.push(Ufo());
+                ufos.push(Ufo());
+                ufos.push(Ufo());
+                ufos.push(Ufo());
+                ufos.push(Ufo());
+            }
+            if (gemsFound == 1) {
+                speak("By the way, watch out for the Arachnoids", 1.2);``
+                for (let i = 0; i < 70; i++) {
+                    let x = rand(100);
+                    let z = rand(100);
+                    if (pointIsOnMap(x, z) && distanceTo(vector3(u, u, u), vector3(x, 0, z)) > 10) {
+                      spiders.push(Spider(vector3(x, 0, z)));
+                    }
+                  }
+            }
+            if (gemsFound == 2) {
+                speak("The spirits are watching...", 1.2);``
+                for (let i = 0; i < 50; i++) {
+                    let x = rand(100);
+                    let z = rand(100);
+                    if (pointIsOnMap(x, z) && distanceTo(vector3(u, u, u), vector3(x, 0, z)) > 10) {
+                      spiders.push(Spider(vector3(x, 0, z), 1));
+                    }
+                  }
+            }
         }
     };
 }
+// Of course there is nothing here, ghosts don't exist
+const Landmine = pos => {
+    const m = Mesh(mine.vertices, mine.indices, mine.colors, pos, u, vector3(1, -1, 1), 1, 1);
+    meshes.push(m);
+
+    console.log(`Landmine: ${pos.x} ${pos.y} ${pos.z}`);
+
+    return deltaTime => {
+        if (distanceTo(camera.position, m.position) < 2.5) {
+            console.log("stepped on landmine")
+            zzfx(...[2,,45,.01,.27,.49,3,1.6,-9,,,,,1.3,.4,.8,.2,.41,.15]); // Explosion 237
+            health = -.1;
+        }
+    };
+};
 let map = [];
 
 var pointIsOnMap = (x, y) => {
@@ -68,35 +121,6 @@ var pointIsOnMap = (x, y) => {
         if (count % 2 !== 0) return true;
     }
     return false;
-}
-
-
-drawMap = (context, camera) => {
-    // x and y offset of the map relative to screen top
-    const xOffset = 25.5, yOffset = 25.5;
-    // draw the map
-    context.fillStyle = "rgba(191, 191, 191,.2)";
-    map.forEach(polygon => {
-        context.beginPath();
-        for (let i = 0; i < polygon.length; i += 2) context.lineTo(xOffset + polygon[i] / 4, yOffset + polygon[i + 1] / 4);
-        context.fill();
-    });
-    // draw the player as a blue square
-    let playerX = xOffset + camera.position.x / 2;
-    let playerZ = yOffset + camera.position.z / 2;
-    context.fillStyle = "blue";
-    context.fillRect(playerX - 2, playerZ - 2, 4, 4);
-    // draw player direction as a white line
-    context.strokeStyle = "white";
-    context.lineWidth = 1;
-    context.beginPath();
-    context.moveTo(playerX, playerZ);
-    context.lineTo(playerX + 10 * Math.cos(camera.yaw + Math.PI / 2), playerZ + 10 * Math.sin(camera.yaw + Math.PI / 2));
-    context.stroke();
-
-    for (let p of spider_positions) {
-        context.fillRect(p.x/2 + xOffset, p.z/2 + yOffset, 1, 1);
-    }
 }
 function generateMaze(w, h) {
     const m = Array.from({ length: h }, () => Array(w).fill(1));
@@ -193,6 +217,54 @@ updateMessages = () => {
 
 const font = 'serif';
 
+let particles = [];
+
+let updateParticles = (counter) => {
+    let wind = vector3(Math.cos(timeStamp / 1000) / 10 + .025 - Math.random() / 20, 0, Math.sin(timeStamp / 1000) / 10 + .025 - Math.random() / 20);
+
+    // Array to keep track of indices of particles to remove
+    let indicesToRemove = [];
+
+    particles.forEach((particle, index) => {
+        particle.mesh.position = add(particle.mesh.position, particle.velocity);
+        particle.mesh.position = add(particle.mesh.position, multiplyBy(wind, deltaTime));
+        particle.mesh.rotation = add(particle.mesh.rotation, particle.rotationalVelocity);
+        particle.counter -= deltaTime / 20;
+        particle.mesh.opacity = Math.max(particle.counter / particle.initialCounter, 0);
+
+        if (particle.counter <= 0) {
+            particle.mesh.off = true;
+            indicesToRemove.push(index); // Mark this particle for removal
+        } else {
+            if (particle.gravityAffected) {
+                particle.velocity.y -= .02 * deltaTime;
+            }
+        }
+    });
+
+    // Remove dead particles from particles array and particleGroup.meshes
+    indicesToRemove.reverse().forEach(index => {
+        // Remove the corresponding mesh from the particleGroup.meshes
+        particleGroup.meshes.splice(index, 1);
+        // Remove the particle from the particles array
+        particles.splice(index, 1);
+    });
+};
+
+/**
+ * 
+ * @param {vector3} pos 
+ * @param {vector3} velocity 
+ * @param {String} color 
+ * @param {vector3} rotationalVelocity 
+ * @param {Number} counter 
+ */
+
+const Particle = (pos, velocity, color = "#FFFFFF", rotationalVelocity = vector3(.005 - Math.random() * .01, .05 - Math.random() * .01, .005 - Math.random() * .01), counter = 1, gravityAffected = false, scale = .2) => {
+    let mesh = Mesh(particle.vertices, particle.indices, [[color, 4]], pos, u, vector3(scale, scale, scale));
+    particleGroup.meshes.push(mesh);
+    particles.push({ mesh, velocity, counter, rotationalVelocity, initialCounter: counter, gravityAffected });
+};
 const raycast = (camera, points) => { 
     let cameraDirection = substract(camera.position, camera.target)
     for (index in points) {
@@ -201,9 +273,11 @@ const raycast = (camera, points) => {
         let distance = distanceTo(camera.position, points[index]);
 
         if (distance < 5 && difference < 3 && spider_death[index]) {
-            spider_healths[index] -= .5;
-            
-            zzfx(...[1.1,,219,,.01,.03,4,4.2,,,,,,,,,,.67,,,198]);
+            spider_healths[index] -= .5;zzfx(...[1,,240,.02,.05,.08,4,3.1,,,,,.07,.2,9.4,.5,.03,.97,,.2]); // Hit 201
+
+if (spider_healths[index] <= 0)            
+            for (let i = 0; i < 100; i++)
+                Particle(clone(points[index]), vector3(rand(.05), rand(.05), rand(.05)), "#FF0000",u, .2, true);
 
             spider_ricoshate = 1;
 
@@ -216,7 +290,7 @@ var spider_healths = [];
 var spider_death = [];
 var spider_ricoshate = 0;
 
-const Spider = (pos) => {
+const Spider = (pos, ghost = false) => {
     let index = spiders.length;
     let time = 0;
     let rotation = 0;
@@ -238,7 +312,7 @@ const Spider = (pos) => {
     group.scale = vector3(spider_healths[index], spider_healths[index], spider_healths[index]);
     group.position = pos;
 
-    meshes.push(group);
+    if (!ghost) meshes.push(group);
 
     return deltaTime => {
         if (spider_healths[index] <= 0) {
@@ -260,34 +334,66 @@ const Spider = (pos) => {
 
         if (distanceTo(vector3(u, u, u), camera.position) <= 4.358) return;
 
-        if (distanceTo(group.position, camera.position) > 3) {
+        if (distanceTo(group.position, camera.position) > 3 && distanceTo(vector3(u, u, u), group.position) > 5) {
             let p = clone(group.position);
             p.x += Math.sin(group.rotation.y) * deltaTime;
             p.z += Math.cos(group.rotation.y) * deltaTime;
-            if (pointIsOnMap(p.x, p.z)) group.position = p;
+            if (pointIsOnMap(p.x, p.z) && distanceTo(vector3(u, u, u), group.position) > 5) group.position = p;
         }
         if (spider_ricoshate > .1) {
             let p = clone(group.position);
             p.x -= Math.sin(group.rotation.y) * deltaTime * spider_ricoshate * 5;
             p.z -= Math.cos(group.rotation.y) * deltaTime * spider_ricoshate * 5;
-            if (pointIsOnMap(p.x, p.z)) group.position = p;
+            if (pointIsOnMap(p.x, p.z) && distanceTo(vector3(u, u, u), group.position) > 5) group.position = p;
             spider_ricoshate -= deltaTime / 10;
-            
+
         }
         if (distanceTo(group.position, camera.position) < 4) {
             if (cooldown <= 0) {
                 health -= .05;
                 cooldown = 3;
-                zzfx(...[,,100,,.04,,4,5,,,,,,1.4,,.1,,.89,,,-2247]);spider_ricoshate = 1;
+                zzfx(...[, , 100, , .04, , 4, 5, , , , , , 1.4, , .1, , .89, , , -2247]);
                 vibrate(0, 1, 0, 0.1);
-                
-            }  
+
+            }
         }
+
         
+       if (ghost && distanceTo(group.position, camera.position) <= 10) for (let i = 0; i < 1; i++) Particle(add(group.position, vector3(0, 1.80, 0)), vector3(rand(.1), rand(.1),rand(.1)),"#FFFFFF",u,1, true, .3);
+
         spider_positions[index] = group.position;
-        
+
     }
 }
+const Ufo = (u, deltaTime) => {
+    // Create the mesh and set initial position
+    const m = Mesh(ufo.vertices, ufo.indices, ufo.colors, u,u, vector3(0.56, 0.56, 0.56), 1,1);
+    m.position = vector3(100 - Math.random() * 200, u, 100 - Math.random() * 200);
+    meshes.push(m);
+
+    // Define the target position
+    let target = vector3(100 - Math.random() * 200, u, 100 - Math.random() * 200);
+
+    // Return an update function that moves the UFO towards the target
+    return (deltaTime) => {
+        const speed = 1; // Adjust speed as needed
+        let direction = substract(target, m.position);
+        const distance = length(direction);
+
+        if (distance < 1) {
+            // When close to the target, choose a new random target
+            target = vector3(100 - Math.random() * 200, u, 100 - Math.random() * 200);
+        } else {
+            // Normalize the direction and move towards the target
+            direction = normalize(direction);
+            const movement = multiplyBy(direction, speed * deltaTime);
+            m.position = add(m.position, movement);
+        }
+
+        let distanceFromCamera = distanceTo(camera.position, m.position);
+        if (distanceFromCamera < 6) health -= 1 * deltaTime;
+    };
+};
 /**
  * Vibrates the specified gamepad.
  * @param {number} gamepadIndex - Index of the gamepad to vibrate.
@@ -316,40 +422,52 @@ function vibrate(gamepadIndex, duration = 1000, weakMagnitude = 1.0, strongMagni
         console.log(`Gamepad with index ${gamepadIndex} not found.`);
     }
 }
-const Geometry = (vertices, indices, colors, mx = 0,my = 0) => {
-    // Necessary for webgl calls, update if IBO is modified
+const Geometry = (vertices, indices, colors, mx = 0, my = 0) => {
+    // Necessary for WebGL calls, update if IBO is modified
     var indicesLength = indices.length;
 
     let finalVertices = [], finalColors = [];
 
-    for (let index of indices) finalVertices.push(vertices[index * 3], vertices[index * 3 + 1], vertices[index * 3 + 2]);
+    // Populate final vertices
+    for (let index of indices) {
+        finalVertices.push(vertices[index * 3], vertices[index * 3 + 1], vertices[index * 3 + 2]);
+    }
 
-    for (let i = 0; i < colors.length; i += 3)  finalColors.push(colors[i], colors[i + 1], colors[i + 2], colors[i], colors[i + 1], colors[i + 2], colors[i], colors[i + 1], colors[i + 2]);
+    // Populate final colors with alpha channel
+    for (let i = 0; i < colors.length; i += 4) { // Changed step from 3 to 4 to handle RGBA
+        finalColors.push(
+            colors[i], colors[i + 1], colors[i + 2], colors[i + 3], // first vertex
+            colors[i], colors[i + 1], colors[i + 2], colors[i + 3], // second vertex
+            colors[i], colors[i + 1], colors[i + 2], colors[i + 3]  // third vertex
+        );
+    }
 
     if (mx) {
         finalVertices = [...finalVertices, ...(finalVertices.map((x, i) => (i % 3 ? x : -x)))];
         
         finalColors = [...finalColors, ...finalColors];
-        indicesLength*=2;
-    } if (my) {
+        indicesLength *= 2;
+    }
+
+    if (my) {
         finalVertices = [...finalVertices, ...(finalVertices.map((y, i) => (i % 3 == 2 ? -y : y)))];
         finalVertices = [...finalVertices, ...(finalVertices.map((k, i, m) => {
-            if (i % 3 == 1)return k;
-            if (i % 3 == 2)return m[i-2];
-            else return m[i+2]
+            if (i % 3 == 1) return k;
+            if (i % 3 == 2) return m[i - 2];
+            else return m[i + 2];
         }))];
 
         finalColors = [...finalColors, ...finalColors, ...finalColors, ...finalColors];
-        indicesLength*=4;
+        indicesLength *= 4;
     }
 
-    //Set up VBO 
+    // Set up VBO 
     const vertexBuffer = CreateAndBindBufferData(finalVertices);
-    //Color buffer
+    // Color buffer
     const colorBuffer = CreateAndBindBufferData(finalColors);
-    //Normal buffer
+    // Normal buffer
     const normalBuffer = CreateAndBindBufferData(getNormals(finalVertices));
-    //Cleanup
+    // Cleanup
     gl.bindBuffer(gl.ARRAY_BUFFER, null);
 
     return { vertices, indices, colors, indicesLength, vertexBuffer, colorBuffer, normalBuffer };
@@ -358,15 +476,30 @@ const Geometry = (vertices, indices, colors, mx = 0,my = 0) => {
 getNormals = (vertices) => {
     let normals = [];
     for (let index = 0; index < vertices.length; index += 9) {
-        let faceNormal = cross(normalize(vector3(vertices[index + 3] - vertices[index], vertices[index + 3 + 1] - vertices[index + 1], vertices[index + 3 + 2] - vertices[index + 2])), normalize(vector3(vertices[index + 6] - vertices[index], vertices[index + 6 + 1] - vertices[index + 1], vertices[index + 6 + 2] - vertices[index + 2])));
-        normals.push(faceNormal.x, faceNormal.y, faceNormal.z, faceNormal.x, faceNormal.y, faceNormal.z, faceNormal.x, faceNormal.y, faceNormal.z);
+        let faceNormal = cross(
+            normalize(vector3(
+                vertices[index + 3] - vertices[index],
+                vertices[index + 3 + 1] - vertices[index + 1],
+                vertices[index + 3 + 2] - vertices[index + 2]
+            )),
+            normalize(vector3(
+                vertices[index + 6] - vertices[index],
+                vertices[index + 6 + 1] - vertices[index + 1],
+                vertices[index + 6 + 2] - vertices[index + 2]
+            ))
+        );
+        normals.push(
+            faceNormal.x, faceNormal.y, faceNormal.z,
+            faceNormal.x, faceNormal.y, faceNormal.z,
+            faceNormal.x, faceNormal.y, faceNormal.z
+        );
     }
     return normals;
 }
 
 CreateAndBindBufferData = (bufferArray) => {
     const buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buffer)
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(bufferArray), gl.STATIC_DRAW);
     return buffer;
 }
@@ -381,7 +514,7 @@ const
     copy = (v) => vector3(v.x, v.y, v.z),
     add = (a, b) => vector3(a.x + b.x, a.y + b.y, a.z + b.z),
     summate = (a) => abs(a.x) + abs(a.y) + abs(a.z)
-    substract = (a, b) => vector3(a.x - b.x, a.y - b.y, a.z - b.z),
+substract = (a, b) => vector3(a.x - b.x, a.y - b.y, a.z - b.z),
     multiplyBy = (v, f) => vector3(v.x * f, v.y * f, v.z * f),
     divide = (v, f) => vector3(v.x / f, v.y / f, v.z / f),
     length = (v) => Math.hypot(v.x, v.y, v.z),
@@ -411,14 +544,15 @@ const
     lerpColors = (a, b, t) => Color(a.r + (b.r - a.r) * t, a.g + (b.g - a.g) * t, a.b + (b.b - a.b) * t),
     easeInOutCubic = (x) => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2,
     angleBetween = (a, b) => Math.atan2(a.x - b.x, a.z - b.z),
-    abs = Math.abs;
+    abs = Math.abs,
+    rand = x => x - x * 2 * Math.random();
 const Mesh = (vertices, indices, colors, position = vector3(), rotation = vector3(), scale = vector3(1, 1, 1), mx = 0, my = 0) => {
     let finalColors = [];
     for (let color of colors) for (let i = 0; i < color[1]; i++) finalColors.push(...hexToRgbArray(color[0]));
     return ({ geometry: Geometry(vertices.map(v => v / 100), indices, finalColors, mx, my), position, rotation, scale });
 },
 
-    hexToRgbArray = hex => [parseInt(hex.slice(1, 3), 16) / 255, parseInt(hex.slice(3, 5), 16) / 255, parseInt(hex.slice(5, 7), 16) / 255];
+    hexToRgbArray = hex => [parseInt(hex.slice(1, 3), 16) / 255, parseInt(hex.slice(3, 5), 16) / 255, parseInt(hex.slice(5, 7), 16) / 255, parseInt(hex.slice(7, 9), 16) / 255 || 1];
 var fog = 15;
 
 const render = (meshes, camera, clear = 1, additionalMatrix = null) => {
@@ -440,13 +574,14 @@ const render = (meshes, camera, clear = 1, additionalMatrix = null) => {
             render(mesh.meshes, camera, 0, transform(mesh.position,  mesh.rotation, mesh.scale));
             continue;
         }
+        gl.uniform1f(uOpacityLocation, mesh.opacity || 1);
 
         // Bind vertex buffer for the current mesh
         bindBufferAttribute(mesh.geometry.vertexBuffer, program.aVertexPosition);
         // Bind color buffer for the current mesh
-        bindBufferAttribute(mesh.geometry.colorBuffer, program.aVertexColor);
+        bindBufferAttribute(mesh.geometry.colorBuffer, program.aVertexColor, 4);
         //Normal buffer 
-        bindBufferAttribute(mesh.geometry.normalBuffer, program.aNormal)
+        bindBufferAttribute(mesh.geometry.normalBuffer, program.aNormal);
         // Update the model-view matrix for the current mesh
         if (additionalMatrix)
             gl.uniformMatrix4fv(meshMatrixLocation, false, 
@@ -460,9 +595,9 @@ const render = (meshes, camera, clear = 1, additionalMatrix = null) => {
     }
 }
 
-bindBufferAttribute = (buffer, attribute) => {
+bindBufferAttribute = (buffer, attribute, size = 3) => {
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-    gl.vertexAttribPointer(attribute, 3, gl.FLOAT, false, 0, 0);
+    gl.vertexAttribPointer(attribute, size, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(attribute);
 }
 var uFogLocation;
@@ -483,14 +618,14 @@ gl.disable(gl.CULL_FACE);
 
     const vertexShaderSource =
         `#version 300 es
-precision mediump float;uniform mat4 uMeshMatrix,uCameraMatrix,uProjectionMatrix;in vec3 B,C,D;out vec4 A,Z;out vec3 E,F;void main(){gl_Position=uProjectionMatrix*uCameraMatrix*uMeshMatrix*vec4(B,1);E=C;A=gl_Position;Z=uMeshMatrix*vec4(B,1.0);}`
+precision mediump float;uniform mat4 uMeshMatrix,uCameraMatrix,uProjectionMatrix;in vec3 B,D;in vec4 C;out vec4 A,E,Z;out vec3 F;void main(){gl_Position=uProjectionMatrix*uCameraMatrix*uMeshMatrix*vec4(B,1);E=C;A=gl_Position;Z=uMeshMatrix*vec4(B,1.0);}`
 
     // Create a vertex shader and compile it
     compileShader(vertexShaderSource, gl.VERTEX_SHADER, program);
 
     const fragmentShaderSource =
         `#version 300 es
-precision mediump float;in vec4 A;in vec3 F,E;in vec4 Z;uniform float G;out vec4 fragColor;void main(){float P=max(min(1.-A.z/G,1.),.05)+.05-fract(sin(dot(A.xy.xy,vec2(12.9898,78.233)))*43758.5453123)*.1;P*=P;if(Z.y>10.)P=1.;fragColor=vec4(mix(vec3(.2,.094,.196),E,P),1.0);}
+precision mediump float;in vec4 A;in vec3 F;in vec4 Z,E;uniform float G,O;out vec4 fragColor;void main(){float P=max(min(1.-A.z/G,1.),.05)+.05-fract(sin(dot(A.xy.xy,vec2(12.9898,78.233)))*43758.5453123)*.1;P*=P;if(Z.y>10.1)P=1.;fragColor=mix(vec4(.2,.094,.196,1.0),E,P);fragColor.w*=O;}
 `
 
     // Create a fragment shader and compile it
@@ -513,6 +648,9 @@ precision mediump float;in vec4 A;in vec3 F,E;in vec4 Z;uniform float G;out vec4
 
     uFogLocation = gl.getUniformLocation(program, 'G');
     gl.uniform1f(uFogLocation, 15);
+
+    uOpacityLocation = gl.getUniformLocation(program, 'O');
+    gl.uniform1f(uOpacityLocation, 1);
 
     //Bind projection matrix (must do when fov changes or when resizing)
     gl.uniformMatrix4fv(projectionMatrixLocation, false, perspective(camera.fov, camera.aspect, camera.near, camera.far));
@@ -553,7 +691,7 @@ const initialiseMenuScene = () => {
 
     showMessage("𝕯𝖎𝖒𝖊𝖓𝖘𝖎𝖔𝖓", halfWidth, halfHeight * 0.5, halfHeight * 0.4, 1e7, 30);
     showMessage("𝕿𝖍𝖎𝖗𝖙𝖊𝖊𝖓", halfWidth, halfHeight * 0.85, halfHeight * 0.4, 1e7, 35);
-    showMessage('Escape the lair of Triskaideka', halfWidth, halfHeight * 1.2, halfHeight * 0.2, 1e7, 60);
+    showMessage('Escape the thirteenth dimension', halfWidth, halfHeight * 1.2, halfHeight * 0.2, 1e7, 60);
 }
 
 const updateMenuScene = (deltaTime) => {
@@ -585,26 +723,42 @@ var gemsFound = 0;
 var leftJoystick, rightJoystick, xButtonPressed, yButtonPressed;
 var previousX;
 var spiralGroup;
+var starGroup = Group([]);
+var ufos = [];
+var landmines = [];
+var red = 0;
 const drawUI = true;
+var particleGroup;
+var meshes;
+
 // Initialize Play Scene
 const initialisePlayScene = () => {
+  if (debug_narrative)
+  speak(`
+    Hey, Comrade.
+
+Your teleporter's dead, and you're now stranded in the 13th dimension thanks to the Poland Space Program. To escape, find seven power gems.
+
+Also, that timer? If it hits 13, run back to the teleporter or face an epic ending.
+
+Good luck, which you don't need because you will die anyway!`, 1.2);
   // Hide messages
   messages = [];
 
   // Create spiral
   spiralGroup = Group([]);
   for (let i = 0; i < 10; i++) spiralGroup.meshes.push(
-    Mesh(ray.vertices, ray.indices, ray.colors, vector3(0, 0, 0), vector3(0,i/10*Math.PI*2,0), vector3(4.5, 4.5, 4.5))
+    Mesh(ray.vertices, ray.indices, ray.colors, vector3(0, 0, 0), vector3(0, i / 10 * Math.PI * 2, 0), vector3(4.5, 4.5, 4.5))
   );
 
   // Initialize meshes
   meshes = [
     Mesh(plane.vertices, plane.indices, plane.colors, u, u, vector3(1000, 1000, 1000)),
     Mesh(circle.vertices, circle.indices, circle.colors, vector3(0, 0.1, 0), vector3(0, Math.PI / 4, 0), vector3(4.5, 1, 4.5), 1, 1),
-    Group([Mesh(sun.vertices, sun.indices, sun.colors, vector3(0, 90, 0),u,vector3(15, 15, 15))]),
-    spiralGroup
+    Group([Mesh(sun.vertices, sun.indices, sun.colors, vector3(0, 90, 0), u, vector3(30, 30, 30))])
   ];
-  
+
+  // landmines.push(Landmine(vector3(10, 0, 10)));
 
   // Initialize camera
   camera = {
@@ -625,18 +779,23 @@ const initialisePlayScene = () => {
   setInterval(() => {
     if (distanceTo(vector3(u, u, u), camera.position) > 4.358) {
       if (timer >= 12) {
-        zzfx(...[5, 0.1, 261.6256, , , 0.5, , 10, , 1.2, 19, 1, , , , , 0.05, 0.6, 0.3, 1]); // Random 141
+        red = .5;
+        redShift = 2;
+        ufos.push(Ufo());
+        //zzfx(...[5, 0.1, 261.6256, , , 0.5, , 10, , 1.2, 19, 1, , , , , 0.05, 0.6, 0.3, 1]); // Random 141
         for (let i = 0; i < timer * timer / 10; i++) {
           let x = 100 - Math.random() * 200;
           let z = 100 - Math.random() * 200;
-          if (pointIsOnMap(x, z)) {
-            spiders.push(Spider(vector3(x, 0, z)));
+          if (pointIsOnMap(x, z) && distanceTo(vector3(u, u, u), vector3(x, 0, z)) > 1 && distanceTo(camera.position, vector3(x, 0, z)) > 10) {
+            spiders.push(Spider(vector3(x, 0, z), Math.random() < .3));
           }
         }
-      }
+        zzfx(...[2.1, 0, 1e6, , .5, 0, 3, 2.6, , , , , , , , .5]); // Hit 203
+      } else redShift = 1;
       zzfx(...[2, 0.8, 100, , , , , 1.5, , 0.3, -99, 0.1, 1.63, , , 0.11, 0.22]);
       timerBreathe = 1;
       timer++;
+      if (timer == 13) speak("Run back");
     }
   }, 950);
 
@@ -654,71 +813,87 @@ const initialisePlayScene = () => {
 
   // Maze and initial spiders
   maze();
-  for (let i = 0; i < 50; i++) {
-    let x = 50 - Math.random() * 100;
-    let z = 50 - Math.random() * 100;
-    if (pointIsOnMap(x, z) && distanceTo(vector3(u,u,u),vector3(x, 0, z)) > 5) {
-      spiders.push(Spider(vector3(x, 0, z)));
-    }
+
+
+  for (let i = 0; i < 100; i++) {
+    let x = 100 - Math.random() * 200;
+    let z = 100 - Math.random() * 200;
+    if (pointIsOnMap(x, z) && distanceTo(vector3(u, u, u), vector3(x, 0, z)) > 10)
+      landmines.push(Landmine(vector3(x, 0, z)));
   }
+
 
   for (let i = 0; i < 7; i++)
     gems.push(Gem());
 
-  for (let i = 0; i < 100; i++)
-    meshes.push(Mesh(star.vertices, star.indices, star.colors, vector3(50-100*Math.random(), 30, 50-100*Math.random()), u, vector3(.5, .5, .5)))
+
+  for (let i = 0; i < 1000; i++)
+    starGroup.meshes.push(Mesh(star.vertices, star.indices, star.colors, vector3(rand(150), 30, rand(150)), u, vector3(.5, .5, .5)))
+
+  meshes.push(starGroup);
+
+  meshes.push(spiralGroup);
+
+
+  particleGroup = Group([]);
+  meshes.push(particleGroup);
 };
 
 // Update Play Scene
 const updatePlayScene = (deltaTime) => {
-  fog = Math.sin(timeStamp / 200) * 2 + 20 + Math.random() * 0.4 - 0.8;
+  fog = Math.sin(timeStamp / 200) * 2 + 10 + Math.random() * 0.4 - 0.8;
   playSceneCounter++;
   heartbeat *= heartbeat;
+  red -= deltaTime / 10;
 
   meshes[2].rotation.x += deltaTime / 40;
   spiralGroup.rotation.y += deltaTime / 40;
 
-  processInputPlayScene(deltaTime);
-  render(meshes, camera);
 
   spiders.forEach(spider => spider(deltaTime));
   gems.forEach(gem => gem(deltaTime));
+  ufos.forEach(ufo => ufo(deltaTime));
+  landmines.forEach(l => l(deltaTime));
 
-  context.globalAlpha = 0.4;
+  context.globalAlpha = 0.8;
   context.drawImage(glCanvas, 0, 0);
   context.globalAlpha = 1;
 
-  if(drawUI) {
-  context.fillStyle = "white";
-  context.font = `${15 * (1 + timerBreathe)}px monospace`;
-  timerBreathe -= deltaTime;
-  timerBreathe *= timerBreathe;
-  context.fillText(timer, 10, 20);
+  if (drawUI) {
+    context.fillStyle = "white";
+    context.font = `${15 * (1 + timerBreathe)}px monospace`;
+    timerBreathe -= deltaTime;
+    timerBreathe *= timerBreathe;
+    context.fillText(timer, 10, 20);
 
-  context.fillRect(halfWidth - 0.5, halfHeight - 3.5, 0.5, 7);
-  context.fillRect(halfWidth - 3.5, halfHeight - 0.5, 7, 0.5);
+    context.fillRect(halfWidth - 0.5, halfHeight - 3.5, 0.5, 7);
+    context.fillRect(halfWidth - 3.5, halfHeight - 0.5, 7, 0.5);
 
-  context.fillStyle = "#E37E90";
-  context.fillRect(width / 4 - 10, 10, halfWidth * health, 5);
-  context.font = `${15 * (1 + heartbeat)}px sans-serif`;
-  context.fillText("❤️", width / 4 - 10, 15);
+    context.fillStyle = "#E37E90";
+    context.fillRect(width / 4 - 10, 10, halfWidth * Math.max(Math.min(1, health), 0), 5);
+    context.font = `${15 * (1 + heartbeat)}px sans-serif`;
+    context.fillText("❤️", width / 4 - 10, 15);
 
-  context.fillStyle = "#E8C165";
-  context.fillRect(width / 4 - 10, 25, halfWidth * energy, 5);
-  context.font = `${15}px sans-serif`;
-  context.fillText("⚡", width / 4 - 10, 30);
+    context.fillStyle = "#E8C165";
+    context.fillRect(width / 4 - 10, 25, halfWidth * Math.max(Math.min(1, energy), 0), 5);
+    context.font = `${15}px sans-serif`;
+    context.fillText("⚡", width / 4 - 10, 30);
 
-  context.strokeStyle = "#BFDDE722";
-  context.lineWidth = (halfWidth >> 1) * sword;
-  context.beginPath();
-  context.arc(halfWidth, height * 1.5, halfWidth, 0, sword * Math.PI + Math.PI);
-  context.stroke();
+    context.strokeStyle = "#BFDDE722";
+    context.lineWidth = (halfWidth >> 1) * sword;
+    context.beginPath();
+    context.arc(halfWidth, height * 1.5, halfWidth, 0, sword * Math.PI + Math.PI);
+    context.stroke();
 
-  context.fillStyle = "#80D08C";
-  context.fillText("⬡⬡⬡⬡⬡⬡⬡".replace(/⬡/g, (match, offset) => offset < gemsFound ? '⬢' : match), width - 40, 10);
+    context.fillStyle = "#FF000022";
+    if (red > 0)
+      context.fillRect(0, 0, width, height);
+
+    context.fillStyle = "#80D08C";
+    context.fillText("⬡⬡⬡⬡⬡⬡⬡".replace(/⬡/g, (match, offset) => offset < gemsFound ? '⬢' : match), width - 40, 10);
   }
 
-  sword *= sword * sword;
+  sword *= Math.pow(sword, 60 * deltaTime);
 
   if (health > 1) health = 1;
   if (distanceTo(vector3(u, u, u), camera.position) < 4.358) {
@@ -729,13 +904,23 @@ const updatePlayScene = (deltaTime) => {
     showScene(winScene(), true);
   }
 
+  starGroup.rotation.y += deltaTime / 100;
+
   updateMessages();
 
   if (health < 0) {
     showScene(gameOverScene(), true);
   }
 
+  updateParticles();
+
+
+
   previousX = xButtonPressed;
+
+
+  processInputPlayScene(deltaTime);
+  render(meshes, camera);
 };
 
 // Process Input Play Scene
@@ -749,26 +934,25 @@ const processInputPlayScene = (deltaTime) => {
     direction = vector3(2 / 3, 0, 0);
   } else if (right) {
     direction = vector3(-2 / 3, 0, 0);
-  } else {
+  } else if (!yButtonPressed && (!leftJoystick || Math.abs(leftJoystick[1]) < .1)) {
     energy = Math.min(energy + deltaTime / 50, 1);
   }
 
   if (leftJoystick) {
-    camera.yaw += leftJoystick[0] / 10;
-    direction.z = -leftJoystick[1] * (1 + yButtonPressed);
+    camera.yaw += leftJoystick[0] * 1 * deltaTime;
+    direction.z = -leftJoystick[1] * (1 + yButtonPressed) * 1;
   }
 
   if (rightJoystick) {
-    camera.yaw += rightJoystick[0] / 10;
-    camera.pitch -= rightJoystick[1] / 10;
+    camera.yaw += rightJoystick[0] / 2 * deltaTime;
+    camera.pitch -= rightJoystick[1] / 2 * deltaTime;
   }
 
   if (previousX == 0 && xButtonPressed == 1) {
     enterPointerLock();
   }
 
-
-  if ((shift || yButtonPressed) && energy > 0) {
+  if (yButtonPressed || shift) {
     energy -= deltaTime / 100;
   }
 
@@ -847,6 +1031,8 @@ var gl = glCanvas.getContext("webgl2");
 var hudCanvas = document.getElementById("hudCanvas");
 var context = hudCanvas.getContext("2d");
 
+const speak=(p,r=1.5)=>{let u=new SpeechSynthesisUtterance(p);u.rate=r;window.speechSynthesis.speak(u)};
+
 var width, height, halfWidth, halfHeight;
 
 function resize() {
@@ -874,6 +1060,7 @@ var currentScene = menuScene();
 currentScene.initialise();
 
 var deltaTime, previousTime = 0;
+var redShift = 1;
 const gameLoop = (timeStamp) => {
 
     deltaTime = (timeStamp - previousTime) * .01;
@@ -900,6 +1087,16 @@ const gameLoop = (timeStamp) => {
             yButtonPressed = gamepad.buttons[5].pressed;
         }
     }
+
+    let imageData = context.getImageData(0, 0, width, height);
+  
+    let r = Math.random() < deltaTime / 10;
+    imageData = new ImageData(new Uint8ClampedArray(imageData.data.map((x, i) => {
+      if (i % 4 == 0) return imageData.data[(i+(r ? 4*redShift : 8*redShift)) % (width * height * 4)];
+      return x;
+    })), width, height);
+  
+    context.putImageData(imageData, 0, 0);
 
 
     requestAnimationFrame(gameLoop);

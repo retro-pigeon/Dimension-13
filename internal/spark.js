@@ -7,6 +7,8 @@ var gl = glCanvas.getContext("webgl2");
 var hudCanvas = document.getElementById("hudCanvas");
 var context = hudCanvas.getContext("2d");
 
+const speak=(p,r=1.5)=>{let u=new SpeechSynthesisUtterance(p);u.rate=r;window.speechSynthesis.speak(u)};
+
 var width, height, halfWidth, halfHeight;
 
 function resize() {
@@ -34,6 +36,7 @@ var currentScene = menuScene();
 currentScene.initialise();
 
 var deltaTime, previousTime = 0;
+var redShift = 1;
 const gameLoop = (timeStamp) => {
 
     deltaTime = (timeStamp - previousTime) * .01;
@@ -60,6 +63,16 @@ const gameLoop = (timeStamp) => {
             yButtonPressed = gamepad.buttons[5].pressed;
         }
     }
+
+    let imageData = context.getImageData(0, 0, width, height);
+  
+    let r = Math.random() < deltaTime / 10;
+    imageData = new ImageData(new Uint8ClampedArray(imageData.data.map((x, i) => {
+      if (i % 4 == 0) return imageData.data[(i+(r ? 4*redShift : 8*redShift)) % (width * height * 4)];
+      return x;
+    })), width, height);
+  
+    context.putImageData(imageData, 0, 0);
 
 
     requestAnimationFrame(gameLoop);
