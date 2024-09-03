@@ -23,17 +23,20 @@ let spider_body = { "vertices": [-91, 208, 125, -91, 338, -4, -91, 78, -4, -206,
 let spider_leg = { "vertices": [-328, 194, -200, -326, 234, -200, -324, 194, -160, -322, 234, -160, -167, 165, -168, -161, 223, -168, -172, 165, -221, -166, 223, -222, -442, 195, -185, -450, 227, -184, -439, 195, -153, -446, 227, -152, -569, 143, -170, -589, 161, -168, -567, 143, -144, -586, 161, -142, -627, 0, -158, -640, 5, -157, -625, 0, -144, -639, 5, -143], "normals": [], "indices": [5, 2, 4, 3, 10, 2, 2, 6, 4, 5, 1, 3, 0, 7, 6, 11, 14, 10, 1, 8, 9, 2, 8, 0, 1, 11, 3, 13, 19, 15, 9, 12, 13, 10, 12, 8, 9, 15, 11, 14, 19, 18, 12, 17, 13, 14, 16, 12, 5, 3, 2, 3, 11, 10, 2, 0, 6, 5, 7, 1, 0, 1, 7, 11, 15, 14, 1, 0, 8, 2, 10, 8, 1, 9, 11, 13, 17, 19, 9, 8, 12, 10, 14, 12, 9, 13, 15, 14, 15, 19, 12, 16, 17, 14, 18, 16], "colors": [["#5d5775", 32]] };
 let cube = { "vertices": [0, -26, -200, 84, -26, -97, 226, -26, 0, 84, -26, 97, 0, -26, 200, -84, -26, 97, -173, -26, 0, -84, -26, -97, 0, 1015, 0], "normals": [], "indices": [0, 8, 1, 1, 8, 2, 2, 8, 3, 3, 8, 4, 4, 8, 5, 5, 8, 6, 6, 8, 7, 7, 8, 0], "colors": [["#247BA0", 8]] };
 let plane = { "vertices": [-100, 0, 100, 100, 0, 100, -100, 0, -100, 100, 0, -100], "normals": [], "indices": [1, 2, 0, 1, 3, 2], "colors": [["#70C1B3", 2]] };
-let circle = {"vertices":[-70,0,70,-100,0,0,-100,23,0,-70,23,70,0,0,0,0,23,0,-35,0,35,-50,0,0,-50,23,0,-35,23,35,-82,0,82,-116,0,0,-116,13,0,-82,13,82],"normals":[],"indices":[5,3,9,3,4,5,3,6,0,5,1,2,8,6,9,1,8,2,2,9,3,1,12,11,0,13,3,3,12,2,13,11,12,8,2,5,9,8,5,3,0,4,3,9,6,5,4,1,8,7,6,1,7,8,2,8,9,1,2,12,0,10,13,3,13,12,13,10,11],"colors":[["#778899",23]]};
+let circle = { "vertices": [-70, 0, 70, -100, 0, 0, -100, 23, 0, -70, 23, 70, 0, 0, 0, 0, 23, 0, -35, 0, 35, -50, 0, 0, -50, 23, 0, -35, 23, 35, -82, 0, 82, -116, 0, 0, -116, 13, 0, -82, 13, 82], "normals": [], "indices": [5, 3, 9, 3, 4, 5, 3, 6, 0, 5, 1, 2, 8, 6, 9, 1, 8, 2, 2, 9, 3, 1, 12, 11, 0, 13, 3, 3, 12, 2, 13, 11, 12, 8, 2, 5, 9, 8, 5, 3, 0, 4, 3, 9, 6, 5, 4, 1, 8, 7, 6, 1, 7, 8, 2, 8, 9, 1, 2, 12, 0, 10, 13, 3, 13, 12, 13, 10, 11], "colors": [["#778899", 23]] };
 let star = { "vertices": [0, 0, -100, -86, 0, 50, 86, 0, 50, 0, 0, 100, 86, 0, -50, -86, 0, -50], "normals": [], "indices": [4, 5, 3, 1, 2, 0], "colors": [["#FFFFFF", 2]] };
-let sun = {"vertices":[0,0,-100,-28,0,-95,-54,0,-84,-75,0,-65,-90,0,-41,-98,0,-14,-98,0,14,-90,0,41,-75,0,65,-54,0,84,-28,0,95,0,0,99,28,0,95,54,0,84,75,0,65,90,0,41,98,0,14,98,0,-14,90,0,-41,75,0,-65,54,0,-84,28,0,-95],"normals":[],"indices":[2,21,0,0,1,2,2,20,21,5,18,3,3,4,5,5,17,18,18,19,3,8,15,6,6,7,8,8,14,15,15,16,6,11,13,9,9,10,11,11,12,13],"colors":[["#E87C00",3],["#E85F5A",4],["#E81F67",4],["#E700B5",3]]};
-let ray = {"vertices":[-92,-2,-38,12,197,99,-83,2,-55,-6,202,99,-21,164,97,-53,131,84,-79,97,60,-95,64,29,-99,31,-4,-40,168,91,-68,135,72,-89,102,44,-99,68,11,-97,35,-23],"normals":[],"indices":[0,13,2,7,11,12,5,9,10,0,8,13,7,6,11,5,4,9,4,3,9,8,12,13,6,10,11,4,1,3,8,7,12,6,5,10],"colors":[["#73E1E733",6],["#50BEEF22",6]]};
-let ufo = {"vertices":[0,1950,0,-578,2156,0,-408,2156,408,0,2156,0,-460,1806,460,-650,1806,0,0,1806,0,-358,2446,367,-506,2480,0,0,2337,0,-151,2718,0,-107,2685,132,0,2608,0,0,2718,0,-1237,1973,0,-1236,1930,0,-1240,1950,0,-874,1930,874,-875,1973,875,-877,1950,877,-1374,0,0,-971,0,971],"normals":[],"indices":[3,7,9,1,9,8,1,7,2,9,11,12,9,10,8,8,11,7,10,12,13,12,11,13,11,10,13,5,4,6,4,20,5,3,2,7,1,3,9,1,8,7,9,7,11,9,12,10,8,10,11,4,21,20,16,3,1,19,6,4,19,2,3,16,5,6,15,4,5,14,15,16,17,18,19,15,18,17,18,1,2,1,14,16,16,0,3,4,17,19,19,0,6,3,0,19,19,18,2,6,0,16,16,15,5,15,17,4,15,14,18,18,14,1],"colors":[["#10E70022",18],["#6FB2BE",20]]};
-let mine = {"vertices":[-70,0,70,0,0,100,0,0,0,-56,-16,56,0,-16,80,0,-16,44,-31,-16,31,0,-9,44,-31,-9,31,0,-9,0],"normals":[],"indices":[7,9,8,4,6,3,0,4,3,5,8,6,4,5,6,0,1,4,5,7,8],"colors":[["#E7000E",1],["#E7B500",6]]};
-let particle = {"vertices":[0,-70,-100,86,-70,50,-86,-70,50,0,70,0],"normals":[],"indices":[0,3,1,0,1,2,1,3,2,2,3,0],"colors":[["#FFFFFF",4]]};
+let sun = { "vertices": [0, 0, -100, -28, 0, -95, -54, 0, -84, -75, 0, -65, -90, 0, -41, -98, 0, -14, -98, 0, 14, -90, 0, 41, -75, 0, 65, -54, 0, 84, -28, 0, 95, 0, 0, 99, 28, 0, 95, 54, 0, 84, 75, 0, 65, 90, 0, 41, 98, 0, 14, 98, 0, -14, 90, 0, -41, 75, 0, -65, 54, 0, -84, 28, 0, -95], "normals": [], "indices": [2, 21, 0, 0, 1, 2, 2, 20, 21, 5, 18, 3, 3, 4, 5, 5, 17, 18, 18, 19, 3, 8, 15, 6, 6, 7, 8, 8, 14, 15, 15, 16, 6, 11, 13, 9, 9, 10, 11, 11, 12, 13], "colors": [["#E87C00", 3], ["#E85F5A", 4], ["#E81F67", 4], ["#E700B5", 3]] };
+let ray = { "vertices": [-92, -2, -38, 12, 197, 99, -83, 2, -55, -6, 202, 99, -21, 164, 97, -53, 131, 84, -79, 97, 60, -95, 64, 29, -99, 31, -4, -40, 168, 91, -68, 135, 72, -89, 102, 44, -99, 68, 11, -97, 35, -23], "normals": [], "indices": [0, 13, 2, 7, 11, 12, 5, 9, 10, 0, 8, 13, 7, 6, 11, 5, 4, 9, 4, 3, 9, 8, 12, 13, 6, 10, 11, 4, 1, 3, 8, 7, 12, 6, 5, 10], "colors": [["#73E1E733", 6], ["#50BEEF22", 6]] };
+let ufo = { "vertices": [0, 1950, 0, -578, 2156, 0, -408, 2156, 408, 0, 2156, 0, -460, 1806, 460, -650, 1806, 0, 0, 1806, 0, -358, 2446, 367, -506, 2480, 0, 0, 2337, 0, -151, 2718, 0, -107, 2685, 132, 0, 2608, 0, 0, 2718, 0, -1237, 1973, 0, -1236, 1930, 0, -1240, 1950, 0, -874, 1930, 874, -875, 1973, 875, -877, 1950, 877, -1374, 0, 0, -971, 0, 971], "normals": [], "indices": [3, 7, 9, 1, 9, 8, 1, 7, 2, 9, 11, 12, 9, 10, 8, 8, 11, 7, 10, 12, 13, 12, 11, 13, 11, 10, 13, 5, 4, 6, 4, 20, 5, 3, 2, 7, 1, 3, 9, 1, 8, 7, 9, 7, 11, 9, 12, 10, 8, 10, 11, 4, 21, 20, 16, 3, 1, 19, 6, 4, 19, 2, 3, 16, 5, 6, 15, 4, 5, 14, 15, 16, 17, 18, 19, 15, 18, 17, 18, 1, 2, 1, 14, 16, 16, 0, 3, 4, 17, 19, 19, 0, 6, 3, 0, 19, 19, 18, 2, 6, 0, 16, 16, 15, 5, 15, 17, 4, 15, 14, 18, 18, 14, 1], "colors": [["#10E70022", 18], ["#6FB2BE", 20]] };
+let mine = { "vertices": [-70, 0, 70, 0, 0, 100, 0, 0, 0, -56, -16, 56, 0, -16, 80, 0, -16, 44, -31, -16, 31, 0, -9, 44, -31, -9, 31, 0, -9, 0], "normals": [], "indices": [7, 9, 8, 4, 6, 3, 0, 4, 3, 5, 8, 6, 4, 5, 6, 0, 1, 4, 5, 7, 8], "colors": [["#E7000E", 1], ["#E7B500", 6]] };
+let particle = { "vertices": [0, -70, -100, 86, -70, 50, -86, -70, 50, 0, 70, 0], "normals": [], "indices": [0, 3, 1, 0, 1, 2, 1, 3, 2, 2, 3, 0], "colors": [["#FFFFFF", 4]] };
+let hypercube = { "vertices": [-70, -100, -70, -70, 100, -70, -70, -70, -100, -70, 70, -100, -100, 100, -100, -100, -100, -100, 0, -100, -100, 0, 100, -100, 0, -100, -70, 0, 100, -70, 0, -70, -100, 0, 70, -100], "normals": [], "indices": [0, 6, 8, 2, 4, 3, 3, 7, 11, 2, 6, 5, 1, 7, 4, 0, 5, 6, 2, 5, 4, 3, 4, 7, 2, 10, 6, 1, 9, 7], "colors": [["#006699", 10]] };
+let bush = { "vertices": [-98, 0, 89, -1, 0, 110, -100, 0, -100, 0, 0, -100, -175, 0, 268, -78, 0, 292, -432, 0, 425, -350, 0, 483, -125, 0, 532, -25, 0, 535, -544, 0, 858, -447, 0, 882, -227, 0, 906, -130, 0, 932], "normals": [], "indices": [0, 3, 2, 0, 5, 1, 4, 7, 5, 5, 8, 4, 7, 10, 11, 8, 13, 12, 0, 1, 3, 0, 4, 5, 4, 6, 7, 5, 9, 8, 7, 6, 10, 8, 9, 13], "colors": [["#deadbeef", 12]] };
+let question_mark = { "vertices": [26, 0, 123, 25, 0, 36, 26, 0, 11, 118, 0, -15, 85, 0, -113, -65, 0, -130, -122, 0, -53, -65, 0, -18, -32, 0, -73, 36, 0, -68, 43, 0, -42, -34, 0, -19, -36, 0, 34, 26, 0, 64, -39, 0, 59, -44, 0, 116], "normals": [], "indices": [15, 13, 0, 10, 9, 4, 15, 14, 13, 2, 1, 12, 12, 11, 10, 2, 12, 10, 4, 3, 2, 6, 5, 4, 8, 7, 6, 8, 6, 4, 4, 2, 10, 9, 8, 4], "colors": [["#66ccff", 12]] };
 const debug_narrative = false;
 const Gem = () => {
-    let x = 50 - 100 * Math.random(),
-        z = 50 - 100 * Math.random();
+    let x = rand(50),
+        z =rand(50);
     if (!pointIsOnMap(x, z) && Math.hypot(x, z) > 10) return Gem();
     const mesh = Mesh(gem.vertices, gem.indices, gem.colors, vector3(x, 0, z), vector3(Math.PI / 2, 0, 0), vector3(.25, .25, .25));
     meshes.push(mesh);
@@ -46,7 +49,7 @@ const Gem = () => {
         mesh.rotation.y += deltaTime;
 
         st.rotation.y += deltaTime*Math.random();
-        if (!mesh.off) 
+        if (!mesh.off && distanceTo(mesh.position, camera.position) < 10) 
             if (Math.random() < deltaTime) Particle(clone(mesh.position), vector3(rand(.005), rand(.025), rand(.005)), "#80D08C");
     
 
@@ -58,9 +61,9 @@ const Gem = () => {
 
             zzfx(...[,,539,0,.04,.29,1,1.92,,,567,.02,.02,,,,.04]);
 
-            //if (gemsFound == 7) Message("You found all gems, return to the teleporter!");
+            if (gemsFound == 7) speak("You found all gems, return to the teleporter!");
 
-            if (gemsFound == 4) {
+            if (gemsFound == 5) {
                 speak("Is it a bird? Is it a plane? It's a UFO", 1.2);
                 ufos.push(Ufo());
                 ufos.push(Ufo());
@@ -69,7 +72,7 @@ const Gem = () => {
                 ufos.push(Ufo());
             }
             if (gemsFound == 1) {
-                speak("By the way, watch out for the Arachnoids", 1.2);``
+                speak("By the way, watch out for the Arachnoids", 1.2);
                 for (let i = 0; i < 70; i++) {
                     let x = rand(100);
                     let z = rand(100);
@@ -78,8 +81,8 @@ const Gem = () => {
                     }
                   }
             }
-            if (gemsFound == 2) {
-                speak("The spirits are watching...", 1.2);``
+            if (gemsFound == 3) {
+                speak("The spirits are watching...", 1.2);
                 for (let i = 0; i < 50; i++) {
                     let x = rand(100);
                     let z = rand(100);
@@ -265,7 +268,36 @@ const Particle = (pos, velocity, color = "#FFFFFF", rotationalVelocity = vector3
     particleGroup.meshes.push(mesh);
     particles.push({ mesh, velocity, counter, rotationalVelocity, initialCounter: counter, gravityAffected });
 };
-const raycast = (camera, points) => { 
+const Prize = (pos) => {
+    let group = Group([
+        Mesh(question_mark.vertices, question_mark.indices, question_mark.colors, u, vector3(Math.PI / 2, 0, 0), vector3(.2, .2, .2)),
+        Mesh(hypercube.vertices, hypercube.indices, hypercube.colors, u, u, vector3(.4, .4, .4), 1, 1)
+    ]);
+    group.position = pos;
+    meshes.push(group);
+
+    return deltaTime => {
+        group.meshes[0].rotation.y = angleBetween(group.position, camera.position);
+        group.meshes[1].rotation.x += deltaTime / 5;
+        group.meshes[1].rotation.z += deltaTime / 5;
+
+        group.position.y = 1.5 + Math.sin(timeStamp / 500) / 2;
+
+        if (!group.off && distanceTo(camera.position, group.position) < 1) {
+            wheelSize = .999;
+            wheel = 1;
+            group.off = true;
+            group.meshes[0].off = true;
+            group.meshes[1].off = true;
+        }
+
+        if (!group.off && distanceTo(camera.position, group.position) < 10 && Math.random() < deltaTime) {
+            Particle(clone(group.position), vector3(rand(.05), .1, rand(.05)), "#66ccff", u, u, 1);
+        }
+
+    }
+}
+const raycast = (camera, points) => {
     let cameraDirection = substract(camera.position, camera.target)
     for (index in points) {
         let direction = normalize(substract(camera.position, points[index]));
@@ -273,12 +305,15 @@ const raycast = (camera, points) => {
         let distance = distanceTo(camera.position, points[index]);
 
         if (distance < 5 && difference < 3 && spider_death[index]) {
-            spider_healths[index] -= .5;zzfx(...[1,,240,.02,.05,.08,4,3.1,,,,,.07,.2,9.4,.5,.03,.97,,.2]); // Hit 201
+            for (let i = 0; i < 20; i++)
+                Particle(clone(points[index]), vector3(rand(.2), rand(.2), rand(.2)), "#FF0000", u, .8, true);
+            spider_healths[index] -= .5; zzfx(...[1, , 240, .02, .05, .08, 4, 3.1, , , , , .07, .2, 9.4, .5, .03, .97, , .2]); // Hit 201
 
-if (spider_healths[index] <= 0)            
-            for (let i = 0; i < 100; i++)
-                Particle(clone(points[index]), vector3(rand(.05), rand(.05), rand(.05)), "#FF0000",u, .2, true);
-
+            if (spider_healths[index] <= 0) {
+                zzfx(...[1.9,,729,,.04,.09,2,1.9,-7,50,-70,.08,.02,,,,,.72,.15,.14,411]); // Random 247
+                for (let i = 0; i < 100; i++)
+                    Particle(clone(points[index]), vector3(rand(.2), rand(.2), rand(.2)), "#FF0000", u, .8, true);
+            }
             spider_ricoshate = 1;
 
             return;
@@ -315,6 +350,7 @@ const Spider = (pos, ghost = false) => {
     if (!ghost) meshes.push(group);
 
     return deltaTime => {
+        
         if (spider_healths[index] <= 0) {
             group.off = true;
             spider_death[index] = 0;
@@ -334,16 +370,17 @@ const Spider = (pos, ghost = false) => {
 
         if (distanceTo(vector3(u, u, u), camera.position) <= 4.358) return;
 
-        if (distanceTo(group.position, camera.position) > 3 && distanceTo(vector3(u, u, u), group.position) > 5) {
+        if (distanceTo(group.position, camera.position) > 3 && distanceTo(vector3(u, u, u), group.position) > 5 && distanceTo(group.position, camera.position) <= 10) {
             let p = clone(group.position);
             p.x += Math.sin(group.rotation.y) * deltaTime;
             p.z += Math.cos(group.rotation.y) * deltaTime;
-            if (pointIsOnMap(p.x, p.z) && distanceTo(vector3(u, u, u), group.position) > 5) group.position = p;
+            if ((ghost ||pointIsOnMap(p.x, p.z)) && distanceTo(vector3(u, u, u), group.position) > 5) group.position = p;
         }
         if (spider_ricoshate > .1) {
             let p = clone(group.position);
             p.x -= Math.sin(group.rotation.y) * deltaTime * spider_ricoshate * 5;
             p.z -= Math.cos(group.rotation.y) * deltaTime * spider_ricoshate * 5;
+            zzfx(...[,,73,,.02,.07,4,3.6,,,,,.03,.5,14,.8,.01,.62]);
             if (pointIsOnMap(p.x, p.z) && distanceTo(vector3(u, u, u), group.position) > 5) group.position = p;
             spider_ricoshate -= deltaTime / 10;
 
@@ -360,7 +397,7 @@ const Spider = (pos, ghost = false) => {
 
         
        if (ghost && distanceTo(group.position, camera.position) <= 10) for (let i = 0; i < 1; i++) Particle(add(group.position, vector3(0, 1.80, 0)), vector3(rand(.1), rand(.1),rand(.1)),"#FFFFFF",u,1, true, .3);
-
+       if (distanceTo(group.position, camera.position) <= 10 && Math.random() < deltaTime/20) zzfx(...[,,770,.3,,.22,2,4.6,-87,,48,.52,.06,,,,,.54,.14,.13,-554]);
         spider_positions[index] = group.position;
 
     }
@@ -695,7 +732,8 @@ const initialiseMenuScene = () => {
 }
 
 const updateMenuScene = (deltaTime) => {
-    context.clearRect(0, 0, 1e6, 1e6);
+    context.fillStyle = "black";
+    context.fillRect(0, 0, width, height);
     updateMessages();
     if (enter || xButtonPressed || yButtonPressed) {
         showScene(playScene(), true);
@@ -709,32 +747,47 @@ document.onclick = f => {
 }
 
 // Global Variables
-var playSceneCounter, cameraPos;
-var timerBreathe = 0, timer = 0;
-var heartbeat = 0.2;
-var energy = 1;
-var u; // undefined
-var points = [vector3(0, 0, 0)];
-var spiders = [];
-var health = 1;
-var sword = 0.99;
-var gems = [];
-var gemsFound = 0;
-var leftJoystick, rightJoystick, xButtonPressed, yButtonPressed;
-var previousX;
-var spiralGroup;
-var starGroup = Group([]);
-var ufos = [];
-var landmines = [];
-var red = 0;
-const drawUI = true;
-var particleGroup;
-var meshes;
+var angle = Math.random() * Math.PI * 2,
+  cameraPos,
+  drawUI = true,
+  energy = 1,
+  gems = [],
+  gemsFound = 0,
+  health = 1,
+  heartbeat = 0.2,
+  items = [],
+  landmines = [],
+  leftJoystick,
+  meshes,
+  particleGroup,
+  playSceneCounter,
+  points = [vector3(0, 0, 0)],
+  powerup = -1,
+  powerupTimer = 1,
+  previousX,
+  red = 0,
+  rightJoystick,
+  spiders = [],
+  spiralGroup,
+  starGroup = Group([]),
+  sword = 0.99,
+  timer = 0,
+  timerBreathe = 0,
+  ufos = [],
+  u, // undefined
+  wheel = 1,
+  wheelSize = .999,
+  xButtonPressed,
+  yButtonPressed,
+  effect = -1,
+  effectDuration = 0,
+  drops = ['💩', '❤️', '👁️', '🛡️', '🪽', '⏳', '⚡', '⚔️'];;
+
 
 // Initialize Play Scene
 const initialisePlayScene = () => {
   if (debug_narrative)
-  speak(`
+    speak(`
     Hey, Comrade.
 
 Your teleporter's dead, and you're now stranded in the 13th dimension thanks to the Poland Space Program. To escape, find seven power gems.
@@ -823,6 +876,8 @@ Good luck, which you don't need because you will die anyway!`, 1.2);
   }
 
 
+
+
   for (let i = 0; i < 7; i++)
     gems.push(Gem());
 
@@ -830,21 +885,71 @@ Good luck, which you don't need because you will die anyway!`, 1.2);
   for (let i = 0; i < 1000; i++)
     starGroup.meshes.push(Mesh(star.vertices, star.indices, star.colors, vector3(rand(150), 30, rand(150)), u, vector3(.5, .5, .5)))
 
+  for (let i = 0; i < 200; i++) {
+    let scale = Math.random() / 10 + .1;
+    meshes.push(Mesh(bush.vertices, bush.indices, [["#382847", 12]], vector3(rand(100), 0, rand(100)), vector3(-  Math.PI / 2, rand(Math.PI), 0), vector3(scale, scale, scale), 1));
+  }
   meshes.push(starGroup);
 
   meshes.push(spiralGroup);
 
 
   particleGroup = Group([]);
+
   meshes.push(particleGroup);
+
+  items = [
+    Prize(vector3(0, 2, 0))
+  ];
+
+  for (let i = 0; i < 100; i++) {
+    let x = 100 - Math.random() * 200;
+    let z = 100 - Math.random() * 200;
+    if (pointIsOnMap(x, z) && distanceTo(vector3(u, u, u), vector3(x, 0, z)) > 10)
+      items.push(Prize(vector3(x, 0, z)));
+  }
 };
 
 // Update Play Scene
 const updatePlayScene = (deltaTime) => {
   fog = Math.sin(timeStamp / 200) * 2 + 10 + Math.random() * 0.4 - 0.8;
+  effectDuration -= deltaTime / 10;
+  if (effectDuration > 0) {
+    switch (effect) {
+      case 0:
+        effectDuration = 0;
+        break;
+      case 1:
+        health += .5;
+        break;
+      case 2:
+        fog = 100;
+        break;
+      case 3:
+        break;
+      case 4:
+        break;
+      case 5:
+        timer = 13;
+        break;
+      case 6:
+        energy = 1;
+        break;
+      case 7:
+
+
+    }
+  }
+
+
+  context.globalAlpha = 1;
+  wheel -= deltaTime / 20;
+  wheel = Math.max(wheel, 0);
   playSceneCounter++;
   heartbeat *= heartbeat;
   red -= deltaTime / 10;
+
+  if (Math.random() < deltaTime / 1000) zzfx(...[1.6, , 182, , .05, .25, 1, 3.5, , 7, , , .09, .4, , .1, .04, .81, .31, .03, -1260]);
 
   meshes[2].rotation.x += deltaTime / 40;
   spiralGroup.rotation.y += deltaTime / 40;
@@ -854,12 +959,12 @@ const updatePlayScene = (deltaTime) => {
   gems.forEach(gem => gem(deltaTime));
   ufos.forEach(ufo => ufo(deltaTime));
   landmines.forEach(l => l(deltaTime));
+  items.forEach(p => p(deltaTime));
 
-  context.globalAlpha = 0.8;
   context.drawImage(glCanvas, 0, 0);
-  context.globalAlpha = 1;
 
   if (drawUI) {
+    //#region bars
     context.fillStyle = "white";
     context.font = `${15 * (1 + timerBreathe)}px monospace`;
     timerBreathe -= deltaTime;
@@ -889,9 +994,53 @@ const updatePlayScene = (deltaTime) => {
     if (red > 0)
       context.fillRect(0, 0, width, height);
 
+    if (effectDuration > 0) context.fillText(drops[effect], 10, height - 10);
+
     context.fillStyle = "#80D08C";
     context.fillText("⬡⬡⬡⬡⬡⬡⬡".replace(/⬡/g, (match, offset) => offset < gemsFound ? '⬢' : match), width - 40, 10);
+    //#endregion bars
+
+    //#region wheel
+    var drop = -1;
+
+    angle += wheel * wheel * deltaTime * Math.random() * 5;
+
+    for (let [index, item] of drops.entries()) {
+      context.strokeStyle = ((index & 1) ? "#886CDB" : "#9880E0");
+      if ((angle + ((index + drops.length + 1) * Math.PI * 2 / drops.length + Math.PI / 2)) % (Math.PI * 2) < Math.PI * 2 / drops.length && wheel >= .01) {
+        drop = index;
+      }
+      context.strokeStyle
+      context.lineWidth = halfHeight * .7;
+      context.beginPath();
+      context.arc(
+        halfWidth,
+        halfHeight + 15,
+        halfHeight / 2 * .7 * wheelSize,
+        Math.PI * 2 / drops.length * index + angle,
+        Math.PI * 2 / drops.length * (index + 1) + angle
+      );
+      context.stroke();
+      if (wheelSize > .01)
+        context.fillText(
+          item,
+          halfWidth + halfHeight * .6 * wheelSize * Math.cos(Math.PI * 2 / drops.length * (.5 + index) + angle),
+          halfHeight + halfHeight * .6 * wheelSize * Math.sin(Math.PI * 2 / drops.length * (.5 + index) + angle) + 15,
+        );
+    }
   }
+
+  if (wheel < .01 && drop != -1) {
+    effect = drop;
+    console.log("DROPPED", drop);
+    effectDuration = 1;
+    drop = -1;
+
+  }
+  if (wheel < .01) {
+    wheelSize *= wheelSize;
+  }
+  //#endregion wheel
 
   sword *= Math.pow(sword, 60 * deltaTime);
 
@@ -912,9 +1061,10 @@ const updatePlayScene = (deltaTime) => {
     showScene(gameOverScene(), true);
   }
 
+  if (effect == 3 && effectDuration > 0)
+    health = 1;
+
   updateParticles();
-
-
 
   previousX = xButtonPressed;
 
@@ -923,10 +1073,18 @@ const updatePlayScene = (deltaTime) => {
   render(meshes, camera);
 };
 
+var walkCooldown = 0;
 // Process Input Play Scene
 const processInputPlayScene = (deltaTime) => {
+  walkCooldown -= deltaTime / 10;
   let direction = vector3(0, 0, 0);
   if (up) {
+    if (walkCooldown <= 0) {
+      zzfx(...[2.3, , 201, , , .002, , 4.5, , 2, , , , , , , , .98, , , 178]);
+
+      if (shift) walkCooldown = .3;
+      else walkCooldown = .5;
+    }
     direction = vector3(0, 0, 1 + ((shift) && energy > 0));
   } else if (down) {
     direction = vector3(0, 0, -2 / 3);
@@ -1090,8 +1248,11 @@ const gameLoop = (timeStamp) => {
 
     let imageData = context.getImageData(0, 0, width, height);
   
+    context.clearRect(0, 0, width, height);
     let r = Math.random() < deltaTime / 10;
     imageData = new ImageData(new Uint8ClampedArray(imageData.data.map((x, i) => {
+        if ((i % 4) == 3) return 200;
+        if (Math.floor(i / 4 / width) % 3 == 0) return imageData.data[i] * .99;
       if (i % 4 == 0) return imageData.data[(i+(r ? 4*redShift : 8*redShift)) % (width * height * 4)];
       return x;
     })), width, height);

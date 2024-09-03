@@ -28,6 +28,7 @@ const Spider = (pos, ghost = false) => {
     if (!ghost) meshes.push(group);
 
     return deltaTime => {
+        
         if (spider_healths[index] <= 0) {
             group.off = true;
             spider_death[index] = 0;
@@ -47,16 +48,17 @@ const Spider = (pos, ghost = false) => {
 
         if (distanceTo(vector3(u, u, u), camera.position) <= 4.358) return;
 
-        if (distanceTo(group.position, camera.position) > 3 && distanceTo(vector3(u, u, u), group.position) > 5) {
+        if (distanceTo(group.position, camera.position) > 3 && distanceTo(vector3(u, u, u), group.position) > 5 && distanceTo(group.position, camera.position) <= 10) {
             let p = clone(group.position);
             p.x += Math.sin(group.rotation.y) * deltaTime;
             p.z += Math.cos(group.rotation.y) * deltaTime;
-            if (pointIsOnMap(p.x, p.z) && distanceTo(vector3(u, u, u), group.position) > 5) group.position = p;
+            if ((ghost ||pointIsOnMap(p.x, p.z)) && distanceTo(vector3(u, u, u), group.position) > 5) group.position = p;
         }
         if (spider_ricoshate > .1) {
             let p = clone(group.position);
             p.x -= Math.sin(group.rotation.y) * deltaTime * spider_ricoshate * 5;
             p.z -= Math.cos(group.rotation.y) * deltaTime * spider_ricoshate * 5;
+            zzfx(...[,,73,,.02,.07,4,3.6,,,,,.03,.5,14,.8,.01,.62]);
             if (pointIsOnMap(p.x, p.z) && distanceTo(vector3(u, u, u), group.position) > 5) group.position = p;
             spider_ricoshate -= deltaTime / 10;
 
@@ -73,7 +75,7 @@ const Spider = (pos, ghost = false) => {
 
         
        if (ghost && distanceTo(group.position, camera.position) <= 10) for (let i = 0; i < 1; i++) Particle(add(group.position, vector3(0, 1.80, 0)), vector3(rand(.1), rand(.1),rand(.1)),"#FFFFFF",u,1, true, .3);
-
+       if (distanceTo(group.position, camera.position) <= 10 && Math.random() < deltaTime/20) zzfx(...[,,770,.3,,.22,2,4.6,-87,,48,.52,.06,,,,,.54,.14,.13,-554]);
         spider_positions[index] = group.position;
 
     }

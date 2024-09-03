@@ -66,8 +66,11 @@ const gameLoop = (timeStamp) => {
 
     let imageData = context.getImageData(0, 0, width, height);
   
+    context.clearRect(0, 0, width, height);
     let r = Math.random() < deltaTime / 10;
     imageData = new ImageData(new Uint8ClampedArray(imageData.data.map((x, i) => {
+        if ((i % 4) == 3) return 200;
+        if (Math.floor(i / 4 / width) % 3 == 0) return imageData.data[i] * .99;
       if (i % 4 == 0) return imageData.data[(i+(r ? 4*redShift : 8*redShift)) % (width * height * 4)];
       return x;
     })), width, height);

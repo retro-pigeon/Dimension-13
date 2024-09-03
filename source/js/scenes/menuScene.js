@@ -8,7 +8,8 @@ const initialiseMenuScene = () => {
 }
 
 const updateMenuScene = (deltaTime) => {
-    context.clearRect(0, 0, 1e6, 1e6);
+    context.fillStyle = "black";
+    context.fillRect(0, 0, width, height);
     updateMessages();
     if (enter || xButtonPressed || yButtonPressed) {
         showScene(playScene(), true);

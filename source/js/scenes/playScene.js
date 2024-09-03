@@ -1,30 +1,45 @@
 // Global Variables
-var playSceneCounter, cameraPos;
-var timerBreathe = 0, timer = 0;
-var heartbeat = 0.2;
-var energy = 1;
-var u; // undefined
-var points = [vector3(0, 0, 0)];
-var spiders = [];
-var health = 1;
-var sword = 0.99;
-var gems = [];
-var gemsFound = 0;
-var leftJoystick, rightJoystick, xButtonPressed, yButtonPressed;
-var previousX;
-var spiralGroup;
-var starGroup = Group([]);
-var ufos = [];
-var landmines = [];
-var red = 0;
-const drawUI = true;
-var particleGroup;
-var meshes;
+var angle = Math.random() * Math.PI * 2,
+  cameraPos,
+  drawUI = true,
+  energy = 1,
+  gems = [],
+  gemsFound = 0,
+  health = 1,
+  heartbeat = 0.2,
+  items = [],
+  landmines = [],
+  leftJoystick,
+  meshes,
+  particleGroup,
+  playSceneCounter,
+  points = [vector3(0, 0, 0)],
+  powerup = -1,
+  powerupTimer = 1,
+  previousX,
+  red = 0,
+  rightJoystick,
+  spiders = [],
+  spiralGroup,
+  starGroup = Group([]),
+  sword = 0.99,
+  timer = 0,
+  timerBreathe = 0,
+  ufos = [],
+  u, // undefined
+  wheel = 1,
+  wheelSize = .999,
+  xButtonPressed,
+  yButtonPressed,
+  effect = -1,
+  effectDuration = 0,
+  drops = ['💩', '❤️', '👁️', '🛡️', '🪽', '⏳', '⚡', '⚔️'];;
+
 
 // Initialize Play Scene
 const initialisePlayScene = () => {
   if (debug_narrative)
-  speak(`
+    speak(`
     Hey, Comrade.
 
 Your teleporter's dead, and you're now stranded in the 13th dimension thanks to the Poland Space Program. To escape, find seven power gems.
@@ -113,6 +128,8 @@ Good luck, which you don't need because you will die anyway!`, 1.2);
   }
 
 
+
+
   for (let i = 0; i < 7; i++)
     gems.push(Gem());
 
@@ -120,21 +137,71 @@ Good luck, which you don't need because you will die anyway!`, 1.2);
   for (let i = 0; i < 1000; i++)
     starGroup.meshes.push(Mesh(star.vertices, star.indices, star.colors, vector3(rand(150), 30, rand(150)), u, vector3(.5, .5, .5)))
 
+  for (let i = 0; i < 200; i++) {
+    let scale = Math.random() / 10 + .1;
+    meshes.push(Mesh(bush.vertices, bush.indices, [["#382847", 12]], vector3(rand(100), 0, rand(100)), vector3(-  Math.PI / 2, rand(Math.PI), 0), vector3(scale, scale, scale), 1));
+  }
   meshes.push(starGroup);
 
   meshes.push(spiralGroup);
 
 
   particleGroup = Group([]);
+
   meshes.push(particleGroup);
+
+  items = [
+    Prize(vector3(0, 2, 0))
+  ];
+
+  for (let i = 0; i < 100; i++) {
+    let x = 100 - Math.random() * 200;
+    let z = 100 - Math.random() * 200;
+    if (pointIsOnMap(x, z) && distanceTo(vector3(u, u, u), vector3(x, 0, z)) > 10)
+      items.push(Prize(vector3(x, 0, z)));
+  }
 };
 
 // Update Play Scene
 const updatePlayScene = (deltaTime) => {
   fog = Math.sin(timeStamp / 200) * 2 + 10 + Math.random() * 0.4 - 0.8;
+  effectDuration -= deltaTime / 10;
+  if (effectDuration > 0) {
+    switch (effect) {
+      case 0:
+        effectDuration = 0;
+        break;
+      case 1:
+        health += .5;
+        break;
+      case 2:
+        fog = 100;
+        break;
+      case 3:
+        break;
+      case 4:
+        break;
+      case 5:
+        timer = 13;
+        break;
+      case 6:
+        energy = 1;
+        break;
+      case 7:
+
+
+    }
+  }
+
+
+  context.globalAlpha = 1;
+  wheel -= deltaTime / 20;
+  wheel = Math.max(wheel, 0);
   playSceneCounter++;
   heartbeat *= heartbeat;
   red -= deltaTime / 10;
+
+  if (Math.random() < deltaTime / 1000) zzfx(...[1.6, , 182, , .05, .25, 1, 3.5, , 7, , , .09, .4, , .1, .04, .81, .31, .03, -1260]);
 
   meshes[2].rotation.x += deltaTime / 40;
   spiralGroup.rotation.y += deltaTime / 40;
@@ -144,12 +211,12 @@ const updatePlayScene = (deltaTime) => {
   gems.forEach(gem => gem(deltaTime));
   ufos.forEach(ufo => ufo(deltaTime));
   landmines.forEach(l => l(deltaTime));
+  items.forEach(p => p(deltaTime));
 
-  context.globalAlpha = 0.8;
   context.drawImage(glCanvas, 0, 0);
-  context.globalAlpha = 1;
 
   if (drawUI) {
+    //#region bars
     context.fillStyle = "white";
     context.font = `${15 * (1 + timerBreathe)}px monospace`;
     timerBreathe -= deltaTime;
@@ -179,9 +246,53 @@ const updatePlayScene = (deltaTime) => {
     if (red > 0)
       context.fillRect(0, 0, width, height);
 
+    if (effectDuration > 0) context.fillText(drops[effect], 10, height - 10);
+
     context.fillStyle = "#80D08C";
     context.fillText("⬡⬡⬡⬡⬡⬡⬡".replace(/⬡/g, (match, offset) => offset < gemsFound ? '⬢' : match), width - 40, 10);
+    //#endregion bars
+
+    //#region wheel
+    var drop = -1;
+
+    angle += wheel * wheel * deltaTime * Math.random() * 5;
+
+    for (let [index, item] of drops.entries()) {
+      context.strokeStyle = ((index & 1) ? "#886CDB" : "#9880E0");
+      if ((angle + ((index + drops.length + 1) * Math.PI * 2 / drops.length + Math.PI / 2)) % (Math.PI * 2) < Math.PI * 2 / drops.length && wheel >= .01) {
+        drop = index;
+      }
+      context.strokeStyle
+      context.lineWidth = halfHeight * .7;
+      context.beginPath();
+      context.arc(
+        halfWidth,
+        halfHeight + 15,
+        halfHeight / 2 * .7 * wheelSize,
+        Math.PI * 2 / drops.length * index + angle,
+        Math.PI * 2 / drops.length * (index + 1) + angle
+      );
+      context.stroke();
+      if (wheelSize > .01)
+        context.fillText(
+          item,
+          halfWidth + halfHeight * .6 * wheelSize * Math.cos(Math.PI * 2 / drops.length * (.5 + index) + angle),
+          halfHeight + halfHeight * .6 * wheelSize * Math.sin(Math.PI * 2 / drops.length * (.5 + index) + angle) + 15,
+        );
+    }
   }
+
+  if (wheel < .01 && drop != -1) {
+    effect = drop;
+    console.log("DROPPED", drop);
+    effectDuration = 1;
+    drop = -1;
+
+  }
+  if (wheel < .01) {
+    wheelSize *= wheelSize;
+  }
+  //#endregion wheel
 
   sword *= Math.pow(sword, 60 * deltaTime);
 
@@ -202,9 +313,10 @@ const updatePlayScene = (deltaTime) => {
     showScene(gameOverScene(), true);
   }
 
+  if (effect == 3 && effectDuration > 0)
+    health = 1;
+
   updateParticles();
-
-
 
   previousX = xButtonPressed;
 
@@ -213,10 +325,18 @@ const updatePlayScene = (deltaTime) => {
   render(meshes, camera);
 };
 
+var walkCooldown = 0;
 // Process Input Play Scene
 const processInputPlayScene = (deltaTime) => {
+  walkCooldown -= deltaTime / 10;
   let direction = vector3(0, 0, 0);
   if (up) {
+    if (walkCooldown <= 0) {
+      zzfx(...[2.3, , 201, , , .002, , 4.5, , 2, , , , , , , , .98, , , 178]);
+
+      if (shift) walkCooldown = .3;
+      else walkCooldown = .5;
+    }
     direction = vector3(0, 0, 1 + ((shift) && energy > 0));
   } else if (down) {
     direction = vector3(0, 0, -2 / 3);
