@@ -33,7 +33,8 @@ var angle = Math.random() * Math.PI * 2,
   yButtonPressed,
   effect = -1,
   effectDuration = 0,
-  drops = ['💩', '❤️', '👁️', '🛡️', '🪽', '⏳', '⚡', '⚔️'];;
+  drops = ['💩', '❤️', '👁️', '🛡️', '🪽', '⏳', '⚡', '⚔️'],
+  drop = -1;
 
 
 // Initialize Play Scene
@@ -165,7 +166,7 @@ Good luck, which you don't need because you will die anyway!`, 1.2);
 // Update Play Scene
 const updatePlayScene = (deltaTime) => {
   fog = Math.sin(timeStamp / 200) * 2 + 10 + Math.random() * 0.4 - 0.8;
-  effectDuration -= deltaTime / 10;
+  effectDuration -= deltaTime / 100;
   if (effectDuration > 0) {
     switch (effect) {
       case 0:
@@ -191,6 +192,10 @@ const updatePlayScene = (deltaTime) => {
 
 
     }
+  }
+  if (effectDuration < 0) {
+    effectDuration = 1000;
+    effect = -1;
   }
 
 
@@ -246,14 +251,14 @@ const updatePlayScene = (deltaTime) => {
     if (red > 0)
       context.fillRect(0, 0, width, height);
 
-    if (effectDuration > 0) context.fillText(drops[effect], 10, height - 10);
+    context.fillStyle = "#FFFFFF";
+    context.fillText(drops[effect] || '🚫', 10, height - 10);
 
     context.fillStyle = "#80D08C";
     context.fillText("⬡⬡⬡⬡⬡⬡⬡".replace(/⬡/g, (match, offset) => offset < gemsFound ? '⬢' : match), width - 40, 10);
     //#endregion bars
 
     //#region wheel
-    var drop = -1;
 
     angle += wheel * wheel * deltaTime * Math.random() * 5;
 
@@ -282,9 +287,8 @@ const updatePlayScene = (deltaTime) => {
     }
   }
 
-  if (wheel < .01 && drop != -1) {
+  if (wheel < .01 && effect == -1 && drop != -1) {
     effect = drop;
-    console.log("DROPPED", drop);
     effectDuration = 1;
     drop = -1;
 

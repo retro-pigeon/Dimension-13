@@ -19,6 +19,7 @@ const Prize = (pos) => {
             group.off = true;
             group.meshes[0].off = true;
             group.meshes[1].off = true;
+            zzfx(...[, , 105, .06, .36, .001, 1, 2.3, , , 10, , .06, , , , , .96, .47, 1]);
         }
 
         if (!group.off && distanceTo(camera.position, group.position) < 10 && Math.random() < deltaTime) {
